@@ -2,7 +2,8 @@ import React from 'react';
 
 function TodoList() {
   return (
-    <div className="App">
+    <div>
+      <h1>TodoList</h1>
     </div>
   );
 }
