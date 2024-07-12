@@ -19,15 +19,15 @@ const router = createBrowserRouter([
         element: <Navigate to="/todos" />,
       },
       {
-        path:'/contacts',
+        path:'contacts/',
         element: <Contacts />,
       },
       {
-        path:'/todos',
+        path:'todos/',
         element: <Todos />,
       },
       {
-        path:'user',
+        path:'user/',
         element: <UserPage />
       }
     ]
