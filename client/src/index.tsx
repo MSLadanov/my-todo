@@ -4,12 +4,27 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import ErrorPage from './components/ErrorPage/ErrorPage';
+import Contacts from './components/Contacts/Contacts';
+import Todos from './components/Todos/Todos';
+import UserPage from './components/UserPage/UserPage';
 
 const router = createBrowserRouter([
   {
     path:'/',
     element: <App />,
     errorElement: <ErrorPage />,
+  },
+  {
+    path:'/contacts',
+    element: <Contacts />,
+  },
+  {
+    path:'/todos',
+    element: <Todos />
+  },
+  {
+    path:'user',
+    element: <UserPage />
   }
 ])
 
