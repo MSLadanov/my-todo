@@ -4,14 +4,10 @@ import styled from 'styled-components';
 
 function Header() {
   const HeaderContainer = styled.header`
-  background-color: #333;
-  padding: 1em;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `;
   const Menu = styled.ul`
+    display:flex;
+    justify-content: space-between;
   `
   const MenuItem = styled.li`
 
