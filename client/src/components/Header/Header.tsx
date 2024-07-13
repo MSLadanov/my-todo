@@ -1,21 +1,37 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 function Header() {
+  const HeaderContainer = styled.header`
+  background-color: #333;
+  padding: 1em;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+  const Menu = styled.ul`
+  `
+  const MenuItem = styled.li`
+
+  `
   return (
-    <nav>
-        <ul>
-            <li>
+    <HeaderContainer>
+      <nav>
+        <Menu>
+            <MenuItem>
               <Link to={`contacts/`}>Contacts</Link>
-            </li>
-            <li>
+            </MenuItem>
+            <MenuItem>
               <Link to={`todos/`}>Todos</Link>
-            </li>
-            <li>
+            </MenuItem>
+            <MenuItem>
               <Link to={`user/`}>User</Link>
-            </li>
-        </ul>
+            </MenuItem>
+        </Menu>
     </nav>
+    </HeaderContainer>
   );
 }
 
