@@ -8,9 +8,14 @@ function Header() {
   const Menu = styled.ul`
     display:flex;
     justify-content: space-between;
+    padding: 0;
   `
   const MenuItem = styled.li`
-
+    list-style-type: none;
+    & a{
+      text-decoration: none;
+      color: black;
+    }
   `
   return (
     <HeaderContainer>
