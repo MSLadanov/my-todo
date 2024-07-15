@@ -21,8 +21,7 @@ function App() {
     <>
       {user ? <h1>Welcome, {user}</h1> : <h1>Welcome, guest!</h1>}
       {user ? <button onClick={() => logOut()}>Log Out</button> : <button onClick={() => signIn()}>Sign In</button>} 
-      <Outlet />
-      <Header />
+      {user && <><Outlet /> <Header /></>}
     </>
   );
 }
