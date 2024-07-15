@@ -11,15 +11,16 @@ function App() {
   }
   const user = useSelector((state : IState) => state.user)
   const dispatch = useDispatch()
-  console.log(user)
   function signIn():void{
     dispatch(login('John Doe'))
   }
-  const [auth, setAuth] = useState<boolean>(false)
+  function logOut():void{
+    dispatch(login(null))
+  }
   return (
     <>
-      <h1>{user}</h1>
-      <button onClick={() => signIn()}>Sign In</button>
+      {user ? <h1>Welcome, {user}</h1> : <h1>Welcome, guest!</h1>}
+      {user ? <button onClick={() => logOut()}>Log Out</button> : <button onClick={() => signIn()}>Sign In</button>} 
       <Outlet />
       <Header />
     </>
