@@ -5,6 +5,7 @@ import { login, logout } from './redux/actions/authActions';
 import './App.css';
 import Header from './components/Header/Header';
 import SignIn from './components/SignIn/SignIn';
+import SignUp from './components/SignUp/SignUp';
 
 function App() {
   interface IState {
@@ -22,7 +23,7 @@ function App() {
     <>
       {user ? <h1>Welcome, {user}</h1> : <h1>Welcome, guest!</h1>}
       <SignIn />
-      {user ? <button onClick={() => logOut()}>Log Out</button> : <button onClick={() => signIn()}>Sign In</button>} 
+      <SignUp />
       {user && <><Outlet /> <Header /></>}
     </>
   );
