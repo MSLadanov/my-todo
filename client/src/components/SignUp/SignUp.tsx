@@ -10,7 +10,6 @@ function SignUp () {
   const [password, setPassword] = useState<string>('');
   const [token, setToken] = useState<string>('')
   const dispatch = useDispatch()
-  const user = useSelector((state) => console.log(state))
 
   interface IUserCredentials {
     displayName: string,
@@ -26,7 +25,6 @@ function SignUp () {
           setToken(res)
           const userCredentials :IUserCredentials = {displayName, email, token}
           dispatch(login(userCredentials))
-          console.log(user)
         })
         // const {email, accessToken, uid} = resp.user
         updateProfile(resp.user, {displayName})

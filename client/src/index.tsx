@@ -9,6 +9,7 @@ import ErrorPage from './components/ErrorPage/ErrorPage';
 import Contacts from './components/Contacts/Contacts';
 import Todos from './components/Todos/Todos';
 import UserPage from './components/UserPage/UserPage';
+import SignUp from './components/SignUp/SignUp';
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,11 @@ const router = createBrowserRouter([
       {
         path:'user/',
         element: <UserPage />
-      }
+      },
+      {
+        path: "signup/",
+        element: <SignUp />,
+      },
     ]
   },
 ])

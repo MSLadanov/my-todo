@@ -13,14 +13,11 @@ function App() {
     email: string,
     token: string 
   }
-  const user = useSelector((state : IState) => state.displayName)
-  const dispatch = useDispatch()
+  const userName = useSelector((state : IState) => state.displayName)
   return (
     <>
-      {user ? <h1>Welcome, {user}</h1> : <h1>Welcome, guest!</h1>}
-      <SignIn />
-      <SignUp />
-      {user && <><Outlet /> <Header /></>}
+      {userName ? <h1>Welcome, {userName}</h1> : <h1>Welcome, guest!</h1>}
+      {!userName ? <SignIn /> : <><Outlet /> <Header /></>}
     </>
   );
 }
