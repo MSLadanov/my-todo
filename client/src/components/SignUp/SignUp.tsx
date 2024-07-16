@@ -6,11 +6,23 @@ function SignUp () {
   const [displayName, setDisplayName] = useState<string>('')
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [token, setToken] = useState<string>('')
+
+  interface IUserCredentials {
+    displayName: string,
+    email: string,
+    token: string 
+  }
 
   async function handleSignUp (e : React.FormEvent<HTMLFormElement>) : Promise<void> {
     e.preventDefault();
     try {
       await createUserWithEmailAndPassword(auth, email, password).then((resp) => {
+        resp.user.getIdToken().then((res) => {
+          setToken(res)
+          const userCredentials :IUserCredentials = {displayName, email, token}
+        })
+        // const {email, accessToken, uid} = resp.user
         updateProfile(resp.user, {displayName})
       }).catch((error) => console.log(error));
       console.log('User signed up');
