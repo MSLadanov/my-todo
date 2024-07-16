@@ -46,7 +46,6 @@ function SignIn(){
             placeholder="Password" />
           <button type="submit">Sign In</button>
         </form>
-        <Link to={`signup/`}>Sign Up</Link>
       </>
       );
 }

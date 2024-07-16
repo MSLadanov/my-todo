@@ -16,8 +16,7 @@ function App() {
   const userName = useSelector((state : IState) => state.displayName)
   return (
     <>
-      {userName ? <h1>Welcome, {userName}</h1> : <h1>Welcome, guest!</h1>}
-      {!userName ? <SignIn /> : <><Outlet /> <Header /></>}
+      {userName && <><Outlet /> <Header /></>}
     </>
   );
 }
