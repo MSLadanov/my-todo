@@ -1,4 +1,10 @@
-export const login = (userData : string | null) => ({
+interface IUserData {
+  displayName: string,
+  email: string,
+  token: string 
+}
+
+export const login = (userData : IUserData | null) => ({
     type: 'LOGIN',
     payload: userData,
   });

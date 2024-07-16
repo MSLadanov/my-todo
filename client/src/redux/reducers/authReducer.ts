@@ -1,14 +1,18 @@
 interface IInitialState {
-    user: null | string
+  displayName: string | null,
+  email: string | null,
+  token: string | null,
 }
 
 const initialState : IInitialState = {
-    user: null,
+  displayName: null,
+  email: null,
+  token: null 
 };
   
   interface IAction {
     type:string,
-    payload: string
+    payload: object
 }
 
 const authReducer = (state = initialState, action : IAction) => {
@@ -16,7 +20,7 @@ const authReducer = (state = initialState, action : IAction) => {
       case 'LOGIN':
         return {
           ...state,
-          user: action.payload,
+          ...action.payload
         };
       case 'LOGOUT':
         return {

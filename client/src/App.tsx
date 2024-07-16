@@ -9,16 +9,12 @@ import SignUp from './components/SignUp/SignUp';
 
 function App() {
   interface IState {
-    user: string
+    displayName: string,
+    email: string,
+    token: string 
   }
-  const user = useSelector((state : IState) => state.user)
+  const user = useSelector((state : IState) => state.displayName)
   const dispatch = useDispatch()
-  function signIn():void{
-    dispatch(login('John Doe'))
-  }
-  function logOut():void{
-    dispatch(login(null))
-  }
   return (
     <>
       {user ? <h1>Welcome, {user}</h1> : <h1>Welcome, guest!</h1>}

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../redux/actions/authActions';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../firebase'
 
@@ -7,6 +9,8 @@ function SignUp () {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [token, setToken] = useState<string>('')
+  const dispatch = useDispatch()
+  const user = useSelector((state) => console.log(state))
 
   interface IUserCredentials {
     displayName: string,
@@ -21,6 +25,8 @@ function SignUp () {
         resp.user.getIdToken().then((res) => {
           setToken(res)
           const userCredentials :IUserCredentials = {displayName, email, token}
+          dispatch(login(userCredentials))
+          console.log(user)
         })
         // const {email, accessToken, uid} = resp.user
         updateProfile(resp.user, {displayName})
