@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions/authActions';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function SignIn(){
   interface IUserCredentials {
@@ -11,6 +11,7 @@ function SignIn(){
     email: string | null,
     token: string 
   }
+    const navigate = useNavigate();
     const dispatch = useDispatch()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -24,6 +25,7 @@ function SignIn(){
               const token = res
               const userCredentials :IUserCredentials = {displayName, email, token}
               dispatch(login(userCredentials))
+              navigate("/");
             })
           }).catch((err) => console.log(err));
           console.log('User logged in');
