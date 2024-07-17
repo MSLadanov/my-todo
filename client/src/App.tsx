@@ -1,11 +1,7 @@
-import React, {useState} from 'react';
 import { Outlet } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
-import { login, logout } from './redux/actions/authActions';
+import { useSelector } from 'react-redux';
 import './App.css';
 import Header from './components/Header/Header';
-import SignIn from './components/SignIn/SignIn';
-import SignUp from './components/SignUp/SignUp';
 
 function App() {
   interface IState {
