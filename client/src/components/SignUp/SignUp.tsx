@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/authActions';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../firebase'
+import { useNavigate } from 'react-router-dom';
 
 function SignUp () {
   const [displayName, setDisplayName] = useState<string>('')
@@ -10,7 +11,7 @@ function SignUp () {
   const [password, setPassword] = useState<string>('');
   const [token, setToken] = useState<string>('')
   const dispatch = useDispatch()
-
+  const navigate = useNavigate();
   interface IUserCredentials {
     displayName: string,
     email: string,
@@ -28,6 +29,7 @@ function SignUp () {
         })
         // const {email, accessToken, uid} = resp.user
         updateProfile(resp.user, {displayName})
+        navigate("/");
       }).catch((error) => console.log(error));
       console.log('User signed up');
     } catch (error) {
