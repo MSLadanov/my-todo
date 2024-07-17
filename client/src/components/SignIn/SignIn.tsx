@@ -60,6 +60,7 @@ function SignIn(){
             placeholder="Password" />
           <button type="submit">Sign In</button>
         </form>
+        <button onClick={() => navigate('/signup')}>Sign Up</button>
       </>
       );
 }

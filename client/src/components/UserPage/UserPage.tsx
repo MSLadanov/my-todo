@@ -6,8 +6,8 @@ function UserPage() {
   const dispatch = useDispatch()
   return (
     <div>
-      <button onClick={() => dispatch(logout())}>Log Out</button>
       <h1>UserPage</h1>
+      <button onClick={() => dispatch(logout())}>Log Out</button>
     </div>
   );
 }

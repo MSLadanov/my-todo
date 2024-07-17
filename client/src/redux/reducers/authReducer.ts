@@ -25,7 +25,6 @@ const authReducer = (state = initialState, action : IAction) => {
           ...action.payload
         };
       case 'LOGOUT':
-        console.log('log out')
         localStorage.removeItem(SAVE_STATE_KEY)
         return {
           ...state,

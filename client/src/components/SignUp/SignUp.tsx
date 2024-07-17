@@ -50,27 +50,27 @@ function SignUp () {
   };
 
   return (
+  <>
     <form onSubmit={handleSignUp}>
       <input
         type="text"
         value={displayName}
         onChange={(e) => setDisplayName(e.target.value)}
-        placeholder="Name"
-      />
+        placeholder="Name" />
       <input
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-      />
+        placeholder="Email" />
       <input
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-      />
+        placeholder="Password" />
       <button type="submit">Sign Up</button>
     </form>
+    <button onClick={() => navigate('/signin')}>Sign In</button>
+  </>
   );
 };
 
