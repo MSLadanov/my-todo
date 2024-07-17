@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/authActions';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
@@ -6,12 +6,24 @@ import { auth } from '../../firebase'
 import { useNavigate } from 'react-router-dom';
 
 function SignUp () {
+  interface IState {
+    displayName: string,
+    email: string,
+    token: string 
+  }
   const [displayName, setDisplayName] = useState<string>('')
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [token, setToken] = useState<string>('')
   const dispatch = useDispatch()
   const navigate = useNavigate();
+  const userName = useSelector((state : IState) => state.displayName)
+  // Make stronger protection in future
+  useEffect(() => {
+    if (userName) {
+      navigate("/");
+    }
+  }, [userName]);
   interface IUserCredentials {
     displayName: string,
     email: string,

@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/authActions';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,8 +11,20 @@ function SignIn(){
     email: string | null,
     token: string 
   }
+  interface IState {
+    displayName: string,
+    email: string,
+    token: string 
+  }
     const navigate = useNavigate();
     const dispatch = useDispatch()
+    const userName = useSelector((state : IState) => state.displayName)
+  // Make stronger protection in future
+    useEffect(() => {
+    if (userName) {
+      navigate("/");
+    }
+  }, [userName]);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     async function handleLogin (e: React.FormEvent<HTMLFormElement>) : Promise<void> {

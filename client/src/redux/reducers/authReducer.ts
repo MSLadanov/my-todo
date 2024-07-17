@@ -15,6 +15,7 @@ const initialState : IInitialState = {
     payload: object
 }
 
+const SAVE_STATE_KEY = 'reduxState';
 
 const authReducer = (state = initialState, action : IAction) => {
     switch (action.type) {
@@ -24,9 +25,13 @@ const authReducer = (state = initialState, action : IAction) => {
           ...action.payload
         };
       case 'LOGOUT':
+        console.log('log out')
+        localStorage.removeItem(SAVE_STATE_KEY)
         return {
           ...state,
-          user: null,
+          displayName: null,
+          email: null,
+          token: null,
         };
       default:
         return state;
