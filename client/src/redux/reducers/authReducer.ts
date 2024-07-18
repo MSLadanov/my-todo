@@ -2,12 +2,14 @@ interface IInitialState {
   displayName: string | null,
   email: string | null,
   token: string | null,
+  userId: string | null
 }
 
 const initialState : IInitialState = {
   displayName: null,
   email: null,
-  token: null 
+  token: null,
+  userId: null, 
 };
   
   interface IAction {

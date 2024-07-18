@@ -14,7 +14,6 @@ function SignUp () {
   const [displayName, setDisplayName] = useState<string>('')
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [token, setToken] = useState<string>('')
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const userName = useSelector((state : IState) => state.displayName)
@@ -27,7 +26,8 @@ function SignUp () {
   interface IUserCredentials {
     displayName: string,
     email: string,
-    token: string 
+    token: string,
+    userId: string | undefined 
   }
 
   async function handleSignUp (e : React.FormEvent<HTMLFormElement>) : Promise<void> {
@@ -35,8 +35,9 @@ function SignUp () {
     try {
       await createUserWithEmailAndPassword(auth, email, password).then((resp) => {
         resp.user.getIdToken().then((res) => {
-          setToken(res)
-          const userCredentials :IUserCredentials = {displayName, email, token}
+          const token = res
+          const userId : string | undefined = auth.currentUser?.uid
+          const userCredentials :IUserCredentials = {displayName, email, token, userId}
           dispatch(login(userCredentials))
         })
         // const {email, accessToken, uid} = resp.user

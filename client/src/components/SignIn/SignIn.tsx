@@ -9,7 +9,8 @@ function SignIn(){
   interface IUserCredentials {
     displayName: string | null,
     email: string | null,
-    token: string 
+    token: string
+    userId: string | undefined  
   }
   interface IState {
     displayName: string,
@@ -34,8 +35,9 @@ function SignIn(){
             resp.user.getIdToken().then((res) => {
               const displayName = resp.user.displayName
               const email = resp.user.email
+              const userId : string | undefined = auth.currentUser?.uid
               const token = res
-              const userCredentials :IUserCredentials = {displayName, email, token}
+              const userCredentials :IUserCredentials = {displayName, email, token, userId}
               dispatch(login(userCredentials))
               navigate("/");
             })
