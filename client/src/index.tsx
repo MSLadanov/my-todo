@@ -12,6 +12,7 @@ import UserPage from './components/UserPage/UserPage';
 import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';
 import Root from './components/Root/Root';
+import TodoLists from './components/TodoLists/TodoLists';
 
 const router = createBrowserRouter([
   {
@@ -21,11 +22,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Navigate to="/todos" />,
+        element: <Navigate to="/todolists" />,
       },
       {
         path:'contacts/',
         element: <Contacts />,
+      },
+      {
+        path:'todolists/',
+        element: <TodoLists />,
       },
       {
         path:'todos/',
