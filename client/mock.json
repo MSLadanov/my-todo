@@ -1,17 +1,17 @@
 {
   "todos": {
-    "userUID1": {
-      "list1": {
-        "todo1": { "title": "Task 1", "completed": false },
-        "todo2": { "title": "Task 2", "completed": true }
+    "yO9ylCGiMsOtvGAWZwdX8JJO24t2": {
+      "70389735-b49d-472b-950c-c8e11f16b72a": {
+        "6ef6a156-1514-43b2-acd7-d1c707b0fa52": { "title": "Task 1", "completed": false },
+        "845fa3af-5f63-488a-87b5-f3746ad0c4cb": { "title": "Task 2", "completed": true }
       },
-      "list2": {
-        "todo1": { "title": "Task A", "completed": false }
+      "ed754f18-b09d-48ef-9ff5-1ca58ac51f9b": {
+        "677ba95b-f216-48de-b119-23832d53532a": { "title": "Task A", "completed": false }
       }
     },
-    "userUID2": {
-      "list1": {
-        "todo1": { "title": "Task X", "completed": true }
+    "cDcXGfRTt4NLe0ipx8rXdBeu0i22": {
+      "f9d6cb6e-b7b0-408e-84f6-8cb61fd2e6c0": {
+        "05d69f47-f36e-4e8e-ab17-844aa0703026": { "title": "Task X", "completed": true }
       }
     }
   }
