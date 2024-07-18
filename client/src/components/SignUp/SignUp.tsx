@@ -9,7 +9,8 @@ function SignUp () {
   interface IState {
     displayName: string,
     email: string,
-    token: string 
+    token: string,
+    userId: string 
   }
   const [displayName, setDisplayName] = useState<string>('')
   const [email, setEmail] = useState<string>('');

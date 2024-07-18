@@ -1,12 +1,20 @@
 import { auth } from '../../firebase'
 import { Database } from 'firebase/database';
+import { useSelector } from 'react-redux';
 import { getDatabase, ref, child, get } from "firebase/database";
 
 function TodoLists() {
-    const userId : string | undefined = auth.currentUser?.uid
+    interface IState {
+        displayName: string,
+        email: string,
+        token: string,
+        userId: string | undefined  
+      }
+    const userId  = useSelector((state : IState) => state.userId)
     const dbRef = ref(getDatabase());
     get(child(dbRef, `todos/${userId}`)).then((snapshot) => {
       if (snapshot.exists()) {
+        console.log('fetch')
         console.log(snapshot.val());
       } else {
         console.log("No data available");

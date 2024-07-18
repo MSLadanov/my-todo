@@ -15,7 +15,8 @@ function SignIn(){
   interface IState {
     displayName: string,
     email: string,
-    token: string 
+    token: string,
+    userId: string | undefined  
   }
     const navigate = useNavigate();
     const dispatch = useDispatch()
