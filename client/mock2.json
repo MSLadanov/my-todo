@@ -47,7 +47,29 @@
         ]
       },
       "cDcXGfRTt4NLe0ipx8rXdBeu0i22": {
-        "todoLists": []
+        "todoLists": [
+          {
+            "id": "c26ce11a-2d3a-4fd2-9a86-a14965185e65",
+            "name": "My todo",
+            "todos": [
+              {
+                "id": "cdd2cccd-db43-4224-928f-25cf2818b9c9",
+                "title": "Have a photo session with some friends",
+                "completed": false
+              },
+              {
+                "id": "8904b77f-1b5c-45b2-9688-399ff8d95da3",
+                "title": "Go see a Broadway production",
+                "completed": false
+              },
+              {
+                "id": "e613e8cb-145d-4ea9-b885-59cd3ab87a24",
+                "title": "Invest in cryptocurrency",
+                "completed": false
+              }
+            ]
+          }
+        ]
       }
     }
   }
