@@ -28,9 +28,9 @@ function Todos() {
           const todosId = todos.findIndex((todo : ITodo) => todo.id == todoListId)
           return get(child(dbRef, `/todos/${userId}/todoLists/${todosId}/todos`)).then((snapshot) => {
             if (snapshot.exists()) {
-              console.log(snapshot.val());
+              return snapshot.val();
             } else {
-              console.log("No data available");
+              return [];
             }
           }).catch((error) => {
             console.error(error);
@@ -44,7 +44,6 @@ function Todos() {
       });
     }
   const query = useQuery({ queryKey: ['todos'], queryFn: getTodoList })
-  console.log(todoListId)
   return (
     <div>
       <h1>Todos</h1>

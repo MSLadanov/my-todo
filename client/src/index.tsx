@@ -32,10 +32,6 @@ const router = createBrowserRouter([
         path:'contacts/',
         element: <Contacts />,
       },
-      // {
-      //   path:'todolists/',
-      //   element: <TodoLists />,
-      // },
       {
         path:'todolists/',
         element: <TodoLists />,
