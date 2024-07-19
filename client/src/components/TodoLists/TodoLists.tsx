@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useQuery, useMutation, } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 import { getDatabase, ref, child, get } from "firebase/database";
+import { Link, useLocation } from 'react-router-dom';
 
 function TodoLists() {
     interface IState {
@@ -12,10 +13,11 @@ function TodoLists() {
         token: string,
         userId: string | undefined  
       }
-    interface ITodo {
+    interface ITodoList {
       id: string,
       name: string,
     }
+    let location = useLocation();
     const userId  = useSelector((state : IState) => state.userId)
     const dbRef = ref(getDatabase());
     async function getTodoLists(){
@@ -31,11 +33,12 @@ function TodoLists() {
       });
     }
     const query = useQuery({ queryKey: ['todos'], queryFn: getTodoLists })
+    console.log(location)
     getTodoLists()
     return (
       <div>
         <h1>TodoLists</h1>
-        <ul>{query.data?.map((todo : ITodo) => <li key={todo.id}>{todo.name}</li>)}</ul>
+        <ul>{query.data?.map((todoList : ITodoList) => <Link to={`${location.pathname}${todoList.id}`} key={todoList.id}>{todoList.name}</Link>)}</ul>
       </div>
     );
   }

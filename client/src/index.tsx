@@ -13,6 +13,7 @@ import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';
 import Root from './components/Root/Root';
 import TodoLists from './components/TodoLists/TodoLists';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient()
@@ -31,12 +32,16 @@ const router = createBrowserRouter([
         path:'contacts/',
         element: <Contacts />,
       },
+      // {
+      //   path:'todolists/',
+      //   element: <TodoLists />,
+      // },
       {
         path:'todolists/',
         element: <TodoLists />,
       },
       {
-        path:'todos/',
+        path:'todolists/:todoListId',
         element: <Todos />,
       },
       {
