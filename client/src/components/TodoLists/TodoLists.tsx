@@ -32,9 +32,7 @@ function TodoLists() {
         console.error(error);
       });
     }
-    const query = useQuery({ queryKey: ['todos'], queryFn: getTodoLists })
-    console.log(location)
-    getTodoLists()
+    const query = useQuery({ queryKey: ['todolists'], queryFn: getTodoLists })
     return (
       <div>
         <h1>TodoLists</h1>
