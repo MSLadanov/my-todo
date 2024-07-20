@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getDatabase, ref, child, get } from "firebase/database";
 import { useQuery, useMutation, } from '@tanstack/react-query';
+import Todo from '../Todo/Todo';
 
 function Todos() {
   interface IState {
@@ -47,7 +48,7 @@ function Todos() {
   return (
     <div>
       <h1>Todos</h1>
-      <ul>{query.data?.map((todo : ITodo) => <li key={todo.id}>{todo.title}</li>)}</ul>
+      <ul>{query.data?.map((todo : ITodo) => <Todo key={todo.id} id={todo.id} title={todo.title} completed={todo.completed}></Todo>)}</ul>
     </div>
   );
 }
