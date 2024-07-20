@@ -10,15 +10,25 @@ interface TodoProps {
 function Todo({id, title, completed} : TodoProps) {
   const TodoContainer = styled.div`
     display: flex;
+    justify-content: space-between;
+    & div{
+        display:flex;
+    }
     `
   const TodoCheckBoxContainer = styled.div`
-
-  `
+    align-items: center;
+    & input{
+        transform: scale(2);
+    }
+    `
   const TodoTitleContainer = styled.div`
 
   `
   const TodoButtonContainer = styled.div`
-
+    align-items: center;
+    & button{
+        height: 50%;
+    }
   `
   return (
     <TodoContainer>

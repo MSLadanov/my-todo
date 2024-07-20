@@ -19,6 +19,7 @@ function Header() {
   `
   return (
     <HeaderContainer>
+      <hr />
       <nav>
         <Menu>
             <MenuItem>
