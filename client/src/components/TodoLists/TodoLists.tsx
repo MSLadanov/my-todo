@@ -5,6 +5,7 @@ import { useQuery, useMutation, } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 import { getDatabase, ref, child, get } from "firebase/database";
 import { Link, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 
 function TodoLists() {
     interface IState {
@@ -17,6 +18,9 @@ function TodoLists() {
       id: string,
       name: string,
     }
+    const TodoListItem = styled.div`{
+      display: block;
+    }`
     let location = useLocation();
     let path = ''
     if (location.pathname.endsWith('/')){
@@ -42,7 +46,7 @@ function TodoLists() {
     return (
       <div>
         <h1>TodoLists</h1>
-        <ul>{query.data?.map((todoList : ITodoList) => <Link to={`${path}/${todoList.id}`} key={todoList.id}>{todoList.name}</Link>)}</ul>
+        <ul>{query.data?.map((todoList : ITodoList) => <TodoListItem><Link to={`${path}/${todoList.id}`} key={todoList.id}>{todoList.name}</Link></TodoListItem>)}</ul>
       </div>
     );
   }
