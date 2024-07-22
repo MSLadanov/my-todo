@@ -107,7 +107,14 @@ function Todos() {
       <h1>Todos</h1>
       <div>
         <input type="text" value={newTodo.title} onChange={handleNewTodoInput} />
-        <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => create.mutate(newTodo)}>Add Todo</button>
+        <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+          create.mutate(newTodo)
+          setNewTodo({
+            id: uuidv4(),
+            title: '',
+            completed: false
+          })
+        }}>Add Todo</button>
       </div>
       <ul>{query.data?.map((todo : ITodo) => <Todo key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} complete={complete} remove={remove}></Todo>)}</ul>
     </div>
