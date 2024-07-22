@@ -22,9 +22,11 @@ function Todos() {
   }
   let { todoListId } = useParams();
   const [todosId, setTodosId] = useState<string>('')
+  const [initialData, setInitialData] = useState([])
   const userId  = useSelector((state : IState) => state.userId)
     const dbRef = ref(getDatabase());
     async function getTodoList(){
+      console.log('get list')
       return get(child(dbRef, `todos/${userId}`)).then((snapshot) => {
         if (snapshot.exists()) {
           const todos = snapshot.val().todoLists
@@ -46,11 +48,12 @@ function Todos() {
         console.error(error);
       });
     }
-  const query = useQuery({ queryKey: ['todos'], queryFn: getTodoList })
+  const query = useQuery({ queryKey: ['todos'], queryFn: getTodoList, initialData })
   const complete = useMutation({
-    mutationFn: (todo) => {
-      console.log(todo)
+    mutationFn: (todo: {checked: boolean, id: string}) => {
       let todos = query.data
+      const {checked, id} = todo
+      todos[todos.findIndex((item : ITodo) => item.id == id)].completed = checked
       const db = getDatabase();
       return set(ref(db, `/todos/${userId}/todoLists/${todosId}/todos`), {
       ...todos
@@ -66,17 +69,6 @@ function Todos() {
   //     queryClient.invalidateQueries({ queryKey: ['todos'] })
   //   },
   // })
-  console.log(query.data)
-  function completeTodo(value : boolean, id : string){
-    
-    // console.log(value, id)
-    // todos[todos.findIndex((item : ITodo) => item.id == id)].completed = value
-    // console.log(todos)
-    
-  }
-  function removeTodo(){
-    
-  }
   return (
     <div>
       <h1>Todos</h1>

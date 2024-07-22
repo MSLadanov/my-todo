@@ -5,11 +5,10 @@ interface TodoProps {
     id: string,
     title: string,
     completed: boolean,
-    complete: (value: boolean, id: string) => void
-    removeTodo: () => void
+    complete: any
 }
 
-function Todo({id, title, completed, complete, removeTodo} : TodoProps) {
+function Todo({id, title, completed, complete} : TodoProps) {
   const TodoContainer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -35,7 +34,7 @@ function Todo({id, title, completed, complete, removeTodo} : TodoProps) {
   return (
     <TodoContainer>
         <TodoCheckBoxContainer>
-            <input type='checkbox' checked={completed} onChange={(e) => complete({value: e.currentTarget.checked, id})}></input>
+            <input type='checkbox' checked={completed} onChange={(e) => complete.mutate({checked: e.currentTarget.checked, id})}></input>
         </TodoCheckBoxContainer>
         <TodoTitleContainer>
             <p>{title}</p>
