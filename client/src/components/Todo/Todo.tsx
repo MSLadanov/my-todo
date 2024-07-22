@@ -35,7 +35,7 @@ function Todo({id, title, completed, completeTodo, removeTodo} : TodoProps) {
   return (
     <TodoContainer>
         <TodoCheckBoxContainer>
-            <input type='checkbox' onChange={(e) => {completeTodo(e.currentTarget.checked, id)}}></input>
+            <input type='checkbox' checked={completed} onChange={(e) => {completeTodo(e.currentTarget.checked, id)}}></input>
         </TodoCheckBoxContainer>
         <TodoTitleContainer>
             <p>{title}</p>

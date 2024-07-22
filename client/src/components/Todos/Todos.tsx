@@ -60,7 +60,10 @@ function Todos() {
   // })
   console.log(query.data)
   function completeTodo(value : boolean, id : string){
+    let todos = query.data
     console.log(value, id)
+    todos[todos.findIndex((item : ITodo) => item.id == id)].completed = value
+    console.log(todos)
   }
   function removeTodo(){
     
