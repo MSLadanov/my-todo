@@ -4,10 +4,12 @@ import styled from 'styled-components'
 interface TodoProps {
     id: string,
     title: string,
-    completed: boolean
+    completed: boolean,
+    completeTodo: (value: boolean, id: string) => void
+    removeTodo: () => void
 }
 
-function Todo({id, title, completed} : TodoProps) {
+function Todo({id, title, completed, completeTodo, removeTodo} : TodoProps) {
   const TodoContainer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -33,7 +35,7 @@ function Todo({id, title, completed} : TodoProps) {
   return (
     <TodoContainer>
         <TodoCheckBoxContainer>
-            <input type='checkbox'></input>
+            <input type='checkbox' onChange={(e) => {completeTodo(e.currentTarget.checked, id)}}></input>
         </TodoCheckBoxContainer>
         <TodoTitleContainer>
             <p>{title}</p>

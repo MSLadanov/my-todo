@@ -4,7 +4,8 @@ import { collection, getDocs } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getDatabase, ref, child, get } from "firebase/database";
-import { useQuery, useMutation, } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
+import queryClient from '../..';
 import Todo from '../Todo/Todo';
 
 function Todos() {
@@ -45,10 +46,29 @@ function Todos() {
       });
     }
   const query = useQuery({ queryKey: ['todos'], queryFn: getTodoList })
+  // const complete = useMutation({
+  //   mutationFn: completeTodo,
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries({ queryKey: ['todos'] })
+  //   },
+  // })
+  // const remove = useMutation({
+  //   mutationFn: removeTodo,
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries({ queryKey: ['todos'] })
+  //   },
+  // })
+  console.log(query.data)
+  function completeTodo(value : boolean, id : string){
+    console.log(value, id)
+  }
+  function removeTodo(){
+    
+  }
   return (
     <div>
       <h1>Todos</h1>
-      <ul>{query.data?.map((todo : ITodo) => <Todo key={todo.id} id={todo.id} title={todo.title} completed={todo.completed}></Todo>)}</ul>
+      <ul>{query.data?.map((todo : ITodo) => <Todo key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} completeTodo={completeTodo} removeTodo={removeTodo}></Todo>)}</ul>
     </div>
   );
 }

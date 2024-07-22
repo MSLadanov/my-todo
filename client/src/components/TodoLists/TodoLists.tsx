@@ -44,7 +44,6 @@ function TodoLists() {
         console.error(error);
       });
     }
-    console.log(path)
     const query = useQuery({ queryKey: ['todolists'], queryFn: getTodoLists })
     return (
       <div>
