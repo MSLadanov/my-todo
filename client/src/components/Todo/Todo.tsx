@@ -1,3 +1,4 @@
+import { remove } from 'firebase/database'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -6,9 +7,10 @@ interface TodoProps {
     title: string,
     completed: boolean,
     complete: any
+    remove: any
 }
 
-function Todo({id, title, completed, complete} : TodoProps) {
+function Todo({id, title, completed, complete, remove} : TodoProps) {
   const TodoContainer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -40,7 +42,8 @@ function Todo({id, title, completed, complete} : TodoProps) {
             <p>{title}</p>
         </TodoTitleContainer>
         <TodoButtonContainer>
-            <button>&#10060;</button>
+            <button onClick={() => {
+              remove.mutate(id)}}>&#10060;</button>
         </TodoButtonContainer>
     </TodoContainer>
   )

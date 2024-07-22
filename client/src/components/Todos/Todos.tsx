@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { db, auth} from '../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
+import {v4 as uuidv4} from 'uuid'
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getDatabase, ref, child, get, set } from "firebase/database";
@@ -20,6 +21,11 @@ function Todos() {
     title: string,
     completed: boolean
   }
+  const [newTodo, setNewTodo] = useState<ITodo>({
+    id: uuidv4(),
+    title: '',
+    completed: false
+  })
   let { todoListId } = useParams();
   let todosId = useRef('')
   const userId  = useSelector((state : IState) => state.userId)
@@ -61,6 +67,35 @@ function Todos() {
       queryClient.invalidateQueries({ queryKey: ['todos'] })
     },
   })
+  const create = useMutation({
+    mutationFn: (todo: ITodo) => {
+      let todos = query.data
+      todos.unshift(todo)
+      const db = getDatabase();
+      return set(ref(db, `/todos/${userId}/todoLists/${todosId.current}/todos`), {
+      ...todos
+  });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['todos'] })
+    },
+  })
+  const remove = useMutation({
+    mutationFn: ( id: string) => {
+      let todos = query.data
+      todos = todos.filter((item : ITodo) => item.id !== id)
+      const db = getDatabase();
+      return set(ref(db, `/todos/${userId}/todoLists/${todosId.current}/todos`), {
+      ...todos
+  });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['todos'] })
+    },
+  })
+  function handleNewTodoInput(event: any){
+    setNewTodo({...newTodo, title: event.target.value})
+  }
   // const remove = useMutation({
   //   mutationFn: removeTodo,
   //   onSuccess: () => {
@@ -70,7 +105,11 @@ function Todos() {
   return (
     <div>
       <h1>Todos</h1>
-      <ul>{query.data?.map((todo : ITodo) => <Todo key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} complete={complete}></Todo>)}</ul>
+      <div>
+        <input type="text" value={newTodo.title} onChange={handleNewTodoInput} />
+        <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => create.mutate(newTodo)}>Add Todo</button>
+      </div>
+      <ul>{query.data?.map((todo : ITodo) => <Todo key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} complete={complete} remove={remove}></Todo>)}</ul>
     </div>
   );
 }
