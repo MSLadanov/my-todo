@@ -29,11 +29,16 @@ function AddTodoList(){
     function handleTitleInput(e : React.FormEvent<HTMLInputElement>, id : string){
         console.log(e.currentTarget.value, id)
     }
+    function removeTodoField(id: string){
+        let todos = newTodoList.todos
+        todos = todos.filter((item) => item.id !== id)
+        setNewTodoList({...newTodoList, todos })
+    }
     return(
     <div>
         <h1>Add todo</h1>
         <button onClick={addTodoField}>Add todo</button>
-        {newTodoList.todos.map((el) => <div key={el.id}><input type="text" onChange={(e) => handleTitleInput(e, el.id)} /></div>)}
+        {newTodoList.todos.map((el) => <div key={el.id}><input type="text" onChange={(e) => handleTitleInput(e, el.id)} /><button disabled={newTodoList.todos.length == 1} onClick={() => removeTodoField(el.id)}>&#10060;</button></div>)}
     </div>)
 }
 
