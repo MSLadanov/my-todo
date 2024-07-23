@@ -78,10 +78,9 @@ function AddTodoList(){
         console.log(newTodoList)
         const db = getDatabase();
         const todoLists = [...query.data, newTodoList]
-        console.log(todoLists)
-        // set(ref(db, `/todos/${userId}/todoLists/`), {
-        //     ...todos
-        // })
+        set(ref(db, `/todos/${userId}/todoLists/`), {
+            ...todoLists
+        })
         resetFields()
         navigate(-1)
     }
@@ -90,6 +89,9 @@ function AddTodoList(){
         <h1>Add todo</h1>
         <button onClick={addTodoList}>Add TodoList</button>
         <button onClick={addTodoField}>Add todo</button>
+        <div>
+            <input type="text" placeholder="input todo list name..." onChange={(e) => setNewTodoList({...newTodoList, name: e.target.value})}/>
+        </div>
         {newTodoList.todos.map((el) => <div key={el.id}><input type="text" onChange={(e) => handleTitleInput(e, el.id)} /><button disabled={newTodoList.todos.length == 1} onClick={() => removeTodoField(el.id)}>&#10060;</button></div>)}
     </div>)
 }
