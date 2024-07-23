@@ -1,7 +1,20 @@
 import { useState } from "react"
 import {v4 as uuidv4} from 'uuid'
+import { useSelector } from 'react-redux';
+import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import { getDatabase, ref, child, get, set } from "firebase/database";
 
 function AddTodoList(){
+    interface IState {
+        displayName: string,
+        email: string,
+        token: string,
+        userId: string | undefined  
+      }
+    const navigate = useNavigate();
+    const userId  = useSelector((state : IState) => state.userId)
+    const dbRef = ref(getDatabase());
     const [newTodoList, setNewTodoList] = useState({
         id: uuidv4(),
         name: '',
@@ -31,6 +44,18 @@ function AddTodoList(){
         }]
         setNewTodoList({...newTodoList, todos })
     }
+    async function getTodoLists(){
+        return get(child(dbRef, `todos/${userId}`)).then((snapshot) => {
+          if (snapshot.exists()) {
+            return snapshot.val().todoLists;
+          } else {
+            return [];
+          }
+        }).catch((error) => {
+          console.error(error);
+        });
+      }
+    const query = useQuery({ queryKey: ['todolists'], queryFn: getTodoLists })
     function addTodoField(){
         const updatedTodoFields = [...newTodoList.todos, {
             id: uuidv4(),
@@ -51,7 +76,14 @@ function AddTodoList(){
     }
     function addTodoList(){
         console.log(newTodoList)
+        const db = getDatabase();
+        const todoLists = [...query.data, newTodoList]
+        console.log(todoLists)
+        // set(ref(db, `/todos/${userId}/todoLists/`), {
+        //     ...todos
+        // })
         resetFields()
+        navigate(-1)
     }
     return(
     <div>
