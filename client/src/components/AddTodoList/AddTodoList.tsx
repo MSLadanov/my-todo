@@ -18,13 +18,22 @@ function AddTodoList(){
             }
         ]
     })
+    function addTodoField(){
+        const updatedTodoFields = [...newTodoList.todos, {
+            id: uuidv4(),
+                title: '',
+                completed: false
+        }]
+        setNewTodoList({...newTodoList, todos: updatedTodoFields})
+    }
     function handleTitleInput(e : React.FormEvent<HTMLInputElement>, id : string){
         console.log(e.currentTarget.value, id)
     }
     return(
     <div>
         <h1>Add todo</h1>
-        {newTodoList.todos.map((el) => <div><input value={el.title} onChange={(e) => handleTitleInput(e, el.id)} /></div>)}
+        <button onClick={addTodoField}>Add todo</button>
+        {newTodoList.todos.map((el) => <div key={el.id}><input type="text" onChange={(e) => handleTitleInput(e, el.id)} /></div>)}
     </div>)
 }
 
