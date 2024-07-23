@@ -93,8 +93,8 @@ function Todos() {
       queryClient.invalidateQueries({ queryKey: ['todos'] })
     },
   })
-  function handleNewTodoInput(event: any){
-    setNewTodo({...newTodo, title: event.target.value})
+  function handleNewTodoInput(event: React.FormEvent<HTMLInputElement>){
+    setNewTodo({...newTodo, title: event.currentTarget.value})
   }
   // const remove = useMutation({
   //   mutationFn: removeTodo,
