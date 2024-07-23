@@ -48,6 +48,7 @@ function TodoLists() {
     return (
       <div>
         <h1>TodoLists</h1>
+        <Link to={'/addtodolist'}>AddTodo</Link>
         <TodoListUl>{query.data?.map((todoList : ITodoList) => <TodoListItem key={todoList.id}><Link to={`${path}/${todoList.id}`} key={todoList.id}>{todoList.name}</Link></TodoListItem>)}</TodoListUl>
       </div>
     );

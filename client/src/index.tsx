@@ -15,6 +15,7 @@ import Root from './components/Root/Root';
 import TodoLists from './components/TodoLists/TodoLists';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AddTodoList from './components/AddTodoList/AddTodoList';
 
 const queryClient = new QueryClient()
 
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path:'user/',
         element: <UserPage />
+      },
+      {
+        path:'addtodolist/',
+        element: <AddTodoList />
       },
     ]
   },
