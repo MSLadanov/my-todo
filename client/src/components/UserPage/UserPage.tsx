@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/actions/authActions';
-import { ref, getDownloadURL, deleteObject } from 'firebase/storage';
+import { ref, getDownloadURL, deleteObject, uploadBytes } from 'firebase/storage';
 import { storage } from '../../firebase';
 
 function UserPage() {
@@ -12,7 +12,7 @@ function UserPage() {
     userId: string | undefined  
   }
   const userId  = useSelector((state : IState) => state.userId)
-  const pathReference = ref(storage, `userAvatars/${userId}.jpg`);
+  const pathReference = ref(storage, `userAvatars/${userId}/avatar.jpg`);
   const [avatar, setAvatar] = useState('')
   const [newAvatar, setNewAvatar] = useState<File | null>(null);
   getDownloadURL(pathReference)
@@ -34,12 +34,19 @@ function UserPage() {
       // Uh-oh, an error occurred!
     });
   }
-  function updateAvatar (e: React.ChangeEvent<HTMLInputElement>) {
+  function handleUpdateAvatar (e: React.ChangeEvent<HTMLInputElement>) {
     if (!e.target.files || e.target.files.length === 0) {
       console.error("Select a file");
       return;
     }
-    console.log(e.target.files[0])
+    const preparedFile = new File([e.target.files[0]], 'avatar.png', {type: e.target.files[0].type});
+    // removeAvatar()
+    // uploadBytes(pathReference, preparedFile).then((snapshot) => {
+    //   console.log('Uploaded a blob or file!');
+    // });
+  }
+  function updateAvatar(){
+    
   }
   return (
     <div>
@@ -48,8 +55,8 @@ function UserPage() {
         <img src={avatar} alt='' />
       </div>
       <div>
-      <input type="file" onChange={(e) => updateAvatar(e)} />
-        <button>Edit photo</button>
+      <input type="file" onChange={(e) => handleUpdateAvatar(e)} />
+        <button onClick={updateAvatar}>Edit photo</button>
         <button onClick={removeAvatar}>Delete photo</button>
       </div>
       <div>
