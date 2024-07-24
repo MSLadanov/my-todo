@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/actions/authActions';
 import { ref, getDownloadURL, deleteObject, uploadBytes } from 'firebase/storage';
 import { storage } from '../../firebase';
+import styled from 'styled-components';
 
 function UserPage() {
   interface IState {
@@ -11,6 +12,11 @@ function UserPage() {
     token: string,
     userId: string | undefined  
   }
+  const Avatar = styled.img`
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+  `
   const userId  = useSelector((state : IState) => state.userId)
   const pathReference = ref(storage, `userAvatars/${userId}/avatar.jpg`);
   const [avatar, setAvatar] = useState('')
@@ -54,7 +60,7 @@ function UserPage() {
     <div>
       <h1>UserPage</h1>
       <div>
-        <img src={avatar} alt='' />
+        <Avatar src={avatar} alt='' />
       </div>
       <div>
       <input type="file" onChange={(e) => handleUpdateAvatar(e)} />
