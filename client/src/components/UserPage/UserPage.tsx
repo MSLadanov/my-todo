@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/actions/authActions';
+import { ref } from 'firebase/storage';
+import { storage } from '../../firebase';
 
 function UserPage() {
   interface IState {
@@ -9,8 +11,9 @@ function UserPage() {
     token: string,
     userId: string | undefined  
   }
-  const dispatch = useDispatch()
   const userId  = useSelector((state : IState) => state.userId)
+  const pathReference = ref(storage, `userAvatars/${userId}.jpg`);
+  const dispatch = useDispatch()
   return (
     <div>
       <h1>UserPage</h1>
