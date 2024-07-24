@@ -41,10 +41,6 @@ function UserPage() {
     }
     const preparedFile = new File([e.target.files[0]], 'avatar.png', {type: e.target.files[0].type});
     setNewAvatar(preparedFile)
-    // removeAvatar()
-    // uploadBytes(pathReference, preparedFile).then((snapshot) => {
-    //   console.log('Uploaded a blob or file!');
-    // });
   }
   function updateAvatar(){
     if (newAvatar !== null){
