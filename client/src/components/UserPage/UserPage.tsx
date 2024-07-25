@@ -25,6 +25,7 @@ function UserPage() {
   const query = useQuery({ queryKey: ['avatarURL'], queryFn: getCurrentAvatarURL })
   async function getCurrentAvatarURL() {
     try {
+      console.log(listRef)
       const res = await listAll(listRef);
       const promises = res.items
       if(promises.length){
@@ -33,6 +34,7 @@ function UserPage() {
         return await getDownloadURL(ref(storage, 'userAvatars/no_avatar.jpg'));
       }
     } catch (error) {
+      console.log(listRef)
       console.log(error,'fdfgdfg');
       throw error; 
     }
@@ -50,6 +52,7 @@ function UserPage() {
       // Uh-oh, an error occurred!
       });
     })
+    return getCurrentAvatarURL()
   }
   const remove = useMutation({
     mutationFn: removeAvatar,
@@ -77,10 +80,9 @@ function UserPage() {
       const pathReference = ref(storage, `userAvatars/${userId}/${uuidv4()}`);
         uploadBytes(pathReference, newAvatar).then((snapshot) => {
         console.log('Uploaded a blob or file!');
+        getCurrentAvatarURL()
       });
-
     }
-    return getCurrentAvatarURL()
   }
   return (
     <div>
