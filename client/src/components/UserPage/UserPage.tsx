@@ -5,6 +5,7 @@ import { ref, getDownloadURL, deleteObject, uploadBytes, listAll } from 'firebas
 import { storage } from '../../firebase';
 import styled from 'styled-components';
 import { useQuery, useMutation } from '@tanstack/react-query';
+import queryClient from '../..';
 
 function UserPage() {
   interface IState {
@@ -24,21 +25,27 @@ function UserPage() {
   async function getCurrentAvatarURL() {
     try {
       const res = await listAll(listRef);
-      const promises = res.items.map(async (itemRef) => {
-        const pathReference = ref(storage, itemRef.fullPath);
-        try {
-          const url = await getDownloadURL(pathReference);
-          console.log(url);
-          return url;
-        } catch (error) {
-          console.log(error);
-          return getDownloadURL(ref(storage, 'userAvatars/no_avatar.jpg'));
-        }
-      });
-      console.log((promises[0]))
-      return promises[0]
+      const promises = res.items
+      // .map(async (itemRef) => {
+      //   const pathReference = ref(storage, itemRef.fullPath);
+      //   try {
+      //     const url = await getDownloadURL(pathReference);
+      //     return url;
+      //   } catch (error) {
+      //     console.log(error,'kjjj');
+      //     return await getDownloadURL(ref(storage, 'userAvatars/no_avatar.jpg'));
+      //   }
+      // });
+      if(promises.length){
+        return await getDownloadURL(ref(storage, promises[0].fullPath));
+      } else {
+        return await getDownloadURL(ref(storage, 'userAvatars/no_avatar.jpg'));
+      }
+      // console.log('pros')
+      // console.log(promises[0].fullPath)
+      // return promises[0].fullPath
     } catch (error) {
-      console.log(error);
+      console.log(error,'fdfgdfg');
       throw error; 
     }
   }
@@ -46,13 +53,24 @@ function UserPage() {
   const [avatar, setAvatar] = useState('')
   const [newAvatar, setNewAvatar] = useState<File | null>(null);
   const dispatch = useDispatch()
-  function removeAvatar(){
-    deleteObject(pathReference).then(() => {
+  async function removeAvatar(){
+    const res = await listAll(listRef);
+      res.items.map(async (itemRef) => {
+      const pathReference = ref(storage, itemRef.fullPath);
+      console.log(pathReference)
+      deleteObject(pathReference).then(() => {
       // File deleted successfully
-    }).catch((error) => {
+      }).catch((error) => {
       // Uh-oh, an error occurred!
-    });
+      });
+    })
   }
+  const remove = useMutation({
+    mutationFn: removeAvatar,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['avatarURL'] })
+    },
+  });
   function handleUpdateAvatar (e: React.ChangeEvent<HTMLInputElement>) {
     if (!e.target.files || e.target.files.length === 0) {
       console.error("Select a file");
@@ -69,6 +87,7 @@ function UserPage() {
       });
     }
   }
+  console.log(query.data)
   return (
     <div>
       <h1>UserPage</h1>
@@ -78,7 +97,7 @@ function UserPage() {
       <div>
       <input type="file" onChange={(e) => handleUpdateAvatar(e)} />
         <button onClick={updateAvatar}>Edit photo</button>
-        <button onClick={removeAvatar}>Delete photo</button>
+        <button onClick={() => remove.mutate()}>Delete photo</button>
       </div>
       <div>
         <button onClick={() => dispatch(logout())}>Log Out</button>
