@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/actions/authActions';
-import { ref, getDownloadURL, deleteObject, uploadBytes } from 'firebase/storage';
+import { ref, getDownloadURL, deleteObject, uploadBytes, listAll } from 'firebase/storage';
 import { storage } from '../../firebase';
 import styled from 'styled-components';
+import { useQuery, useMutation } from '@tanstack/react-query';
 
 function UserPage() {
   interface IState {
@@ -18,20 +19,32 @@ function UserPage() {
     border-radius: 50%;
   `
   const userId  = useSelector((state : IState) => state.userId)
+  const listRef = ref(storage, `userAvatars/${userId}`);
+  const query = useQuery({ queryKey: ['avatarURL'], queryFn: getCurrentAvatarURL })
+  async function getCurrentAvatarURL() {
+    try {
+      const res = await listAll(listRef);
+      const promises = res.items.map(async (itemRef) => {
+        const pathReference = ref(storage, itemRef.fullPath);
+        try {
+          const url = await getDownloadURL(pathReference);
+          console.log(url);
+          return url;
+        } catch (error) {
+          console.log(error);
+          return getDownloadURL(ref(storage, 'userAvatars/no_avatar.jpg'));
+        }
+      });
+      console.log((promises[0]))
+      return promises[0]
+    } catch (error) {
+      console.log(error);
+      throw error; 
+    }
+  }
   const pathReference = ref(storage, `userAvatars/${userId}/avatar.jpg`);
   const [avatar, setAvatar] = useState('')
   const [newAvatar, setNewAvatar] = useState<File | null>(null);
-  getDownloadURL(pathReference)
-  .then((url) => {
-    setAvatar(url)
-  })
-  .catch((error) => {
-    getDownloadURL(ref(storage, `userAvatars/no_avatar.jpg`))
-    .then((url) => {
-      setAvatar(url)
-    })
-    console.log(error)
-  });
   const dispatch = useDispatch()
   function removeAvatar(){
     deleteObject(pathReference).then(() => {
@@ -60,7 +73,7 @@ function UserPage() {
     <div>
       <h1>UserPage</h1>
       <div>
-        <Avatar src={avatar} alt='' />
+        <Avatar src={query.data} alt='' />
       </div>
       <div>
       <input type="file" onChange={(e) => handleUpdateAvatar(e)} />
