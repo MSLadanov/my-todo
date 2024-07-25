@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/actions/authActions';
 import { ref, getDownloadURL, deleteObject, uploadBytes, listAll } from 'firebase/storage';
 import { storage } from '../../firebase';
 import styled from 'styled-components';
+import {v4 as uuidv4} from 'uuid'
 import { useQuery, useMutation } from '@tanstack/react-query';
 import queryClient from '../..';
 
@@ -26,31 +27,16 @@ function UserPage() {
     try {
       const res = await listAll(listRef);
       const promises = res.items
-      // .map(async (itemRef) => {
-      //   const pathReference = ref(storage, itemRef.fullPath);
-      //   try {
-      //     const url = await getDownloadURL(pathReference);
-      //     return url;
-      //   } catch (error) {
-      //     console.log(error,'kjjj');
-      //     return await getDownloadURL(ref(storage, 'userAvatars/no_avatar.jpg'));
-      //   }
-      // });
       if(promises.length){
         return await getDownloadURL(ref(storage, promises[0].fullPath));
       } else {
         return await getDownloadURL(ref(storage, 'userAvatars/no_avatar.jpg'));
       }
-      // console.log('pros')
-      // console.log(promises[0].fullPath)
-      // return promises[0].fullPath
     } catch (error) {
       console.log(error,'fdfgdfg');
       throw error; 
     }
   }
-  const pathReference = ref(storage, `userAvatars/${userId}/avatar.jpg`);
-  const [avatar, setAvatar] = useState('')
   const [newAvatar, setNewAvatar] = useState<File | null>(null);
   const dispatch = useDispatch()
   async function removeAvatar(){
@@ -71,32 +57,38 @@ function UserPage() {
       queryClient.invalidateQueries({ queryKey: ['avatarURL'] })
     },
   });
+  const update = useMutation({
+    mutationFn: updateAvatar,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['avatarURL'] })
+    },
+  });
   function handleUpdateAvatar (e: React.ChangeEvent<HTMLInputElement>) {
     if (!e.target.files || e.target.files.length === 0) {
       console.error("Select a file");
       return;
     }
-    const preparedFile = new File([e.target.files[0]], 'avatar.png', {type: e.target.files[0].type});
+    const preparedFile = new File([e.target.files[0]], `${uuidv4()}`, {type: e.target.files[0].type});
     setNewAvatar(preparedFile)
   }
-  function updateAvatar(){
+  async function updateAvatar(){
     if (newAvatar !== null){
       removeAvatar()
-      uploadBytes(pathReference, newAvatar).then((snapshot) => {
+      const pathReference = ref(storage, `userAvatars/${userId}/${uuidv4()}`);
+        uploadBytes(pathReference, newAvatar).then((snapshot) => {
         console.log('Uploaded a blob or file!');
       });
+
     }
+    return getCurrentAvatarURL()
   }
-  console.log(query.data)
   return (
     <div>
       <h1>UserPage</h1>
-      <div>
-        <Avatar src={query.data} alt='' />
-      </div>
+      <Avatar src={query.data} alt='' />
       <div>
       <input type="file" onChange={(e) => handleUpdateAvatar(e)} />
-        <button onClick={updateAvatar}>Edit photo</button>
+        <button onClick={() => update.mutate()}>Edit photo</button>
         <button onClick={() => remove.mutate()}>Delete photo</button>
       </div>
       <div>
