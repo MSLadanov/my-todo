@@ -25,7 +25,6 @@ function UserPage() {
   const query = useQuery({ queryKey: ['avatarURL'], queryFn: getCurrentAvatarURL })
   async function getCurrentAvatarURL() {
     try {
-      console.log(listRef)
       const res = await listAll(listRef);
       const promises = res.items
       if(promises.length){
@@ -34,8 +33,7 @@ function UserPage() {
         return await getDownloadURL(ref(storage, 'userAvatars/no_avatar.jpg'));
       }
     } catch (error) {
-      console.log(listRef)
-      console.log(error,'fdfgdfg');
+      console.log(error);
       throw error; 
     }
   }
@@ -45,7 +43,6 @@ function UserPage() {
     const res = await listAll(listRef);
       res.items.map(async (itemRef) => {
       const pathReference = ref(storage, itemRef.fullPath);
-      console.log(pathReference)
       deleteObject(pathReference).then(() => {
       // File deleted successfully
       }).catch((error) => {
