@@ -62,8 +62,13 @@ function UserPage() {
       <Avatar src={query.data} alt='' />
       <div>
       <input type="file" onChange={(e) => handleUpdateAvatar(e)} />
-        <button onClick={() => update.mutate()}>Edit photo</button>
-        <button onClick={() => remove.mutate()}>Delete photo</button>
+        <button onClick={() => { 
+          update.mutate() 
+          getCurrentAvatarURL()}}>Edit photo</button>
+        <button onClick={() => { 
+          remove.mutate()
+          getCurrentAvatarURL()
+        }}>Delete photo</button>
       </div>
       <div>
         <button onClick={() => dispatch(logout())}>Log Out</button>

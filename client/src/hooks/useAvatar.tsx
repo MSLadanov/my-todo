@@ -27,7 +27,6 @@ function useAvatar(userId : string | undefined){
         // Uh-oh, an error occurred!
         });
         })
-        return getCurrentAvatarURL()
     }
     return {getCurrentAvatarURL, removeAvatar}
 }
