@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import {v4 as uuidv4} from 'uuid'
 import { useQuery, useMutation } from '@tanstack/react-query';
 import queryClient from '../..';
+import useAvatar from '../../hooks/useAvatar';
 
 function UserPage() {
   interface IState {
@@ -21,36 +22,10 @@ function UserPage() {
     border-radius: 50%;
   `
   const userId  = useSelector((state : IState) => state.userId)
-  const listRef = ref(storage, `userAvatars/${userId}`);
+  const { getCurrentAvatarURL, removeAvatar } = useAvatar(userId)
   const query = useQuery({ queryKey: ['avatarURL'], queryFn: getCurrentAvatarURL })
-  async function getCurrentAvatarURL() {
-    try {
-      const res = await listAll(listRef);
-      const promises = res.items
-      if(promises.length){
-        return await getDownloadURL(ref(storage, promises[0].fullPath));
-      } else {
-        return await getDownloadURL(ref(storage, 'userAvatars/no_avatar.jpg'));
-      }
-    } catch (error) {
-      console.log(error);
-      throw error; 
-    }
-  }
   const [newAvatar, setNewAvatar] = useState<File | null>(null);
   const dispatch = useDispatch()
-  async function removeAvatar(){
-    const res = await listAll(listRef);
-      res.items.map(async (itemRef) => {
-      const pathReference = ref(storage, itemRef.fullPath);
-      deleteObject(pathReference).then(() => {
-      // File deleted successfully
-      }).catch((error) => {
-      // Uh-oh, an error occurred!
-      });
-    })
-    return getCurrentAvatarURL()
-  }
   const remove = useMutation({
     mutationFn: removeAvatar,
     onSuccess: () => {
