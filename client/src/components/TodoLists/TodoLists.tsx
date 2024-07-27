@@ -1,7 +1,4 @@
-import { auth } from '../../firebase'
-import { Database } from 'firebase/database';
-import { useState } from 'react';
-import { useQuery, useMutation, } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 import { getDatabase, ref, child, get } from "firebase/database";
 import { Link, useLocation } from 'react-router-dom';
