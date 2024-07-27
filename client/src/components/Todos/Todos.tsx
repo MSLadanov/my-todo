@@ -1,6 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
-import { db, auth} from '../../firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { useRef, useState } from 'react';
 import {v4 as uuidv4} from 'uuid'
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -34,7 +32,7 @@ function Todos() {
       return get(child(dbRef, `todos/${userId}`)).then((snapshot) => {
         if (snapshot.exists()) {
           const todos = snapshot.val().todoLists
-          todosId.current = todos.findIndex((todo : ITodo) => todo.id == todoListId)
+          todosId.current = todos.findIndex((todo : ITodo) => todo.id === todoListId)
           return get(child(dbRef, `/todos/${userId}/todoLists/${todosId.current}/todos`)).then((snapshot) => {
             if (snapshot.exists()) {
               return snapshot.val();
@@ -57,7 +55,7 @@ function Todos() {
     mutationFn: (todo: {checked: boolean, id: string}) => {
       let todos = query.data
       const {checked, id} = todo
-      todos[todos.findIndex((item : ITodo) => item.id == id)].completed = checked
+      todos[todos.findIndex((item : ITodo) => item.id === id)].completed = checked
       const db = getDatabase();
       return set(ref(db, `/todos/${userId}/todoLists/${todosId.current}/todos`), {
       ...todos
