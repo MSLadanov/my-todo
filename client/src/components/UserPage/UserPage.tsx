@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/actions/authActions';
-import { ref, getDownloadURL, deleteObject, uploadBytes, listAll } from 'firebase/storage';
+import { ref, uploadBytes } from 'firebase/storage';
 import { storage } from '../../firebase';
 import styled from 'styled-components';
 import {v4 as uuidv4} from 'uuid'
