@@ -1,7 +1,7 @@
 interface IUserData {
   displayName: string | null,
   email: string | null,
-  token: string 
+  token: string,
 }
 
 export const login = (userData : IUserData | null) => ({

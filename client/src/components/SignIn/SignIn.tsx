@@ -9,8 +9,8 @@ function SignIn(){
   interface IUserCredentials {
     displayName: string | null,
     email: string | null,
-    token: string
-    userId: string | undefined  
+    token: string,
+    userId: string | undefined,
   }
   interface IState {
     displayName: string,
