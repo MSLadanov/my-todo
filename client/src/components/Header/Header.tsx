@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
+import { useQuery } from '@tanstack/react-query';
+import  useAvatar  from '../../hooks/useAvatar'
+import { useSelector } from 'react-redux';
+ 
 function Header() {
   const HeaderContainer = styled.header`
 `;
@@ -16,6 +19,16 @@ function Header() {
       color: black;
     }
   `
+  interface IState {
+    displayName: string,
+    email: string,
+    token: string,
+    userId: string | undefined  
+  }
+  const userId = useSelector((state : IState) => state.userId)
+  const { getCurrentAvatarURL } = useAvatar(userId)
+  const query = useQuery({ queryKey: ['avatarURL'], queryFn: getCurrentAvatarURL })
+  console.log(query.data)
   return (
     <HeaderContainer>
       <hr />
