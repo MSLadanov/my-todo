@@ -19,12 +19,18 @@ function Header() {
       color: black;
     }
   `
+  const MenuAvatar = styled.img`
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+  `
   interface IState {
     displayName: string,
     email: string,
     token: string,
     userId: string | undefined  
   }
+
   const userId = useSelector((state : IState) => state.userId)
   const { getCurrentAvatarURL } = useAvatar(userId)
   const query = useQuery({ queryKey: ['avatarURL'], queryFn: getCurrentAvatarURL })
@@ -41,7 +47,7 @@ function Header() {
               <Link to={`todolists/`}>Todo Lists</Link>
             </MenuItem>
             <MenuItem>
-              <Link to={`user/`}>User</Link>
+              <Link to={`user/`}><MenuAvatar src={query.data}/></Link>
             </MenuItem>
         </Menu>
     </nav>

@@ -4,6 +4,7 @@ import { storage } from '../firebase';
 function useAvatar(userId : string | undefined){
     const listRef = ref(storage, `userAvatars/${userId}`);
     async function getCurrentAvatarURL() {
+        console.log('getCurrentAvatar')
         try {
         const res = await listAll(listRef);
         const promises = res.items
@@ -18,13 +19,15 @@ function useAvatar(userId : string | undefined){
         }
 }
     async function removeAvatar(){
+        console.log('removeAvatar')
         const res = await listAll(listRef);
-        res.items.map(async (itemRef) => {
+        res.items.map((itemRef) => {
         const pathReference = ref(storage, itemRef.fullPath);
         deleteObject(pathReference).then(() => {
         // File deleted successfully
         }).catch((error) => {
         // Uh-oh, an error occurred!
+            console.log(error)
         });
         })
     }
