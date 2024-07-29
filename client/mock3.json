@@ -108,5 +108,28 @@
         }
       ]
     }
-  }
+  },
+  "chats": [
+    {
+    "id": "a99ff62a-fcf4-454d-8300-830f5c1d3d69",
+    "users": ["cDcXGfRTt4NLe0ipx8rXdBeu0i22", "yO9ylCGiMsOtvGAWZwdX8JJO24t2"],
+    "messanges": [
+      {
+        "id": "9e4b110e-b8dc-4e79-b321-81758093f5e9",
+        "userId":"yO9ylCGiMsOtvGAWZwdX8JJO24t2",
+        "userName":"",
+        "text":"Hello",
+        "timestamp":"1722241415909"
+      },
+      {
+        "id": "49bfbce2-680a-46b9-a120-3ba41ca2a836",
+        "userId":"cDcXGfRTt4NLe0ipx8rXdBeu0i22",
+        "userName":"",
+        "text":"Hi!",
+        "timestamp":"1722241415909"
+      }
+    ]
+    }
+
+  ]
 }
