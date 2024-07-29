@@ -44,6 +44,9 @@ function Header() {
               <Link to={`contacts/`}>Contacts</Link>
             </MenuItem>
             <MenuItem>
+              <Link to={`chats/`}>Chats</Link>
+            </MenuItem>
+            <MenuItem>
               <Link to={`todolists/`}>Todo Lists</Link>
             </MenuItem>
             <MenuItem>
