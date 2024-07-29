@@ -16,6 +16,8 @@ import TodoLists from './components/TodoLists/TodoLists';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AddTodoList from './components/AddTodoList/AddTodoList';
+import Chats from './components/Chats/Chats';
+import Chat from './components/Chat/Chat';
 
 const queryClient = new QueryClient()
 
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
       {
         path:'todolists/:todoListId',
         element: <Todos />,
+      },
+      {
+        path:'chats/',
+        element: <Chats />,
+      },
+      {
+        path:'chats/:chatId',
+        element: <Chat />,
       },
       {
         path:'user/',

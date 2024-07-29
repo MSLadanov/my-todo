@@ -1,7 +1,10 @@
+import { useLocation } from "react-router-dom";
+
 function Chat(){
+    let location = useLocation();
     return (
         <div>
-            <h1>Chat</h1>
+            <h1>Chat {location.pathname}</h1>
         </div>
     )
 }
