@@ -10,6 +10,13 @@ function Chats (){
     token: string,
     userId: string | undefined  
   }
+  interface IChat {
+    id: string,
+    senderId: string,
+    receiverId: string, 
+    senderName: string,
+    messanges: []
+  }
   const query = useQuery({ queryKey: ['chats'], queryFn: getChatList })
     const userId  = useSelector((state : IState) => state.userId)
     const dbRef = ref(getDatabase());
@@ -27,7 +34,7 @@ function Chats (){
     return (
     <div>
         <h1>Chats</h1>
-        {query.data?.map((chat : any) => <Chat></Chat>)}
+        {query.data?.map((chat : IChat) => <Chat key={chat.id}></Chat>)}
     </div>)
 }
 
