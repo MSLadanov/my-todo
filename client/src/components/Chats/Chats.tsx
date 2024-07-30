@@ -9,7 +9,8 @@ function Chats (){
           if (snapshot.exists()) {
             const chatsIds = snapshot.val()
             const chats = chatsIds.map((chatId : any) => {
-              get(child(dbRef, `chats/${chatId}`))
+              return get(child(dbRef, `chats/${chatId}`)).then((snapshot) => snapshot.val())
+                    .catch((err) => console.log(err))
             })
             console.log(chats)
         }}).catch((error) => {
