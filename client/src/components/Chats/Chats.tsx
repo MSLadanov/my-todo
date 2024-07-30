@@ -7,7 +7,10 @@ function Chats (){
     async function getChatList(){
         return get(child(dbRef, `chatLists/${userId}`)).then((snapshot) => {
           if (snapshot.exists()) {
-            const chats = snapshot.val()
+            const chatsIds = snapshot.val()
+            const chats = chatsIds.map((chatId : any) => {
+              get(child(dbRef, `chats/${chatId}`))
+            })
             console.log(chats)
         }}).catch((error) => {
           console.error(error);
