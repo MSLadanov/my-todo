@@ -2,12 +2,11 @@ import { useLocation } from "react-router-dom";
 import { getDatabase, ref, child, get} from "firebase/database";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { ref as refStorage, getDownloadURL, listAll } from 'firebase/storage';
-import { storage } from "../../firebase";
-import useAvatar from "../../hooks/useAvatar";
+import useChatAvatar from "../../hooks/useChatAvatar";
 
 function Chat(){
-    const [ receiverAvatar, setReceiverAvatar ] = useState('')
+    const { getUserAvatar, getNoAvatarImage } = useChatAvatar()
+    const [ senderAvatar, setSenderAvatar ] = useState<string | undefined>('')
     const query = useQuery({ queryKey: ['chatData'], queryFn: getChatData })
     let location = useLocation();
     const dbRef = ref(getDatabase());
@@ -21,28 +20,12 @@ function Chat(){
         }
     }
     useEffect(() => {
-        async function getReceiverAvatar () {
-            const listRef = refStorage(storage, `userAvatars/${query.data.senderId}`);
-            try {
-                const res = await listAll(listRef);
-                const promises = res.items
-                if(promises.length){
-                    getDownloadURL(refStorage(storage, promises[0].fullPath))
-                    .then((res) => setReceiverAvatar(res))
-                    .catch((err) => console.log(err))
-                } 
-                } catch (error) {
-                console.log(error);
-                throw error; 
-                }
-        }
+        let avatarUrl
         if(query.data){
-            getReceiverAvatar()
+            getUserAvatar(query.data.senderId).then((res) => setSenderAvatar(res))    
         } else {
             console.log('using no-avatar image')
-            getDownloadURL(refStorage(storage, 'userAvatars/no_avatar.jpg'))
-            .then((res) => setReceiverAvatar(res))
-            .catch((err) => console.log(err))
+            getNoAvatarImage().then((res) => setSenderAvatar(res))
         }
     },[query.data])
     // console.log(query.data)
@@ -50,7 +33,7 @@ function Chat(){
     return (
         <div>
             <h1>Chat</h1>
-            <img src={receiverAvatar} alt="" />
+            <img src={senderAvatar} alt="" />
             {/* <h2>{query.data.senderName}</h2> */}
         </div>
     )
