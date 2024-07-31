@@ -3,11 +3,22 @@ import { getDatabase, ref, child, get} from "firebase/database";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import useChatAvatar from "../../hooks/useChatAvatar";
+import { useSelector } from "react-redux";
+import useAvatar from "../../hooks/useAvatar";
 
 function Chat(){
+    interface IState {
+        displayName: string,
+        email: string,
+        token: string,
+        userId: string | undefined  
+    }
+    const userId = useSelector((state : IState) => state.userId)
+    const { getCurrentAvatarURL } = useAvatar(userId)
     const { getUserAvatar, getNoAvatarImage } = useChatAvatar()
     const [ senderAvatar, setSenderAvatar ] = useState<string | undefined>('')
     const query = useQuery({ queryKey: ['chatData'], queryFn: getChatData })
+    const currentUserQuery = useQuery({ queryKey: ['avatarURL'], queryFn: getCurrentAvatarURL })
     let location = useLocation();
     const dbRef = ref(getDatabase());
     const chatId = location.pathname.split('/').at(-1)
