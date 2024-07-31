@@ -14,7 +14,8 @@ function Chat(){
     async function getChatData() {
         try {
             const chatData = await get(child(dbRef, `chats/${chatId}`))
-            return chatData.val()
+            const result = chatData.val()
+            return result
         } catch (error) {
             console.log(error)
         }
