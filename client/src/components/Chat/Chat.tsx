@@ -1,22 +1,31 @@
 import { useLocation } from "react-router-dom";
 import { getDatabase, ref, child, get} from "firebase/database";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { ref as refStorage, getDownloadURL } from 'firebase/storage';
+import { storage } from "../../firebase";
 
 function Chat(){
-    // const query = useQuery({ queryKey: ['chats'], queryFn: getChatData })
+    const [ receiverAvatar, setReceiverAvatar ] = useState('')
+    const query = useQuery({ queryKey: ['chatData'], queryFn: getChatData })
     let location = useLocation();
     const dbRef = ref(getDatabase());
     const chatId = location.pathname.split('/').at(-1)
-    async function getChatData(id: string) {
+    async function getChatData() {
         try {
-            return (await get(child(dbRef, `chats/${id}`))).val()
+            const chatData = await get(child(dbRef, `chats/${chatId}`))
+            return chatData.val()
         } catch (error) {
             console.log(error)
         }
     }
-    if (chatId){
-        console.log(getChatData(chatId))
-    }
+    useEffect(() => {
+        getDownloadURL(refStorage(storage, 'userAvatars/no_avatar.jpg'))
+        .then((res) => setReceiverAvatar(res))
+        .catch((err) => console.log(err))
+    },[])
+    console.log(query.data)
+    console.log(receiverAvatar)
     return (
         <div>
             <h1>Chat</h1>
