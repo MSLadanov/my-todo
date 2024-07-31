@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { getDatabase, ref, child, get} from "firebase/database";
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
 import { Link, useLocation } from 'react-router-dom';
+import useChatAvatar from '../../hooks/useChatAvatar'
 
 
 function Chats (){
@@ -17,6 +19,7 @@ function Chats (){
     senderId: string,
     receiverId: string, 
     senderName: string,
+    senderAvatar: string,
     messanges: []
   }
   const ChatListItem = styled.li`
@@ -29,6 +32,7 @@ function Chats (){
     } else {
       path = location.pathname
     }
+  const { getUserAvatar } = useChatAvatar()
   const query = useQuery({ queryKey: ['chats'], queryFn: getChatList })
     const userId  = useSelector((state : IState) => state.userId)
     const dbRef = ref(getDatabase());
@@ -36,7 +40,8 @@ function Chats (){
       return Promise.all(
         chatsIds.map(async (chatId: string) => {
           const chatData = await get(child(dbRef, `chats/${chatId}`));
-          return chatData.val();
+          const senderAvatar = await getUserAvatar(chatData.val().senderId)
+          return {...chatData.val(), senderAvatar};
         })
       );
     }
@@ -49,11 +54,15 @@ function Chats (){
         console.log(error);
       }
     }
-    console.log(query.data)
     return (
     <div>
         <h1>Chats</h1>
-        <ul>{query.data?.map((chat : IChat) => <ChatListItem key={chat.id}><Link to={`${path}/${chat.id}`} key={chat.id}>{chat.senderName}</Link></ChatListItem>)}</ul>
+        <ul>{query.data?.map((chat : IChat) => <ChatListItem key={chat.id}><Link to={`${path}/${chat.id}`} key={chat.id}>
+          <img src={chat.senderAvatar} alt="" />
+          {chat.senderName}
+        </Link>
+        </ChatListItem>)}
+        </ul>
     </div>)
 }
 

@@ -20,21 +20,18 @@ function Chat(){
         }
     }
     useEffect(() => {
-        let avatarUrl
         if(query.data){
             getUserAvatar(query.data.senderId).then((res) => setSenderAvatar(res))    
         } else {
-            console.log('using no-avatar image')
             getNoAvatarImage().then((res) => setSenderAvatar(res))
         }
     },[query.data])
-    // console.log(query.data)
-    // console.log(receiverAvatar)
+    console.log(query.data)
     return (
         <div>
             <h1>Chat</h1>
             <img src={senderAvatar} alt="" />
-            {/* <h2>{query.data.senderName}</h2> */}
+            <h2>{query.data?.senderName}</h2>
         </div>
     )
 }
