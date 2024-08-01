@@ -53,7 +53,15 @@ function Chat(){
         <div>
             <h1>Chat</h1>
             <h2>{query.data?.senderName}</h2>
-            {query.data?.messanges.map((message : IMessage) => <Message key={message.id} />)}
+            {query.data?.messanges.map((message : IMessage) => <Message key={message.id}
+                id={message.id}
+                text={message.text}
+                timestamp={message.timestamp}
+                userId={message.userId}
+                userName={message.userName}
+                userAvatar={userId === message.userId ? receiverAvatar : senderAvatar}
+                currentUserId={userId}
+            />)}
         </div>
     )
 }
