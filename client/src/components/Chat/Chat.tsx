@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import useChatAvatar from "../../hooks/useChatAvatar";
 import { useSelector } from "react-redux";
 import useAvatar from "../../hooks/useAvatar";
+import Message from "../Message/Message";
 
 function Chat(){
     interface IState {
@@ -12,6 +13,13 @@ function Chat(){
         email: string,
         token: string,
         userId: string | undefined  
+    }
+    interface IMessage {
+        id: string, 
+        text: string,
+        timestamp: string,
+        userId: string,
+        userName: string,
     }
     const userId = useSelector((state : IState) => state.userId)
     const { getCurrentAvatarURL } = useAvatar(userId)
@@ -44,9 +52,8 @@ function Chat(){
     return (
         <div>
             <h1>Chat</h1>
-            <img src={senderAvatar} alt="" />
-            <img src={receiverAvatar} alt="" />
             <h2>{query.data?.senderName}</h2>
+            {query.data?.messanges.map((message : IMessage) => <Message key={message.id} />)}
         </div>
     )
 }
