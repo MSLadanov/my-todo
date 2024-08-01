@@ -16,9 +16,9 @@ function Chat(){
     const userId = useSelector((state : IState) => state.userId)
     const { getCurrentAvatarURL } = useAvatar(userId)
     const { getUserAvatar, getNoAvatarImage } = useChatAvatar()
+    const [ receiverAvatar, setReceiverAvatar ] = useState<string | undefined>('')
     const [ senderAvatar, setSenderAvatar ] = useState<string | undefined>('')
     const query = useQuery({ queryKey: ['chatData'], queryFn: getChatData })
-    const currentUserQuery = useQuery({ queryKey: ['avatarURL'], queryFn: getCurrentAvatarURL })
     let location = useLocation();
     const dbRef = ref(getDatabase());
     const chatId = location.pathname.split('/').at(-1)
@@ -33,9 +33,11 @@ function Chat(){
     }
     useEffect(() => {
         if(query.data){
-            getUserAvatar(query.data.senderId).then((res) => setSenderAvatar(res))    
+            getUserAvatar(query.data.senderId).then((res) => setSenderAvatar(res))
+            getUserAvatar(query.data.receiverId).then((res) => setReceiverAvatar(res))     
         } else {
             getNoAvatarImage().then((res) => setSenderAvatar(res))
+            getNoAvatarImage().then((res) => setReceiverAvatar(res))
         }
     },[query.data])
     console.log(query.data)
@@ -43,6 +45,7 @@ function Chat(){
         <div>
             <h1>Chat</h1>
             <img src={senderAvatar} alt="" />
+            <img src={receiverAvatar} alt="" />
             <h2>{query.data?.senderName}</h2>
         </div>
     )
