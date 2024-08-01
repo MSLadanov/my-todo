@@ -1,3 +1,5 @@
+import styled from "styled-components"
+
 interface MessageProps{
     id: string, 
     text: string,
@@ -9,10 +11,19 @@ interface MessageProps{
 }
 
 function Message({id, text, timestamp, userId, userName, userAvatar, currentUserId} : MessageProps){
+    const MessageBox = styled.div`
+        display: flex;
+    `
+    const UserImg = styled.img`
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    `
     return (
-        <div>
-            <img src={userAvatar} alt="" />
-        </div>
+        <MessageBox>
+            <UserImg src={userAvatar} alt="" />
+            <p>{text}</p>
+        </MessageBox>
     )
 }
 export default Message

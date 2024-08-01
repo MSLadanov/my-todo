@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import useChatAvatar from "../../hooks/useChatAvatar";
 import { useSelector } from "react-redux";
-import useAvatar from "../../hooks/useAvatar";
 import Message from "../Message/Message";
 
 function Chat(){
@@ -22,7 +21,6 @@ function Chat(){
         userName: string,
     }
     const userId = useSelector((state : IState) => state.userId)
-    const { getCurrentAvatarURL } = useAvatar(userId)
     const { getUserAvatar, getNoAvatarImage } = useChatAvatar()
     const [ receiverAvatar, setReceiverAvatar ] = useState<string | undefined>('')
     const [ senderAvatar, setSenderAvatar ] = useState<string | undefined>('')
@@ -62,6 +60,10 @@ function Chat(){
                 userAvatar={userId === message.userId ? receiverAvatar : senderAvatar}
                 currentUserId={userId}
             />)}
+            <div>
+            <textarea name="" id="" cols={30} rows={10}></textarea>
+            <button>Send</button>
+            </div>
         </div>
     )
 }
