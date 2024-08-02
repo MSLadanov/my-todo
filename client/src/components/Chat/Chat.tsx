@@ -87,7 +87,8 @@ function Chat(){
     return (
         <div>
             <h1>Chat</h1>
-            <h2>{query.data?.senderName}</h2>
+            {/* <h2>{query.data?.senderName}</h2> */}
+            <h2>{userId === query.data?.receiverId ? query.data?.senderName : query.data?.receiverName}</h2>
             {query.data?.messanges.map((message : IMessage) => <Message key={message.id}
                 id={message.id}
                 text={message.text}
@@ -96,6 +97,8 @@ function Chat(){
                 userName={message.userName}
                 userAvatar={userId === message.userId ? receiverAvatar : senderAvatar}
                 currentUserId={userId}
+                senderName={query.data.senderName}
+                receiverName={query.data.receiverName}
             />)}
             <MessageInput>
                 <textarea rows={5} value={newMessageText} onChange={(e) => setNewMessageText(e.target.value)}></textarea>
