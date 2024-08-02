@@ -22,7 +22,23 @@ function Chat(){
         userName: string,
     }
     const MessageInput = styled.div`
-
+        display: flex;
+        & textarea{
+            resize: none;
+            width: 80%
+        }
+    `
+    const CenteredButtonBox = styled.div`
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20%;
+        & button{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 28px;
+        }
     `
     const userId = useSelector((state : IState) => state.userId)
     const { getUserAvatar, getNoAvatarImage } = useChatAvatar()
@@ -65,8 +81,10 @@ function Chat(){
                 currentUserId={userId}
             />)}
             <MessageInput>
-                <textarea name="" id="" cols={30} rows={10}></textarea>
-                <button>Send</button>
+                <textarea rows={5}></textarea>
+                <CenteredButtonBox>
+                    <button>&#128393;</button>
+                </CenteredButtonBox>
             </MessageInput>
         </div>
     )
