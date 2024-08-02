@@ -6,6 +6,7 @@ import useChatAvatar from "../../hooks/useChatAvatar";
 import { useSelector } from "react-redux";
 import Message from "../Message/Message";
 import styled from "styled-components"
+import {v4 as uuidv4} from 'uuid'
 
 function Chat(){
     interface IState {
@@ -40,7 +41,9 @@ function Chat(){
             font-size: 28px;
         }
     `
+    const [newMessageText, setNewMessageText] = useState<string>('')
     const userId = useSelector((state : IState) => state.userId)
+    const userName = useSelector((state : IState) => state.displayName)
     const { getUserAvatar, getNoAvatarImage } = useChatAvatar()
     const [ receiverAvatar, setReceiverAvatar ] = useState<string | undefined>('')
     const [ senderAvatar, setSenderAvatar ] = useState<string | undefined>('')
@@ -55,6 +58,18 @@ function Chat(){
             return result
         } catch (error) {
             console.log(error)
+        }
+    }
+    function sendNewMessage(){
+        if(userId && userName){
+            const newMessage : IMessage = {
+                id: uuidv4(),
+                text: newMessageText,
+                timestamp: String(Date.now()),
+                userId,
+                userName,
+            }
+            console.log(newMessage)
         }
     }
     useEffect(() => {
@@ -81,9 +96,9 @@ function Chat(){
                 currentUserId={userId}
             />)}
             <MessageInput>
-                <textarea rows={5}></textarea>
+                <textarea rows={5} value={newMessageText} onChange={(e) => setNewMessageText(e.target.value)}></textarea>
                 <CenteredButtonBox>
-                    <button>&#128393;</button>
+                    <button onClick={() => sendNewMessage()}>&#128393;</button>
                 </CenteredButtonBox>
             </MessageInput>
         </div>
