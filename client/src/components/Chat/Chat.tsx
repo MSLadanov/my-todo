@@ -95,10 +95,12 @@ function Chat(){
                 timestamp={message.timestamp}
                 userId={message.userId}
                 userName={message.userName}
-                userAvatar={userId === message.userId ? receiverAvatar : senderAvatar}
+                userAvatar={userId === message.userId ? senderAvatar : receiverAvatar}
                 currentUserId={userId}
                 senderName={query.data.senderName}
                 receiverName={query.data.receiverName}
+                senderAvatar={senderAvatar}
+                receiverAvatar={receiverAvatar}
             />)}
             <MessageInput>
                 <textarea rows={5} value={newMessageText} onChange={(e) => setNewMessageText(e.target.value)}></textarea>
