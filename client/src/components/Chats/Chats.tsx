@@ -40,7 +40,13 @@ function Chats (){
       return Promise.all(
         chatsIds.map(async (chatId: string) => {
           const chatData = await get(child(dbRef, `chats/${chatId}`));
-          const senderAvatar = await getUserAvatar(chatData.val().senderId)
+          let senderAvatar
+          if( userId === chatData.val().senderId ){
+            senderAvatar = await getUserAvatar(chatData.val().receiverId)
+          } else {
+            senderAvatar = await getUserAvatar(chatData.val().senderId)
+          }
+          console.log(senderAvatar)
           return {...chatData.val(), senderAvatar};
         })
       );

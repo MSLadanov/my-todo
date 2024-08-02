@@ -8,21 +8,7 @@ import Message from "../Message/Message";
 import styled from "styled-components"
 import {v4 as uuidv4} from 'uuid'
 
-function Chat(){
-    interface IState {
-        displayName: string,
-        email: string,
-        token: string,
-        userId: string | undefined  
-    }
-    interface IMessage {
-        id: string, 
-        text: string,
-        timestamp: string,
-        userId: string,
-        userName: string,
-    }
-    const MessageInput = styled.div`
+const MessageInput = styled.div`
         display: flex;
         & textarea{
             resize: none;
@@ -41,6 +27,21 @@ function Chat(){
             font-size: 28px;
         }
     `
+
+function Chat(){
+    interface IState {
+        displayName: string,
+        email: string,
+        token: string,
+        userId: string | undefined  
+    }
+    interface IMessage {
+        id: string, 
+        text: string,
+        timestamp: string,
+        userId: string,
+        userName: string,
+    }
     const [newMessageText, setNewMessageText] = useState<string>('')
     const userId = useSelector((state : IState) => state.userId)
     const userName = useSelector((state : IState) => state.displayName)
@@ -82,6 +83,7 @@ function Chat(){
         }
     },[query.data])
     console.log(query.data)
+    console.log('render')
     return (
         <div>
             <h1>Chat</h1>

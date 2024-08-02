@@ -33,6 +33,7 @@ const authReducer = (state = initialState, action : IAction) => {
           displayName: null,
           email: null,
           token: null,
+          userId: null
         };
       default:
         return state;
