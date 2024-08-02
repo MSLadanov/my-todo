@@ -19,6 +19,7 @@ function Chats (){
     senderId: string,
     receiverId: string, 
     senderName: string,
+    receiverName: string,
     senderAvatar: string,
     messanges: []
   }
@@ -65,7 +66,7 @@ function Chats (){
         <h1>Chats</h1>
         <ul>{query.data?.map((chat : IChat) => <ChatListItem key={chat.id}><Link to={`${path}/${chat.id}`} key={chat.id}>
           <img src={chat.senderAvatar} alt="" />
-          {chat.senderName}
+          {userId === chat.receiverId ? chat.senderName : chat.receiverName}
         </Link>
         </ChatListItem>)}
         </ul>
