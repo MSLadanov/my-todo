@@ -1,5 +1,3 @@
-import { remove } from 'firebase/database'
-import React from 'react'
 import styled from 'styled-components'
 
 interface TodoProps {

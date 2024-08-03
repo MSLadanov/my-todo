@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { getDatabase, ref, child, get} from "firebase/database";
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
