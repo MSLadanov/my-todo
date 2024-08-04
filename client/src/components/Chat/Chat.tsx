@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { getDatabase, ref, child, get} from "firebase/database";
+import { getDatabase, ref, child, get, set} from "firebase/database";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import useChatAvatar from "../../hooks/useChatAvatar";
@@ -63,6 +63,7 @@ function Chat(){
     }
     function sendNewMessage(){
         if(userId && userName){
+            const db = getDatabase();
             const newMessage : IMessage = {
                 id: uuidv4(),
                 text: newMessageText,
@@ -70,7 +71,10 @@ function Chat(){
                 userId,
                 userName,
             }
-            console.log(newMessage)
+            const updatedMessages = [...query.data.messanges, newMessage]
+            set(ref(db, `/chats/${chatId}/messanges/`), {
+                ...updatedMessages
+            })
             setNewMessageText('')
         }
     }
