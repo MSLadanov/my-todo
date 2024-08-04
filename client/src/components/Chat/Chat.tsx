@@ -76,6 +76,7 @@ function Chat(){
                 ...updatedMessages
             })
             setNewMessageText('')
+            query.refetch()
         }
     }
     useEffect(() => {
@@ -87,12 +88,9 @@ function Chat(){
             getNoAvatarImage().then((res) => setReceiverAvatar(res))
         }
     },[query.data])
-    console.log(query.data)
-    console.log('render')
     return (
         <div>
             <h1>Chat</h1>
-            {/* <h2>{query.data?.senderName}</h2> */}
             <h2>{userId === query.data?.receiverId ? query.data?.senderName : query.data?.receiverName}</h2>
             {query.data?.messanges.map((message : IMessage) => <Message key={message.id}
                 id={message.id}
