@@ -35,7 +35,6 @@ function Message({id, text, timestamp, userId, userName, userAvatar, currentUser
         height: 50px;
         border-radius: 50%;
     `
-    console.log({senderAvatar}, {receiverAvatar})
     return (
         <MessageContainer>
             <MessageBox>

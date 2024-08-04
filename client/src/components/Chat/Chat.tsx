@@ -71,6 +71,7 @@ function Chat(){
                 userName,
             }
             console.log(newMessage)
+            setNewMessageText('')
         }
     }
     useEffect(() => {
