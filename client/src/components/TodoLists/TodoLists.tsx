@@ -4,6 +4,13 @@ import { getDatabase, ref, child, get } from "firebase/database";
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
+const TodoListItem = styled.div`
+      display: block;
+    `
+    const TodoListUl = styled.ul`
+      padding: 0;
+    `
+
 function TodoLists() {
     interface IState {
         displayName: string,
@@ -15,12 +22,6 @@ function TodoLists() {
       id: string,
       name: string,
     }
-    const TodoListItem = styled.div`
-      display: block;
-    `
-    const TodoListUl = styled.ul`
-      padding: 0;
-    `
     let location = useLocation();
     let path = ''
     if (location.pathname.endsWith('/')){
