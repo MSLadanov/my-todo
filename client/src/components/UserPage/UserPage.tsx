@@ -9,6 +9,12 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import queryClient from '../..';
 import useAvatar from '../../hooks/useAvatar';
 
+const Avatar = styled.img`
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+  `
+
 function UserPage() {
   interface IState {
     displayName: string,
@@ -16,11 +22,6 @@ function UserPage() {
     token: string,
     userId: string | undefined  
   }
-  const Avatar = styled.img`
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-  `
   const userId  = useSelector((state : IState) => state.userId)
   const { getCurrentAvatarURL, removeAvatar } = useAvatar(userId)
   const query = useQuery({ queryKey: ['avatarURL'], queryFn: getCurrentAvatarURL })
