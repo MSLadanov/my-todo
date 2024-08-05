@@ -8,8 +8,7 @@ interface TodoProps {
     remove: any
 }
 
-function Todo({id, title, completed, complete, remove} : TodoProps) {
-  const TodoContainer = styled.div`
+const TodoContainer = styled.div`
     display: flex;
     justify-content: space-between;
     & div{
@@ -31,6 +30,8 @@ function Todo({id, title, completed, complete, remove} : TodoProps) {
         height: 50%;
     }
   `
+
+function Todo({id, title, completed, complete, remove} : TodoProps) {
   return (
     <TodoContainer>
         <TodoCheckBoxContainer>
