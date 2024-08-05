@@ -5,6 +5,9 @@ import styled from "styled-components";
 import { Link, useLocation } from 'react-router-dom';
 import useChatAvatar from '../../hooks/useChatAvatar'
 
+const ChatListItem = styled.li`
+
+`
 
 function Chats (){
   interface IState {
@@ -22,9 +25,6 @@ function Chats (){
     senderAvatar: string,
     messanges: []
   }
-  const ChatListItem = styled.li`
-
-  `
   let location = useLocation();
     let path = ''
     if (location.pathname.endsWith('/')){
