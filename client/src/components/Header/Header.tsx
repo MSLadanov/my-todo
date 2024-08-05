@@ -4,8 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import  useAvatar  from '../../hooks/useAvatar'
 import { useSelector } from 'react-redux';
  
-function Header() {
-  const HeaderContainer = styled.header`
+const HeaderContainer = styled.header`
 `;
   const Menu = styled.ul`
     display:flex;
@@ -24,6 +23,9 @@ function Header() {
     width: 30px;
     border-radius: 50%;
   `
+
+function Header() {
+ 
   interface IState {
     displayName: string,
     email: string,
