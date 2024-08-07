@@ -133,6 +133,15 @@
           "name": "Bob"
         }
       ]
+    },
+    "5PAHAUFeDVZQbxSQUusiJ6s1gpQ2": {
+      "name": "Marty",
+      "surname": "McFly",
+      "dateOfBirth":"27.11.1999",
+      "about":"I spent a lot of time on this bio.",
+      "friends": [
+        
+      ]
     }
   },
   "chatLists":{
