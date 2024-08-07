@@ -113,8 +113,8 @@
     "cDcXGfRTt4NLe0ipx8rXdBeu0i22": {
       "name": "Bob",
       "surname": "Cruz",
-      "dateOfBirth":"",
-      "about":"",
+      "dateOfBirth":"12.03.1999",
+      "about":"Hello Everyone!",
       "friends": [
         {
           "id": "yO9ylCGiMsOtvGAWZwdX8JJO24t2",
@@ -125,8 +125,8 @@
     "yO9ylCGiMsOtvGAWZwdX8JJO24t2": {
       "name": "John",
       "surname": "Snow",
-      "dateOfBirth":"",
-      "about":"",
+      "dateOfBirth":"05.09.2000",
+      "about":"Steel wins battles, and Gold wins wars.",
       "friends": [
         {
           "id": "cDcXGfRTt4NLe0ipx8rXdBeu0i22",
