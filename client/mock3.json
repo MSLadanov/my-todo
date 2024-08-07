@@ -109,6 +109,28 @@
       ]
     }
   },
+  "users": {
+    "cDcXGfRTt4NLe0ipx8rXdBeu0i22": {
+      "name": "Bob",
+      "surname": "Cruz",
+      "friends": [
+        {
+          "id": "yO9ylCGiMsOtvGAWZwdX8JJO24t2",
+          "name": "John"
+        }
+      ]
+    },
+    "yO9ylCGiMsOtvGAWZwdX8JJO24t2": {
+      "name": "John",
+      "surname": "Snow",
+      "friends": [
+        {
+          "id": "cDcXGfRTt4NLe0ipx8rXdBeu0i22",
+          "name": "Bob"
+        }
+      ]
+    }
+  },
   "chatLists":{
     "cDcXGfRTt4NLe0ipx8rXdBeu0i22":["a99ff62a-fcf4-454d-8300-830f5c1d3d69"],
     "yO9ylCGiMsOtvGAWZwdX8JJO24t2":["a99ff62a-fcf4-454d-8300-830f5c1d3d69"]
