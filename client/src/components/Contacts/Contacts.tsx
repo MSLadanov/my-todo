@@ -24,7 +24,7 @@ function Contacts() {
     about: string,
     friends: [],
   }
-  const { getUserAvatar, getNoAvatarImage } = useChatAvatar()
+  const { getUserAvatar } = useChatAvatar()
   const userId  = useSelector((state : IState) => state.userId)
   let location = useLocation();
   let path = ''
@@ -47,7 +47,6 @@ function Contacts() {
           });
   }
   const query = useQuery({ queryKey: ['contacts'], queryFn: getContacts })
-  console.log(query.data)
   return (
     <div>
       <h1>Contacts</h1>
