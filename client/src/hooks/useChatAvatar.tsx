@@ -10,6 +10,9 @@ function useChatAvatar(){
                 if(promises.length){
                     return await getDownloadURL(ref(storage, promises[0].fullPath))
                 } 
+                else {
+                    return await getDownloadURL(ref(storage, 'userAvatars/no_avatar.jpg'))
+                }
                 } catch (error) {
                 console.log(error);
                 throw error; 

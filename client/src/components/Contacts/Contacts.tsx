@@ -3,7 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import { getDatabase, ref, child, get } from "firebase/database";
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
+import useChatAvatar from '../../hooks/useChatAvatar';
 const ContactListItem = styled.li`
 
 `
@@ -23,6 +24,8 @@ function Contacts() {
     about: string,
     friends: [],
   }
+  const { getUserAvatar, getNoAvatarImage } = useChatAvatar()
+  const userId  = useSelector((state : IState) => state.userId)
   let location = useLocation();
   let path = ''
     if (location.pathname.endsWith('/')){
@@ -31,27 +34,30 @@ function Contacts() {
       path = location.pathname
   }
   const dbRef = ref(getDatabase());
-    async function getContacts() {
-      return await get(child(dbRef, `users/`)).then((snapshot) => {
+  async function getContacts() {
+    return await get(child(dbRef, `users/`)).then((snapshot) => {
             if (snapshot.exists()) {
-              return snapshot.val();
+              return Object.values(snapshot.val()).filter((user : any) => user.id !== userId)
             } else {
               return [];
             }
           }).catch((error) => {
             console.error(error);
           });
-    }
+  }
   const query = useQuery({ queryKey: ['contacts'], queryFn: getContacts })
   console.log(query.data)
   return (
     <div>
       <h1>Contacts</h1>
-      <ul>{query.data?.map((contact : IContact) => <ContactListItem key={contact.id}><Link to={`${path}/${contact}`} key={contact.id}>
-          {/* <img src={chat.senderAvatar} alt="" /> */}
-        </Link>
+      <ul>{query.data?.map((contact : any) => 
+        <ContactListItem key={contact.id}>
+          <Link to={`${path}/${contact.id}`} key={contact.id}>
+            {/* <img src={getUserAvatar()} alt="" /> */}
+            {contact.name + " " + contact.surname}
+          </Link>
         </ContactListItem>)}
-        </ul>
+      </ul>
     </div>
   );
 }
