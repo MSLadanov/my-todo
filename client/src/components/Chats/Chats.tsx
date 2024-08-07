@@ -26,12 +26,12 @@ function Chats (){
     messanges: []
   }
   let location = useLocation();
-    let path = ''
+  let path = ''
     if (location.pathname.endsWith('/')){
         path = location.pathname.substring(0, location.pathname.length - 1)
     } else {
       path = location.pathname
-    }
+  }
   const { getUserAvatar } = useChatAvatar()
   const query = useQuery({ queryKey: ['chats'], queryFn: getChatList })
     const userId  = useSelector((state : IState) => state.userId)

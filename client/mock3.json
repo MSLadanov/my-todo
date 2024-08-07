@@ -111,6 +111,7 @@
   },
   "users": {
     "cDcXGfRTt4NLe0ipx8rXdBeu0i22": {
+      "id": "cDcXGfRTt4NLe0ipx8rXdBeu0i22",
       "name": "Bob",
       "surname": "Cruz",
       "dateOfBirth":"12.03.1999",
@@ -123,6 +124,7 @@
       ]
     },
     "yO9ylCGiMsOtvGAWZwdX8JJO24t2": {
+      "id": "yO9ylCGiMsOtvGAWZwdX8JJO24t2",
       "name": "John",
       "surname": "Snow",
       "dateOfBirth":"05.09.2000",
@@ -135,6 +137,7 @@
       ]
     },
     "5PAHAUFeDVZQbxSQUusiJ6s1gpQ2": {
+      "id": "5PAHAUFeDVZQbxSQUusiJ6s1gpQ2",
       "name": "Marty",
       "surname": "McFly",
       "dateOfBirth":"27.11.1999",

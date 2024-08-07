@@ -1,8 +1,35 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getDatabase, ref, child, get } from "firebase/database";
+import styled from 'styled-components';
+import { Link, useLocation } from 'react-router-dom';
+
+const ContactListItem = styled.li`
+
+`
 
 function Contacts() {
+  interface IState {
+    displayName: string,
+    email: string,
+    token: string,
+    userId: string | undefined  
+  }
+  interface IContact {
+    id: string,
+    name: string,
+    surname: string,
+    dateOfBirth: string, 
+    about: string,
+    friends: [],
+  }
+  let location = useLocation();
+  let path = ''
+    if (location.pathname.endsWith('/')){
+        path = location.pathname.substring(0, location.pathname.length - 1)
+    } else {
+      path = location.pathname
+  }
   const dbRef = ref(getDatabase());
     async function getContacts() {
       return await get(child(dbRef, `users/`)).then((snapshot) => {
@@ -20,6 +47,11 @@ function Contacts() {
   return (
     <div>
       <h1>Contacts</h1>
+      <ul>{query.data?.map((contact : IContact) => <ContactListItem key={contact.id}><Link to={`${path}/${contact}`} key={contact.id}>
+          {/* <img src={chat.senderAvatar} alt="" /> */}
+        </Link>
+        </ContactListItem>)}
+        </ul>
     </div>
   );
 }
