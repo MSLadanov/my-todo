@@ -113,6 +113,8 @@
     "cDcXGfRTt4NLe0ipx8rXdBeu0i22": {
       "name": "Bob",
       "surname": "Cruz",
+      "dateOfBirth":"",
+      "about":"",
       "friends": [
         {
           "id": "yO9ylCGiMsOtvGAWZwdX8JJO24t2",
@@ -123,6 +125,8 @@
     "yO9ylCGiMsOtvGAWZwdX8JJO24t2": {
       "name": "John",
       "surname": "Snow",
+      "dateOfBirth":"",
+      "about":"",
       "friends": [
         {
           "id": "cDcXGfRTt4NLe0ipx8rXdBeu0i22",
