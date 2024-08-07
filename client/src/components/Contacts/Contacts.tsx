@@ -37,7 +37,8 @@ function Contacts() {
   async function getContacts() {
     return await get(child(dbRef, `users/`)).then((snapshot) => {
             if (snapshot.exists()) {
-              return Object.values(snapshot.val()).filter((user : any) => user.id !== userId)
+              let res =  Object.values(snapshot.val()).filter((user : any) => user.id !== userId)
+              return Promise.all(res.map(async (user : any) => ({...user, avatarURL : await getUserAvatar(user.id)})))
             } else {
               return [];
             }
@@ -53,7 +54,8 @@ function Contacts() {
       <ul>{query.data?.map((contact : any) => 
         <ContactListItem key={contact.id}>
           <Link to={`${path}/${contact.id}`} key={contact.id}>
-            {/* <img src={getUserAvatar()} alt="" /> */}
+            <img src={contact.avatarURL} alt="" />
+            {contact.ava}
             {contact.name + " " + contact.surname}
           </Link>
         </ContactListItem>)}
