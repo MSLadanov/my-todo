@@ -36,7 +36,6 @@ function Header() {
   const userId = useSelector((state : IState) => state.userId)
   const { getCurrentAvatarURL } = useAvatar(userId)
   const query = useQuery({ queryKey: ['avatarURL'], queryFn: getCurrentAvatarURL })
-  console.log(query.data)
   return (
     <HeaderContainer>
       <hr />
