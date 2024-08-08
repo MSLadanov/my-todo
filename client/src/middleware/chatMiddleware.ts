@@ -4,7 +4,7 @@ function chatMiddleWare(userId : string | undefined){
     const dbRef = ref(getDatabase());
     async function getUserChats() {
         const chatData = await get(child(dbRef, `chatLists/${userId}`));
-        console.log(chatData)
+        console.log(chatData.val())
     }
     return {getUserChats}
 }
