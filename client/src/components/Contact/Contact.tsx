@@ -25,11 +25,11 @@ function Contact (){
     <div>
         <h1>Contact</h1>
         <div>
-            <img src={query.data.avatarURL} alt="" />
+            <img src={query.data?.avatarURL} alt="" />
         </div>
-        <div>{query.data.name + " " + query.data.surname}</div>
-        <div>{query.data.dateOfBirth}</div>
-        <div>{query.data.about}</div>
+        <div>{query.data && query.data?.name + " " + query.data?.surname}</div>
+        <div>{query.data?.dateOfBirth}</div>
+        <div>{query.data?.about}</div>
     </div>
     )
 }

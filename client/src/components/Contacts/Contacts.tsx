@@ -6,11 +6,18 @@ import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import useChatAvatar from '../../hooks/useChatAvatar';
 
+const ContactList = styled.ul`
+  padding:0px;
+`
+
 const ContactListItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   list-style-type: none;
   & img{
     border-radius: 50%;
-    height: 40px;
+    height: 50px;
   }
 `
 
@@ -55,14 +62,15 @@ function Contacts() {
   return (
     <div>
       <h1>Contacts</h1>
-      <ul>{query.data?.map((contact : any) => 
+      <ContactList>{query.data?.map((contact : any) => 
         <ContactListItem key={contact.id}>
           <Link to={`${path}/${contact.id}`} key={contact.id}>
-            <img src={contact.avatarURL} alt="" />
-            {contact.name + " " + contact.surname}
+            <div><img src={contact.avatarURL} alt="" /></div> 
           </Link>
+          <div>{contact.name + " " + contact.surname}</div>
+          <button>&#9993;</button>
         </ContactListItem>)}
-      </ul>
+      </ContactList>
     </div>
   );
 }
