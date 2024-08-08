@@ -5,6 +5,9 @@ import styled from "styled-components";
 import { Link, useLocation } from 'react-router-dom';
 import useChatAvatar from '../../hooks/useChatAvatar'
 
+const ChatList = styled.ul`
+  padding:0px;
+`
 const ChatListItem = styled.li`
   & img{
     border-radius: 50%;
@@ -67,12 +70,12 @@ function Chats (){
     return (
     <div>
         <h1>Chats</h1>
-        <ul>{query.data?.map((chat : IChat) => <ChatListItem key={chat.id}><Link to={`${path}/${chat.id}`} key={chat.id}>
+        <ChatList>{query.data?.map((chat : IChat) => <ChatListItem key={chat.id}><Link to={`${path}/${chat.id}`} key={chat.id}>
           <img src={chat.senderAvatar} alt="" />
           {userId === chat.receiverId ? chat.senderName : chat.receiverName}
         </Link>
         </ChatListItem>)}
-        </ul>
+        </ChatList>
     </div>)
 }
 
