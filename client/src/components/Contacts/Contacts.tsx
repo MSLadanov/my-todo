@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import useChatAvatar from '../../hooks/useChatAvatar';
+import chatMiddleWare from "../../middleware/chatMiddleware";
 
 const ContactList = styled.ul`
   padding:0px;
@@ -38,6 +39,7 @@ function Contacts() {
   }
   const { getUserAvatar } = useChatAvatar()
   const userId  = useSelector((state : IState) => state.userId)
+  const { getUserChats } = chatMiddleWare(userId)
   let location = useLocation();
   let path = ''
     if (location.pathname.endsWith('/')){
@@ -68,7 +70,7 @@ function Contacts() {
             <div><img src={contact.avatarURL} alt="" /></div> 
           </Link>
           <div>{contact.name + " " + contact.surname}</div>
-          <button>&#9993;</button>
+          <button onClick={() => getUserChats()}>&#9993;</button>
         </ContactListItem>)}
       </ContactList>
     </div>
