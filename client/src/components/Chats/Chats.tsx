@@ -6,7 +6,11 @@ import { Link, useLocation } from 'react-router-dom';
 import useChatAvatar from '../../hooks/useChatAvatar'
 
 const ChatListItem = styled.li`
-
+  & img{
+    border-radius: 50%;
+    height: 80px;
+  }
+  list-style-type: none;
 `
 
 function Chats (){

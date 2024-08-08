@@ -5,8 +5,13 @@ import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import useChatAvatar from '../../hooks/useChatAvatar';
-const ContactListItem = styled.li`
 
+const ContactListItem = styled.li`
+  list-style-type: none;
+  & img{
+    border-radius: 50%;
+    height: 40px;
+  }
 `
 
 function Contacts() {
@@ -54,7 +59,6 @@ function Contacts() {
         <ContactListItem key={contact.id}>
           <Link to={`${path}/${contact.id}`} key={contact.id}>
             <img src={contact.avatarURL} alt="" />
-            {contact.ava}
             {contact.name + " " + contact.surname}
           </Link>
         </ContactListItem>)}
