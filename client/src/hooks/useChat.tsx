@@ -1,5 +1,6 @@
 import { getDatabase, ref, child, get} from "firebase/database";
 import useChatAvatar from "./useChatAvatar";
+import {v4 as uuidv4} from 'uuid'
 
 function useChat(userId : string | undefined){
     const dbRef = ref(getDatabase());
@@ -34,6 +35,15 @@ function useChat(userId : string | undefined){
       }
       async function createChat(senderId : string | undefined, receiverId : string, senderName : string, receiverName : string) {
         console.log(senderId, receiverId, senderName, receiverName)
+        const newChat = {
+          id: uuidv4(),
+          senderId,
+          receiverId,
+          senderName,
+          receiverName,
+          messanges: []
+        }
+        console.log(newChat)
       }
     return {getUserChats, getChatsById, getChatList, createChat}
 }
