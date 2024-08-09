@@ -34,7 +34,6 @@ function useChat(userId : string | undefined){
         }
       }
       async function createChat(senderId : string | undefined, receiverId : string, senderName : string, receiverName : string) {
-        console.log(senderId, receiverId, senderName, receiverName)
         const newChat = {
           id: uuidv4(),
           senderId,
