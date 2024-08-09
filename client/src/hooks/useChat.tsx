@@ -32,8 +32,8 @@ function useChat(userId : string | undefined){
           console.log(error);
         }
       }
-      async function createChat(senderId : string | undefined, receiverId : string) {
-        console.log(senderId, receiverId)
+      async function createChat(senderId : string | undefined, receiverId : string, senderName : string, receiverName : string) {
+        console.log(senderId, receiverId, senderName, receiverName)
       }
     return {getUserChats, getChatsById, getChatList, createChat}
 }
