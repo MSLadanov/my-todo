@@ -62,8 +62,8 @@ function Contacts() {
   }
   async function checkExistChat(id : string) {
     const chats = await getChatList()
-    console.log(id)
-    console.log(chats)
+    const isChatExist = Boolean(chats?.find((chat) => chat.receiverId === id || chat.senderId === id))
+    console.log(isChatExist)
   }
   const query = useQuery({ queryKey: ['contacts'], queryFn: getContacts })
   return (
