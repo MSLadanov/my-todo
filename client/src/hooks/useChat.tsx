@@ -26,7 +26,8 @@ function useChat(userId : string | undefined){
         try {
           const chatsIdsSnapshot = await get(child(dbRef, `chatLists/${userId}`));
           const chatsIds = chatsIdsSnapshot.val();
-          return await getChatsById(chatsIds);
+          const userChats = await getChatsById(chatsIds);
+          return userChats
         } catch (error) {
           console.log(error);
         }

@@ -39,7 +39,7 @@ function Contacts() {
   }
   const { getUserAvatar } = useChatAvatar()
   const userId  = useSelector((state : IState) => state.userId)
-  const { getUserChats } = useChat(userId)
+  const { getUserChats, getChatList } = useChat(userId)
   let location = useLocation();
   let path = ''
     if (location.pathname.endsWith('/')){
@@ -60,6 +60,11 @@ function Contacts() {
             console.error(error);
           });
   }
+  async function checkExistChat(id : string) {
+    const chats = await getChatList()
+    console.log(id)
+    console.log(chats)
+  }
   const query = useQuery({ queryKey: ['contacts'], queryFn: getContacts })
   return (
     <div>
@@ -70,7 +75,7 @@ function Contacts() {
             <div><img src={contact.avatarURL} alt="" /></div> 
           </Link>
           <div>{contact.name + " " + contact.surname}</div>
-          <button onClick={() => getUserChats()}>&#9993;</button>
+          <button onClick={() => checkExistChat(contact.id)}>&#9993;</button>
         </ContactListItem>)}
       </ContactList>
     </div>
