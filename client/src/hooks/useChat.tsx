@@ -32,7 +32,10 @@ function useChat(userId : string | undefined){
           console.log(error);
         }
       }
-    return {getUserChats, getChatsById, getChatList}
+      async function createChat(senderId : string | undefined, receiverId : string) {
+        console.log(senderId, receiverId)
+      }
+    return {getUserChats, getChatsById, getChatList, createChat}
 }
 
 export default useChat

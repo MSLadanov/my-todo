@@ -40,7 +40,7 @@ function Contacts() {
   const navigate = useNavigate();
   const { getUserAvatar } = useChatAvatar()
   const userId  = useSelector((state : IState) => state.userId)
-  const { getUserChats, getChatList } = useChat(userId)
+  const { createChat, getChatList } = useChat(userId)
   let location = useLocation();
   let path = ''
     if (location.pathname.endsWith('/')){
@@ -61,13 +61,13 @@ function Contacts() {
             console.error(error);
           });
   }
-  async function checkExistChat(id : string) {
-    let chatId
+  async function checkExistChat(id: string) {
     const chats = await getChatList()
-    const isChatExist = Boolean(chats?.find((chat) => chat.receiverId === id || chat.senderId === id))
-    if(isChatExist){
-      chatId = chats?.find((chat) => chat.receiverId === id || chat.senderId === id).id
-      navigate(`/chats/${chatId}`);
+    const existingChat = chats?.find((chat) => chat.receiverId === id || chat.senderId === id);
+    if (existingChat) {
+      navigate(`/chats/${existingChat.id}`);
+    } else {
+      await createChat(userId, id);
     }
   }
   const query = useQuery({ queryKey: ['contacts'], queryFn: getContacts })
