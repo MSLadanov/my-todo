@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getDatabase, ref, child, get } from "firebase/database";
 import styled from 'styled-components';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import useChatAvatar from '../../hooks/useChatAvatar';
 import useChat from '../../hooks/useChat';
@@ -37,6 +37,7 @@ function Contacts() {
     about: string,
     friends: [],
   }
+  const navigate = useNavigate();
   const { getUserAvatar } = useChatAvatar()
   const userId  = useSelector((state : IState) => state.userId)
   const { getUserChats, getChatList } = useChat(userId)
@@ -65,7 +66,8 @@ function Contacts() {
     const chats = await getChatList()
     const isChatExist = Boolean(chats?.find((chat) => chat.receiverId === id || chat.senderId === id))
     if(isChatExist){
-      console.log(chats?.find((chat) => chat.receiverId === id || chat.senderId === id).id)
+      chatId = chats?.find((chat) => chat.receiverId === id || chat.senderId === id).id
+      navigate(`/chats/${chatId}`);
     }
   }
   const query = useQuery({ queryKey: ['contacts'], queryFn: getContacts })
