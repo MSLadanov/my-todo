@@ -1,4 +1,4 @@
-import { getDatabase, ref, child, get, set, update} from "firebase/database";
+import { getDatabase, ref, child, get, set, update, push} from "firebase/database";
 import useChatAvatar from "./useChatAvatar";
 import {v4 as uuidv4} from 'uuid'
 
@@ -45,16 +45,15 @@ function useChat(userId : string | undefined){
         const db = getDatabase();
         const senderChatList = [...(await get(child(dbRef, `chatLists/${senderId}`))).val(), newChat.id];
         const receiverChatList = [...(await get(child(dbRef, `chatLists/${receiverId}`))).val(), newChat.id];
-        const updates : any = {};
-        updates['/chats/' + newChat.id] = newChat;
-        update(ref(db), updates);
         // const notMyChats = (await get(child(dbRef, `chats/a99ff62a-fcf4-454d-8300-830f5c1d3d69`))).val()
         // const myChats = (await get(child(dbRef, `chats/590dc699-c7f7-45fa-b59d-54c12241dfcc`))).val()
         // const allChats = (await get(child(dbRef, `chats/`))).val()
         // console.log(myChats)
         // console.log(notMyChats)
         // console.log(allChats)
-        
+        const updates : any = {};
+        updates['/chats/' + newChat.id] = newChat;
+        update(ref(db), updates);
         // try {
         //   console.log(senderChatList, receiverChatList)
         //   console.log(newChat)
