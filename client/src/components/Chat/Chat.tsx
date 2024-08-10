@@ -56,6 +56,9 @@ function Chat(){
         try {
             const chatData = await get(child(dbRef, `chats/${chatId}`))
             const result = chatData.val()
+            if(!Boolean(result.messanges)){
+                result.messanges = []
+            }
             return result
         } catch (error) {
             console.log(error)
