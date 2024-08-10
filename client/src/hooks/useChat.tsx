@@ -43,10 +43,11 @@ function useChat(userId : string | undefined){
           messanges: []
         }
         const db = getDatabase();
-        const senderChatList = await get(child(dbRef, `chatLists/${senderId}`));
-        const receiverChatList = await get(child(dbRef, `chatLists/${receiverId}`));
-        // set(ref(db, `/chatLists/${userId}/todoLists/${todosId.current}/todos`), {
-        //   ...todos
+        console.log('work')
+        const senderChatList = [...(await get(child(dbRef, `chatLists/${senderId}`))).val(), newChat.id];
+        const receiverChatList = [...(await get(child(dbRef, `chatLists/${receiverId}`))).val(), newChat.id];
+        // set(ref(db, `/chatLists/${senderId}/`), {
+        //   ...senderChatList
         //  });
         console.log(senderChatList, receiverChatList)
         console.log(newChat)
