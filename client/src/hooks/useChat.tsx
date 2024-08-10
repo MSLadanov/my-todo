@@ -43,14 +43,23 @@ function useChat(userId : string | undefined){
           messanges: []
         }
         const db = getDatabase();
-        console.log('work')
         const senderChatList = [...(await get(child(dbRef, `chatLists/${senderId}`))).val(), newChat.id];
         const receiverChatList = [...(await get(child(dbRef, `chatLists/${receiverId}`))).val(), newChat.id];
-        // set(ref(db, `/chatLists/${senderId}/`), {
-        //   ...senderChatList
-        //  });
-        console.log(senderChatList, receiverChatList)
-        console.log(newChat)
+        const chats = (await get(child(dbRef, `chatLists/${senderId}`))).val()
+        console.log(chats)
+        try {
+          console.log(senderChatList, receiverChatList)
+          console.log(newChat)
+          // set(ref(db, `/chatLists/${senderId}/`), {
+          //   ...senderChatList
+          //  });
+          //  set(ref(db, `/chatLists/${receiverId}/`), {
+          //   ...receiverChatList
+          //  });
+
+        } catch (error) {
+          console.log(error)
+        }
       }
     return {getUserChats, getChatsById, getChatList, createChat}
 }
