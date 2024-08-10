@@ -45,21 +45,23 @@ function useChat(userId : string | undefined){
         const db = getDatabase();
         const senderChatList = [...(await get(child(dbRef, `chatLists/${senderId}`))).val(), newChat.id];
         const receiverChatList = [...(await get(child(dbRef, `chatLists/${receiverId}`))).val(), newChat.id];
-        const chats = (await get(child(dbRef, `chatLists/${senderId}`))).val()
-        console.log(chats)
-        try {
-          console.log(senderChatList, receiverChatList)
-          console.log(newChat)
-          // set(ref(db, `/chatLists/${senderId}/`), {
-          //   ...senderChatList
-          //  });
-          //  set(ref(db, `/chatLists/${receiverId}/`), {
-          //   ...receiverChatList
-          //  });
+        const notMyChats = (await get(child(dbRef, `chats/a99ff62a-fcf4-454d-8300-830f5c1d3d69`))).val()
+        const myChats = (await get(child(dbRef, `chats/590dc699-c7f7-45fa-b59d-54c12241dfcc`))).val()
+        console.log(myChats)
+        console.log(notMyChats)
+        // try {
+        //   console.log(senderChatList, receiverChatList)
+        //   console.log(newChat)
+        //   set(ref(db, `/chatLists/${senderId}/`), {
+        //     ...senderChatList
+        //    });
+        //    set(ref(db, `/chatLists/${receiverId}/`), {
+        //     ...receiverChatList
+        //    });
 
-        } catch (error) {
-          console.log(error)
-        }
+        // } catch (error) {
+        //   console.log(error)
+        // }
       }
     return {getUserChats, getChatsById, getChatList, createChat}
 }
