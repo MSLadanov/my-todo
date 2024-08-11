@@ -6,6 +6,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import useChatAvatar from '../../hooks/useChatAvatar';
 import useChat from '../../hooks/useChat';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMessage } from '@fortawesome/free-solid-svg-icons';
 
 const ContactList = styled.ul`
   padding:0px;
@@ -20,6 +22,14 @@ const ContactListItem = styled.li`
     border-radius: 50%;
     height: 50px;
   }
+`
+const MessageButton = styled.button`
+  display: flex;
+  border: none;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  padding: 10px;
 `
 
 function Contacts() {
@@ -81,7 +91,7 @@ function Contacts() {
             <div><img src={contact.avatarURL} alt="" /></div> 
           </Link>
           <div>{contact.name + " " + contact.surname}</div>
-          <button onClick={() => checkExistChat(contact.id, contact.name)}>&#9993;</button>
+          <MessageButton onClick={() => checkExistChat(contact.id, contact.name)}><FontAwesomeIcon icon={faMessage} size='xl' /></MessageButton>
         </ContactListItem>)}
       </ContactList>
     </div>

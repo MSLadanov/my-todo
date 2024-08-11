@@ -16,6 +16,9 @@ const HeaderContainer = styled.header`
     padding: 0;
   `
   const MenuItem = styled.li`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     list-style-type: none;
     & a{
       text-decoration: none;
