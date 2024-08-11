@@ -89,10 +89,11 @@ function Chat(){
         if(query.data){
             getUserAvatar(query.data.senderId).then((res) => setSenderAvatar(res))
             getUserAvatar(query.data.receiverId).then((res) => setReceiverAvatar(res))     
-        } else {
-            getNoAvatarImage().then((res) => setSenderAvatar(res))
-            getNoAvatarImage().then((res) => setReceiverAvatar(res))
-        }
+        } 
+        // else {
+        //     getNoAvatarImage().then((res) => setSenderAvatar(res))
+        //     getNoAvatarImage().then((res) => setReceiverAvatar(res))
+        // }
     },[query.data])
     return (
         <div>
