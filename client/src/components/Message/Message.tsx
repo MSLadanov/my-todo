@@ -37,7 +37,7 @@ function Message({id, text, timestamp, userId, userName, userAvatar, currentUser
         <MessageContainer style={{flexDirection : userId !== currentUserId ? 'row' : 'row-reverse'}}>
             <MessageBox style={{ 
                 flexDirection : userId !== currentUserId ? 'row' : 'row-reverse',
-                backgroundColor : userName === receiverName ? 'chartreuse' : 'aquamarine'
+                backgroundColor : userName === receiverName ? '#D7E8FF' : '#D9F2E6'
             }}>
                 <UserImg src={userName === senderName ? senderAvatar : receiverAvatar} alt="" />
                 <p>{text}</p>

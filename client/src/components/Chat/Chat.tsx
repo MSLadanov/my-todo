@@ -27,6 +27,7 @@ const MessageInput = styled.div`
             height: 50px;
             border-radius: 50%;
             font-size: 28px;
+            background: transparent;
         }
     `
 
