@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import Message from "../Message/Message";
 import styled from "styled-components"
 import {v4 as uuidv4} from 'uuid'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
 const MessageInput = styled.div`
         display: flex;
@@ -111,7 +113,7 @@ function Chat(){
             <MessageInput>
                 <textarea rows={5} value={newMessageText} onChange={(e) => setNewMessageText(e.target.value)}></textarea>
                 <CenteredButtonBox>
-                    <button onClick={() => sendNewMessage()}>&#128393;</button>
+                    <button onClick={() => sendNewMessage()}><FontAwesomeIcon icon={faPencil} /></button>
                 </CenteredButtonBox>
             </MessageInput>
         </div>
