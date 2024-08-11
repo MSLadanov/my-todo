@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
 import  useAvatar  from '../../hooks/useAvatar'
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
+import { faComments } from '@fortawesome/free-solid-svg-icons';
+import { faAddressBook } from '@fortawesome/free-solid-svg-icons';
  
 const HeaderContainer = styled.header`
 `;
@@ -19,8 +23,8 @@ const HeaderContainer = styled.header`
     }
   `
   const MenuAvatar = styled.img`
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
   `
 
@@ -42,13 +46,13 @@ function Header() {
       <nav>
         <Menu>
             <MenuItem>
-              <Link to={`contacts/`}>Contacts</Link>
+              <Link to={`contacts/`}><FontAwesomeIcon icon={faAddressBook} size='2x' /></Link>
             </MenuItem>
             <MenuItem>
-              <Link to={`chats/`}>Chats</Link>
+              <Link to={`chats/`}><FontAwesomeIcon icon={faComments} size='2x' /></Link>
             </MenuItem>
             <MenuItem>
-              <Link to={`todolists/`}>Todo Lists</Link>
+              <Link to={`todolists/`}><FontAwesomeIcon icon={faClipboardCheck} size='2x' /></Link>
             </MenuItem>
             <MenuItem>
               <Link to={`user/`}><MenuAvatar src={query.data}/></Link>
