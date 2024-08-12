@@ -18,6 +18,7 @@ function Root() {
     }, [userName]);
     return (
       <>
+        <button>Show Popup</button>
         {userName ? <h1>Welcome, {userName}</h1> : <h1>Welcome, guest!</h1>}
         <App />
       </>
