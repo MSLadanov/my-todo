@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 function usePopup(){
     interface PopupProps{
       text : string
+      type: 'success' | 'warning' | 'error',
     }
     const [ showPopup, setShowPopup ] = useState(false)
     function togglePopup(){
@@ -12,13 +13,12 @@ function usePopup(){
         setShowPopup(false)
       }, 2000);
     }
-    function Popup ({text} : PopupProps){
+    function Popup ({text , type} : PopupProps){
         if(showPopup){
           return ReactDOM.createPortal(
             <div>
               <div/>
               <div>
-                  <h1>Popup</h1>
                   <h1>{text}</h1>
                   <button >Close Popup</button>
               </div>    
