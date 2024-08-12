@@ -2,15 +2,16 @@ import { useState } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
-const StyledPopup = styled.div<{ isVisible: boolean }>`
+const StyledPopup = styled.div<{ isVisible: boolean; bgColor: string }>`
     display: flex;
+    background-color: ${({ bgColor }) => bgColor};
     justify-content: center;
     align-items: center;
     border-radius: 12px;
     height: 35px;
     padding: 8px 16px;
-    position: relative;
-    bottom: ${({ isVisible }) => (isVisible ? '90px' : '-100px')};
+    position: fixed;
+    bottom: ${({ isVisible }) => (isVisible ? '90px' : '-100px')}; /* Используем fixed для правильного позиционирования */
     left: 50%;
     transform: translateX(-50%);
     transition: bottom 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -31,14 +32,14 @@ function usePopup(){
     const [ showPopup, setShowPopup ] = useState(false)
     function togglePopup(){
       setShowPopup(true)
-      // setTimeout(() => {
-      //   setShowPopup(false)
-      // }, 3000);
+      setTimeout(() => {
+        setShowPopup(false)
+      }, 3000);
     }
     function Popup ({text , type} : PopupProps){
         if(showPopup){
           return ReactDOM.createPortal(
-            <StyledPopup style={{'backgroundColor': colors[type]}} isVisible={showPopup}>
+            <StyledPopup bgColor={colors[type]} isVisible={showPopup}>
               <p>{text}</p> 
             </StyledPopup>,
             document.getElementById('portal')!
