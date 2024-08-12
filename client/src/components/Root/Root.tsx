@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import App from "../../App";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import usePopup from "../../hooks/usePopup";
 
 function Root() {
     interface IState {
@@ -11,6 +12,7 @@ function Root() {
       }
     const userName = useSelector((state : IState) => state.displayName)
     const navigate = useNavigate();
+    const {togglePopup, Popup} = usePopup()
     useEffect(() => {
       if (!userName) {
         navigate("/signin");
@@ -18,8 +20,9 @@ function Root() {
     }, [userName]);
     return (
       <>
-        <button>Show Popup</button>
+        <button onClick={() => togglePopup()}>Show Popup</button>
         {userName ? <h1>Welcome, {userName}</h1> : <h1>Welcome, guest!</h1>}
+        <Popup text="Hello!" />
         <App />
       </>
     );

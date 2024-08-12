@@ -25,9 +25,11 @@ function usePopup(){
             </div>,
             document.getElementById('portal')!
           )
+        } else {
+          return null
         }
     }
     return { togglePopup, Popup }
 }
 
-export default { usePopup }
+export default usePopup 
