@@ -22,7 +22,7 @@ function Root() {
       <>
         <button onClick={() => togglePopup()}>Show Popup</button>
         {userName ? <h1>Welcome, {userName}</h1> : <h1>Welcome, guest!</h1>}
-        <Popup text="Hello!" type="warning" />
+        <Popup text="Hello!" type="success" />
         <App />
       </>
     );
