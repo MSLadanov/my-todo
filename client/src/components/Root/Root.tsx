@@ -20,9 +20,11 @@ function Root() {
     }, [userName]);
     return (
       <>
-        <button onClick={() => togglePopup()}>Show Popup</button>
+        <button onClick={() => togglePopup('Неверное имя пользователя или пароль!', 'error')}>Ошибка!</button>
+        <button onClick={() => togglePopup('Пользователь с таким e-mail уже зарегистрирован!', 'warning')}>Предупреждение!</button>
+        <button onClick={() => togglePopup('Вы успешно авторизовались!', 'success')}>Все хорошо!</button>
         {userName ? <h1>Welcome, {userName}</h1> : <h1>Welcome, guest!</h1>}
-        <Popup text="Hello!" type="error" />
+        <Popup />
         <App />
       </>
     );
