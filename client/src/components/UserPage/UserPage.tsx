@@ -80,7 +80,6 @@ function UserPage() {
       .catch((err) => console.log(err))
     }
   }
-  getUserData()
   return (
     <UserProfile>
       <h1>UserPage</h1>
@@ -97,7 +96,9 @@ function UserPage() {
           }}>Delete photo</button>
         </PhotoSettings>
         <UserInfoSettings>
-
+          <div>{userData.data && userData.data?.name + " " + userData.data?.surname}</div>
+          <div>{userData.data?.dateOfBirth}</div>
+          <div>{userData.data?.about}</div>
         </UserInfoSettings>
       </UserSettings>
       <LogOutBtn>

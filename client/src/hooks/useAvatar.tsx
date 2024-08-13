@@ -34,7 +34,7 @@ function useAvatar(userId : string | undefined){
     async function getUserData() {
         try {
             const userData = (await get(child(dbRef, `users/${userId}`))).val()
-            console.log(userData)
+            return userData
         } catch (error) {
             console.log(error)
         }
