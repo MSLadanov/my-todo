@@ -3,6 +3,14 @@ import App from "../../App";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import usePopup from "../../hooks/usePopup";
+import styled from "styled-components";
+
+const RootDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+`
 
 function Root() {
     interface IState {
@@ -19,14 +27,16 @@ function Root() {
       }
     }, [userName]);
     return (
-      <>
-        <button onClick={() => togglePopup('Неверное имя пользователя или пароль!', 'error')}>Ошибка!</button>
-        <button onClick={() => togglePopup('Пользователь с таким e-mail уже зарегистрирован!', 'warning')}>Предупреждение!</button>
-        <button onClick={() => togglePopup('Вы успешно авторизовались!', 'success')}>Все хорошо!</button>
+      <RootDiv>
+        <div>
+          <button onClick={() => togglePopup('Неверное имя пользователя или пароль!', 'error')}>Ошибка!</button>
+          <button onClick={() => togglePopup('Пользователь с таким e-mail уже зарегистрирован!', 'warning')}>Предупреждение!</button>
+          <button onClick={() => togglePopup('Вы успешно авторизовались!', 'success')}>Все хорошо!</button>
+        </div>
         {userName ? <h1>Welcome, {userName}</h1> : <h1>Welcome, guest!</h1>}
         <Popup />
         <App />
-      </>
+      </ RootDiv>
     );
   }
   

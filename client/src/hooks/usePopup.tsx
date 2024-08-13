@@ -40,6 +40,7 @@ const StyledPopup = styled.div<{ isVisible: boolean; bgColor: string }>`
   z-index: 1000;
   color: #000;
   text-align: center;
+  overflow: none;
   animation: ${({ isVisible }) => (isVisible ? slideIn : slideOut)} 0.5s ease-in-out forwards;
 `;
 

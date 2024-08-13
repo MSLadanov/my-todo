@@ -10,8 +10,8 @@ import queryClient from '../..';
 import useAvatar from '../../hooks/useAvatar';
 
 const Avatar = styled.img`
-    width: 300px;
-    height: 300px;
+    width: 50%;        
+    height: auto;
     border-radius: 50%;
 `
 const UserProfile = styled.div`
