@@ -15,6 +15,9 @@ const ChatListItem = styled.li`
   list-style-type: none;
 `
 
+const ChatsBox = styled.div`
+`
+
 function Chats (){
   interface IState {
     displayName: string,
@@ -42,7 +45,7 @@ function Chats (){
   const { getChatList } = useChat(userId)
   const query = useQuery({ queryKey: ['chats'], queryFn: getChatList })
   return (
-    <div>
+    <ChatsBox>
         <h1>Chats</h1>
         <ChatList>{query.data?.map((chat : IChat) => <ChatListItem key={chat.id}><Link to={`${path}/${chat.id}`} key={chat.id}>
           <img src={chat.senderAvatar} alt="" />
@@ -50,7 +53,7 @@ function Chats (){
         </Link>
         </ChatListItem>)}
         </ChatList>
-    </div>)
+    </ChatsBox>)
 }
 
 export default Chats
