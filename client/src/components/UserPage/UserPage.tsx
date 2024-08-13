@@ -21,12 +21,20 @@ const UserProfile = styled.div`
 `
 
 const UserSettings = styled.div`
+  & div{
+    margin: 15px 0px;
+  }
 `
 
 const PhotoSettings = styled.div`
   display: flex;
   flex-direction: column;
 `
+const PhotoSettingsButtons = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
 const UserInfoSettings = styled.div`
 `
 
@@ -87,13 +95,15 @@ function UserPage() {
       <UserSettings>
         <PhotoSettings>
           <input type="file" onChange={(e) => handleUpdateAvatar(e)} />
-          <button onClick={() => { 
+          <PhotoSettingsButtons>
+            <button onClick={() => { 
             update.mutate() 
             getCurrentAvatarURL()}}>Edit photo</button>
-          <button onClick={() => { 
+            <button onClick={() => { 
             remove.mutate()
             getCurrentAvatarURL()
-          }}>Delete photo</button>
+            }}>Delete photo</button>
+          </PhotoSettingsButtons>
         </PhotoSettings>
         <UserInfoSettings>
           <div>{userData.data && userData.data?.name + " " + userData.data?.surname}</div>
