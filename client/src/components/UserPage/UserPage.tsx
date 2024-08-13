@@ -14,6 +14,8 @@ const Avatar = styled.img`
     height: 300px;
     border-radius: 50%;
 `
+const UserProfile = styled.div`
+`
 
 const UserSettings = styled.div`
 `
@@ -74,7 +76,7 @@ function UserPage() {
     }
   }
   return (
-    <div>
+    <UserProfile>
       <h1>UserPage</h1>
       <Avatar src={query.data} alt='' />
       <UserSettings>
@@ -95,7 +97,7 @@ function UserPage() {
       <LogOutBtn>
         <button onClick={() => dispatch(logout())}>Log Out</button>
       </LogOutBtn>
-    </div>
+    </UserProfile>
   );
 }
 
