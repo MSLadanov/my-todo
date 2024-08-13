@@ -5,6 +5,10 @@ import Header from './components/Header/Header';
 import styled from "styled-components";
 
 const AppDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 `
 
 function App() {
