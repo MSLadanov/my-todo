@@ -15,13 +15,17 @@ const Avatar = styled.img`
     border-radius: 50%;
 `
 const UserProfile = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const UserSettings = styled.div`
 `
 
 const PhotoSettings = styled.div`
-
+  display: flex;
+  flex-direction: column;
 `
 const UserInfoSettings = styled.div`
 `
@@ -37,7 +41,7 @@ function UserPage() {
     userId: string | undefined  
   }
   const userId  = useSelector((state : IState) => state.userId)
-  const { getCurrentAvatarURL, removeAvatar } = useAvatar(userId)
+  const { getCurrentAvatarURL, removeAvatar, getUserData } = useAvatar(userId)
   const query = useQuery({ queryKey: ['avatarURL'], queryFn: getCurrentAvatarURL })
   const [newAvatar, setNewAvatar] = useState<File | null>(null);
   const dispatch = useDispatch()
@@ -61,6 +65,7 @@ function UserPage() {
     const preparedFile = new File([e.target.files[0]], `${uuidv4()}`, {type: e.target.files[0].type});
     setNewAvatar(preparedFile)
   }
+  const userData = useQuery({ queryKey: ['userData'], queryFn: getUserData })
   async function updateAvatar(){
     if (newAvatar !== null){
       console.log('updating avatar...')
@@ -75,6 +80,7 @@ function UserPage() {
       .catch((err) => console.log(err))
     }
   }
+  getUserData()
   return (
     <UserProfile>
       <h1>UserPage</h1>

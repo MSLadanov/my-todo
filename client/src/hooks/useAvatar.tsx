@@ -1,8 +1,10 @@
 import { ref, getDownloadURL, deleteObject, listAll } from 'firebase/storage';
+import { getDatabase, ref as refDB, child, get, set, update, push} from "firebase/database";
 import { storage } from '../firebase';
 
 function useAvatar(userId : string | undefined){
     const listRef = ref(storage, `userAvatars/${userId}`);
+    const dbRef = refDB(getDatabase());
     async function getCurrentAvatarURL() {
         try {
         const res = await listAll(listRef);
@@ -29,6 +31,14 @@ function useAvatar(userId : string | undefined){
         });
         })
     }
-    return {getCurrentAvatarURL, removeAvatar}
+    async function getUserData() {
+        try {
+            const userData = (await get(child(dbRef, `users/${userId}`))).val()
+            console.log(userData)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    return {getCurrentAvatarURL, removeAvatar, getUserData}
 }
   export default useAvatar
