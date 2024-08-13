@@ -13,7 +13,19 @@ const Avatar = styled.img`
     width: 300px;
     height: 300px;
     border-radius: 50%;
-  `
+`
+
+const UserSettings = styled.div`
+`
+
+const PhotoSettings = styled.div`
+
+`
+const UserInfoSettings = styled.div`
+`
+
+const LogOutBtn = styled.div`
+`
 
 function UserPage() {
   interface IState {
@@ -65,19 +77,24 @@ function UserPage() {
     <div>
       <h1>UserPage</h1>
       <Avatar src={query.data} alt='' />
-      <div>
-      <input type="file" onChange={(e) => handleUpdateAvatar(e)} />
-        <button onClick={() => { 
-          update.mutate() 
-          getCurrentAvatarURL()}}>Edit photo</button>
-        <button onClick={() => { 
-          remove.mutate()
-          getCurrentAvatarURL()
-        }}>Delete photo</button>
-      </div>
-      <div>
+      <UserSettings>
+        <PhotoSettings>
+          <input type="file" onChange={(e) => handleUpdateAvatar(e)} />
+          <button onClick={() => { 
+            update.mutate() 
+            getCurrentAvatarURL()}}>Edit photo</button>
+          <button onClick={() => { 
+            remove.mutate()
+            getCurrentAvatarURL()
+          }}>Delete photo</button>
+        </PhotoSettings>
+        <UserInfoSettings>
+
+        </UserInfoSettings>
+      </UserSettings>
+      <LogOutBtn>
         <button onClick={() => dispatch(logout())}>Log Out</button>
-      </div>
+      </LogOutBtn>
     </div>
   );
 }
