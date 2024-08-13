@@ -10,7 +10,7 @@ import {v4 as uuidv4} from 'uuid'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
-const MessageInput = styled.div`
+    const MessageInput = styled.div`
         display: flex;
         & textarea{
             resize: none;
@@ -30,6 +30,16 @@ const MessageInput = styled.div`
             background: transparent;
         }
     `
+const ChatBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+`
+
+const MessagesBox = styled.div`
+
+`
 
 function Chat(){
     interface IState {
@@ -96,7 +106,8 @@ function Chat(){
         // }
     },[query.data])
     return (
-        <div>
+        <ChatBox>
+            <MessagesBox>
             <h1>Chat</h1>
             <h2>{userId === query.data?.receiverId ? query.data?.senderName : query.data?.receiverName}</h2>
             {query.data?.messanges.map((message : IMessage) => <Message key={message.id}
@@ -112,13 +123,14 @@ function Chat(){
                 senderAvatar={senderAvatar}
                 receiverAvatar={receiverAvatar}
             />)}
+            </MessagesBox>
             <MessageInput>
                 <textarea rows={5} value={newMessageText} onChange={(e) => setNewMessageText(e.target.value)}></textarea>
                 <CenteredButtonBox>
                     <button onClick={() => sendNewMessage()}><FontAwesomeIcon icon={faPencil} /></button>
                 </CenteredButtonBox>
             </MessageInput>
-        </div>
+        </ChatBox>
     )
 }
 
