@@ -9,6 +9,10 @@ import { faComments } from '@fortawesome/free-solid-svg-icons';
 import { faAddressBook } from '@fortawesome/free-solid-svg-icons';
  
 const HeaderContainer = styled.header`
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
 `;
   const Menu = styled.ul`
     display:flex;

@@ -12,6 +12,10 @@ import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
     const MessageInput = styled.div`
         display: flex;
+        position: fixed;
+        width: 100%;
+        bottom: 86px;
+        padding: 5px;
         & textarea{
             resize: none;
             width: 80%
@@ -30,12 +34,6 @@ import { faPencil } from "@fortawesome/free-solid-svg-icons";
             background: transparent;
         }
     `
-const ChatBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-between;
-`
 
 const MessagesBox = styled.div`
 
@@ -106,7 +104,7 @@ function Chat(){
         // }
     },[query.data])
     return (
-        <ChatBox>
+        <>
             <MessagesBox>
             <h1>Chat</h1>
             <h2>{userId === query.data?.receiverId ? query.data?.senderName : query.data?.receiverName}</h2>
@@ -130,7 +128,7 @@ function Chat(){
                     <button onClick={() => sendNewMessage()}><FontAwesomeIcon icon={faPencil} /></button>
                 </CenteredButtonBox>
             </MessageInput>
-        </ChatBox>
+        </>
     )
 }
 
