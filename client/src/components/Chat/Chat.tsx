@@ -16,6 +16,7 @@ import { faPencil } from "@fortawesome/free-solid-svg-icons";
         width: 100%;
         bottom: 86px;
         padding: 5px;
+        background-color: white;
         & textarea{
             resize: none;
             width: 80%
@@ -36,7 +37,8 @@ import { faPencil } from "@fortawesome/free-solid-svg-icons";
     `
 
 const MessagesBox = styled.div`
-
+    padding-bottom: 86px;
+    overflow: scroll;
 `
 
 function Chat(){

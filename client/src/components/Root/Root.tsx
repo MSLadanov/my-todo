@@ -20,7 +20,7 @@ function Root() {
     }, [userName]);
     return (
       <>
-        <div>
+        <div style={{position:'fixed'}}>
           <button onClick={() => togglePopup('Неверное имя пользователя или пароль!', 'error')}>Ошибка!</button>
           <button onClick={() => togglePopup('Пользователь с таким e-mail уже зарегистрирован!', 'warning')}>Предупреждение!</button>
           <button onClick={() => togglePopup('Вы успешно авторизовались!', 'success')}>Все хорошо!</button>
