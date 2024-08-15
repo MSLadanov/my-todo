@@ -34,6 +34,9 @@ const HeaderContainer = styled.header`
     width: 40px;
     border-radius: 50%;
   `
+const NavBar = styled.nav`
+  padding: 0px 10px;
+`
 
 function Header() {
  
@@ -50,7 +53,7 @@ function Header() {
   return (
     <HeaderContainer>
       <hr />
-      <nav>
+      <NavBar>
         <Menu>
             <MenuItem>
               <Link to={`contacts/`}><FontAwesomeIcon icon={faAddressBook} size='2x' /></Link>
@@ -65,7 +68,7 @@ function Header() {
               <Link to={`user/`}><MenuAvatar src={query.data}/></Link>
             </MenuItem>
         </Menu>
-    </nav>
+    </NavBar>
     </HeaderContainer>
   );
 }

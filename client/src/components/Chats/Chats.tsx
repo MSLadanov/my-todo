@@ -30,6 +30,8 @@ const ChatInfo = styled.div`
   justify-content: center;
   margin-left: 15px;
   & p{
+    border-radius: 12px;
+    padding: 8px;
     color: black;
     margin: 0px;
   }
@@ -83,13 +85,17 @@ function Chats (){
   const userId  = useSelector((state : IState) => state.userId)
   const { getChatList } = useChat(userId)
   const query = useQuery({ queryKey: ['chats'], queryFn: getChatList })
-  function showLastMessage(chat : IChat ){
+  function getLastMessage(chat : IChat ){
     const lastMessage : IMessage = chat.messanges.at(-1)
-    const lastMessageData = {
-      name: lastMessage.userId === userId ? 'You' : lastMessage.userName,
-      text: lastMessage.text
+    const lastMessageData : IMessage = {
+      id: lastMessage.id,
+      userId: lastMessage.userId,
+      userName: lastMessage.userId === userId ? 'You' : lastMessage.userName,
+      text: lastMessage.text,
+      timestamp: lastMessage.timestamp
     }
-    return lastMessageData.name + ' : ' + lastMessageData.text
+    console.log(lastMessageData.text)
+    return lastMessageData
   }
   return (
     <ChatsBox>
@@ -100,8 +106,8 @@ function Chats (){
               <img src={chat.senderAvatar} alt="" />
             </ChatAvatar>
           <ChatInfo>
-            <p>{userId === chat.receiverId ? chat.senderName : chat.receiverName}</p>
-            <p>{showLastMessage(chat)}</p>
+            <p style={{fontWeight:'bolder'}}>{userId === chat.receiverId ? chat.senderName : chat.receiverName}</p>
+            <p style={{backgroundColor: getLastMessage(chat).userId === userId ? '#D9F2E6' : '#D7E8FF'}}>{getLastMessage(chat).userName + ' : ' + getLastMessage(chat).text}</p>
           </ChatInfo>
           </ChatContent>
           <ChatTime>15:00</ChatTime>
