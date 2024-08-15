@@ -14,6 +14,7 @@ const ChatListItem = styled.li`
   }
   display: flex;
   list-style-type: none;
+  width:100vw;
 `
 
 const ChatsBox = styled.div`
@@ -32,6 +33,12 @@ const ChatInfo = styled.div`
     color: black;
     margin: 0px;
   }
+`
+const ChatTime = styled.div`
+
+`
+const ChatContent = styled.div`
+  display: flex;
 `
 
 function Chats (){
@@ -78,14 +85,17 @@ function Chats (){
   return (
     <ChatsBox>
         <h1>Chats</h1>
-        <ChatList>{query.data?.map((chat : IChat) => <ChatListItem key={chat.id}><Link style={{display:'flex', textDecoration: 'none'}} to={`${path}/${chat.id}`} key={chat.id}>
-          <ChatAvatar>
-            <img src={chat.senderAvatar} alt="" />
-          </ChatAvatar>
+        <ChatList>{query.data?.map((chat : IChat) => <ChatListItem key={chat.id}><Link style={{display:'flex', textDecoration: 'none', width: '100vw', justifyContent:'space-between'}} to={`${path}/${chat.id}`} key={chat.id}>
+          <ChatContent>
+            <ChatAvatar>
+              <img src={chat.senderAvatar} alt="" />
+            </ChatAvatar>
           <ChatInfo>
             <p>{userId === chat.receiverId ? chat.senderName : chat.receiverName}</p>
             <p>{showLastMessage(chat)}</p>
           </ChatInfo>
+          </ChatContent>
+          <ChatTime>15:00</ChatTime>
         </Link>
         </ChatListItem>)}
         </ChatList>
