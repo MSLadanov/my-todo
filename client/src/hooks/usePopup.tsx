@@ -33,7 +33,7 @@ const StyledPopup = styled.div<{ isVisible: boolean; bgColor: string }>`
   border-radius: 12px;
   height: 45px;
   padding: 8px 16px;
-  position: relative;
+  position: fixed;
   bottom: 100px;
   left: 50%;
   transform: translateX(-50%);

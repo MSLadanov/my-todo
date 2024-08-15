@@ -32,7 +32,7 @@ function Chats (){
     senderName: string,
     receiverName: string,
     senderAvatar: string,
-    messanges: []
+    messanges: any[]
   }
   let location = useLocation();
   let path = ''
@@ -44,11 +44,13 @@ function Chats (){
   const userId  = useSelector((state : IState) => state.userId)
   const { getChatList } = useChat(userId)
   const query = useQuery({ queryKey: ['chats'], queryFn: getChatList })
+  console.log(query.data)
   return (
     <ChatsBox>
         <h1>Chats</h1>
         <ChatList>{query.data?.map((chat : IChat) => <ChatListItem key={chat.id}><Link to={`${path}/${chat.id}`} key={chat.id}>
           <img src={chat.senderAvatar} alt="" />
+          <p>{JSON.stringify(chat.messanges.at(-1).userName) + ':' + JSON.stringify(chat.messanges.at(-1).text)}</p>
           {userId === chat.receiverId ? chat.senderName : chat.receiverName}
         </Link>
         </ChatListItem>)}
