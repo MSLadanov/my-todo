@@ -35,11 +35,20 @@ const ChatInfo = styled.div`
   }
 `
 const ChatTime = styled.div`
-
+  margin-right: 15px;
 `
 const ChatContent = styled.div`
   display: flex;
+  margin-left: 15px;
 `
+
+const LinkStyle = {
+  display:'flex', 
+  textDecoration: 'none', 
+  width: '100vw', 
+  justifyContent:'space-between', 
+  margin:'15px 0px'
+}
 
 function Chats (){
   interface IState {
@@ -85,7 +94,7 @@ function Chats (){
   return (
     <ChatsBox>
         <h1>Chats</h1>
-        <ChatList>{query.data?.map((chat : IChat) => <ChatListItem key={chat.id}><Link style={{display:'flex', textDecoration: 'none', width: '100vw', justifyContent:'space-between'}} to={`${path}/${chat.id}`} key={chat.id}>
+        <ChatList>{query.data?.map((chat : IChat) => <ChatListItem key={chat.id}><Link style={LinkStyle} to={`${path}/${chat.id}`} key={chat.id}>
           <ChatContent>
             <ChatAvatar>
               <img src={chat.senderAvatar} alt="" />
