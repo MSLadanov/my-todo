@@ -97,7 +97,17 @@ function Chats (){
     return lastMessageData
   }
   function getDate(timestamp: string){
-
+    const date = new Date(+timestamp);
+    const now = new Date();
+    const diffInSeconds = (now.getTime() - date.getTime()) / 1000;
+    const diffInDays = Math.floor(diffInSeconds / 86400);
+    if (diffInDays > 0) {
+      return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+    } else {
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+      return `${hours}:${minutes}`;
+    }
   }
   return (
     <ChatsBox>
@@ -112,7 +122,7 @@ function Chats (){
             <p style={{backgroundColor: getLastMessage(chat).userId === userId ? '#D9F2E6' : '#D7E8FF'}}>{getLastMessage(chat).userName + ' : ' + getLastMessage(chat).text}</p>
           </ChatInfo>
           </ChatContent>
-          <ChatTime>15:00</ChatTime>
+          <ChatTime>{getDate((getLastMessage(chat).timestamp))}</ChatTime>
         </Link>
         </ChatListItem>)}
         </ChatList>
