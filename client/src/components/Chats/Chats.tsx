@@ -94,8 +94,10 @@ function Chats (){
       text: lastMessage.text,
       timestamp: lastMessage.timestamp
     }
-    console.log(lastMessageData.text)
     return lastMessageData
+  }
+  function getDate(timestamp: string){
+
   }
   return (
     <ChatsBox>
