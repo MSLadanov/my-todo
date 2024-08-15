@@ -30,7 +30,6 @@ const ChatInfo = styled.div`
   margin-left: 15px;
   & p{
     color: black;
-    text-decoration: none;
     margin: 0px;
   }
 `
@@ -46,7 +45,8 @@ function Chats (){
     id: string,
     timestamp : string
     userId: string,
-    userName: string
+    userName: string,
+    text: string,
   }
   interface IChat {
     id: string,
@@ -68,13 +68,17 @@ function Chats (){
   const { getChatList } = useChat(userId)
   const query = useQuery({ queryKey: ['chats'], queryFn: getChatList })
   function showLastMessage(chat : IChat ){
-    return JSON.stringify(chat.messanges.at(-1).userName) + ':' + JSON.stringify(chat.messanges.at(-1).text)
+    const lastMessage : IMessage = chat.messanges.at(-1)
+    const lastMessageData = {
+      name: lastMessage.userId === userId ? 'You' : lastMessage.userName,
+      text: lastMessage.text
+    }
+    return lastMessageData.name + ' : ' + lastMessageData.text
   }
-  console.log(query.data)
   return (
     <ChatsBox>
         <h1>Chats</h1>
-        <ChatList>{query.data?.map((chat : IChat) => <ChatListItem key={chat.id}><Link style={{display:'flex'}} to={`${path}/${chat.id}`} key={chat.id}>
+        <ChatList>{query.data?.map((chat : IChat) => <ChatListItem key={chat.id}><Link style={{display:'flex', textDecoration: 'none'}} to={`${path}/${chat.id}`} key={chat.id}>
           <ChatAvatar>
             <img src={chat.senderAvatar} alt="" />
           </ChatAvatar>
