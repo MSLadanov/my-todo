@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
 import  useAvatar  from '../../hooks/useAvatar'
@@ -46,7 +46,11 @@ function Header() {
     token: string,
     userId: string | undefined  
   }
-
+  function getActiveIcon({ isActive } : any){
+    return {
+      color: isActive ? "#5586c9" : "",
+    };
+  }
   const userId = useSelector((state : IState) => state.userId)
   const { getCurrentAvatarURL } = useAvatar(userId)
   const query = useQuery({ queryKey: ['avatarURL'], queryFn: getCurrentAvatarURL })
@@ -56,16 +60,16 @@ function Header() {
       <NavBar>
         <Menu>
             <MenuItem>
-              <Link to={`contacts/`}><FontAwesomeIcon icon={faAddressBook} size='2x' /></Link>
+              <NavLink to={`contacts/`} style={getActiveIcon}><FontAwesomeIcon icon={faAddressBook} size='2x' /></NavLink>
             </MenuItem>
             <MenuItem>
-              <Link to={`chats/`}><FontAwesomeIcon icon={faComments} size='2x' /></Link>
+              <NavLink to={`chats/`} style={getActiveIcon}><FontAwesomeIcon icon={faComments} size='2x' /></NavLink>
             </MenuItem>
             <MenuItem>
-              <Link to={`todolists/`}><FontAwesomeIcon icon={faClipboardCheck} size='2x' /></Link>
+              <NavLink to={`todolists/`} style={getActiveIcon}><FontAwesomeIcon icon={faClipboardCheck} size='2x' /></NavLink>
             </MenuItem>
             <MenuItem>
-              <Link to={`user/`}><MenuAvatar src={query.data}/></Link>
+              <NavLink to={`user/`}><MenuAvatar src={query.data}/></NavLink>
             </MenuItem>
         </Menu>
     </NavBar>

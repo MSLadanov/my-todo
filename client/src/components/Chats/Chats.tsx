@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
 import { Link, useLocation } from 'react-router-dom';
 import useChat from "../../hooks/useChat";
+import getDate from "../../helpers/getdate";
 
 const ChatList = styled.ul`
   padding:0px;
@@ -96,19 +97,7 @@ function Chats (){
     }
     return lastMessageData
   }
-  function getDate(timestamp: string){
-    const date = new Date(+timestamp);
-    const now = new Date();
-    const diffInSeconds = (now.getTime() - date.getTime()) / 1000;
-    const diffInDays = Math.floor(diffInSeconds / 86400);
-    if (diffInDays > 0) {
-      return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
-    } else {
-      const hours = date.getHours().toString().padStart(2, '0');
-      const minutes = date.getMinutes().toString().padStart(2, '0');
-      return `${hours}:${minutes}`;
-    }
-  }
+  
   return (
     <ChatsBox>
         <h1>Chats</h1>
