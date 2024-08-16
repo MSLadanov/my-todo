@@ -4,6 +4,17 @@ import { getDatabase, ref, child, get } from "firebase/database";
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
+const MiddleBar = styled.div`
+  top: 50px;
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  & h1{
+    margin: 0px;
+  }
+`
+
 const TodoListItem = styled.div`
       display: block;
     `
@@ -45,7 +56,9 @@ function TodoLists() {
     const query = useQuery({ queryKey: ['todolists'], queryFn: getTodoLists })
     return (
       <div>
-        <h1>TodoLists</h1>
+        <MiddleBar>
+          <h1>TodoLists</h1>
+        </MiddleBar>
         <Link to={'/addtodolist'}>AddTodo</Link>
         <TodoListUl>{query.data?.map((todoList : ITodoList) => <TodoListItem key={todoList.id}><Link to={`${path}/${todoList.id}`} key={todoList.id}>{todoList.name}</Link></TodoListItem>)}</TodoListUl>
       </div>

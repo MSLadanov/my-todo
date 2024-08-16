@@ -6,6 +6,18 @@ import { getDatabase, ref, child, get, set } from "firebase/database";
 import { useQuery, useMutation } from '@tanstack/react-query';
 import queryClient from '../..';
 import Todo from '../Todo/Todo';
+import styled from 'styled-components';
+
+const MiddleBar = styled.div`
+  top: 50px;
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  & h1{
+    margin: 0px;
+  }
+`
 
 function Todos() {
   interface IState {
@@ -96,7 +108,9 @@ function Todos() {
   }
   return (
     <div>
-      <h1>Todos</h1>
+      <MiddleBar>
+        <h1>Todos</h1>
+      </MiddleBar>
       <div>
         <input type="text" value={newTodo.title} onChange={handleNewTodoInput} />
         <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => {

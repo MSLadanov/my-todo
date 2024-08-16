@@ -91,7 +91,6 @@ function UserPage() {
   }
   return (
     <UserProfile>
-      <h1>UserPage</h1>
       <Avatar src={query.data} alt='' />
       <UserSettings>
         <PhotoSettings>
