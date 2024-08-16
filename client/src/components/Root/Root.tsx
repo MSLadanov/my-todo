@@ -6,8 +6,9 @@ import usePopup from "../../hooks/usePopup";
 import styled from "styled-components";
 
 const TopBar = styled.div`
+  z-index: 1;
   top: 0px;
-  height: 50px;
+  height: 70px;
   width: 100%;
   position: fixed;
   background-color: white;

@@ -42,6 +42,7 @@ const MessageContainer = styled.div`
         position: relative;
         top: -10px;
         height: 20px;
+        z-index: 0;
         & p{
             font-size: xx-small;
         }

@@ -5,7 +5,8 @@ import Header from './components/Header/Header';
 import styled from "styled-components";
 
 const OutletContainer = styled.div`
-  padding-top: 100px;
+  position: relative;
+  top: 140px;
   padding-bottom: 100px;
 `
 

@@ -6,8 +6,9 @@ import useChat from "../../hooks/useChat";
 import getDate from "../../helpers/getDate"
 
 const MiddleBar = styled.div`
-  top: 50px;
-  height: 50px;
+  z-index: 1;
+  top: 70px;
+  height: 70px;
   width: 100%;
   position: fixed;
   background-color: white;
