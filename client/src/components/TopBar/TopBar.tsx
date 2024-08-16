@@ -3,20 +3,34 @@ import { useSelector } from "react-redux";
 import styled from "styled-components"
 import { useLocation } from "react-router-dom"
 import { getDatabase, ref, child, get } from "firebase/database";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
+import { faComments } from '@fortawesome/free-solid-svg-icons';
+import { faAddressBook } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 
 const Bar = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     background-color: white;
     width: 100%;
     height: 120px;
     z-index: 1;
+    border-bottom: 1px solid grey;
     & h1{
         margin: 0px;
     }
 `
 
 const PrimaryBar = styled.div`
+    display: flex;
     padding: 10px 20px;
+    & h1{
+        margin-left: 20px;
+    }
 `
 
 const SecondaryBar = styled.div`
@@ -66,6 +80,20 @@ function TopBar(){
                 setBarContent('')
         }
     }
+    function getIcon(){
+        switch (locationArray[0]){
+            case 'contacts':
+                return <FontAwesomeIcon icon={faAddressBook} size='2x'></FontAwesomeIcon>
+            case 'chats':
+                return <FontAwesomeIcon icon={faComments} size='2x'></FontAwesomeIcon>
+            case 'todolists':
+                return <FontAwesomeIcon icon={faClipboardCheck} size='2x'></FontAwesomeIcon>
+            case 'user':
+                    return <FontAwesomeIcon icon={faUser} size='2x'></FontAwesomeIcon>
+            default:
+                return <FontAwesomeIcon icon={faQuestion} size='2x'></FontAwesomeIcon>
+        } 
+    }
     useEffect(() => {
         if (locationArray.length > 1){
             getSubDirectory(locationArray[0])
@@ -75,10 +103,12 @@ function TopBar(){
         <Bar>
             {locationArray.length === 1 ?
         <PrimaryBar>
+            {getIcon()} 
             <h1>{locationArray[0].charAt(0).toUpperCase() + locationArray[0].slice(1)}</h1>
         </ PrimaryBar> :
         <>
             <PrimaryBar>
+                {getIcon()} 
                 <h1>{locationArray[0].charAt(0).toUpperCase() + locationArray[0].slice(1)}</h1>
             </PrimaryBar>
             <SecondaryBar>
