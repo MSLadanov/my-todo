@@ -34,7 +34,6 @@ function TopBar(){
                     }
                 break;
             case 'chats':
-                console.log(locationArray[1])
                 try {
                     const data = (await get(child(dbRef, `chats/${locationArray[1]}`))).val()
                     const name = [userName, data.senderName, data.receiverName].filter((item) => item !== userName)[0]
@@ -44,8 +43,9 @@ function TopBar(){
                 }
                 break;
             case 'todolists':
-                const data = (await get(child(dbRef, `todos/${locationArray[1]}`))).val()
-                console.log(data,'sd')
+                const data = (await get(child(dbRef, `todos/${userId}/`))).val()
+                const todoListName = data.todoLists.find((item : any) => item.id === locationArray[1]).name
+                setBarContent(todoListName)
                 break;
             default:
                 setBarContent('')
