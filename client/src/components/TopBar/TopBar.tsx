@@ -2,12 +2,27 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux";
 import styled from "styled-components"
 import { useLocation } from "react-router-dom"
-import { getDatabase, ref, child, get, set, update, push} from "firebase/database";
+import { getDatabase, ref, child, get } from "firebase/database";
 
 const Bar = styled.div`
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    height: 120px;
+    z-index: 1;
     & h1{
         margin: 0px;
     }
+`
+
+const PrimaryBar = styled.div`
+    padding: 10px 20px;
+`
+
+const SecondaryBar = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 function TopBar(){
@@ -57,13 +72,19 @@ function TopBar(){
         }
     },[location.pathname])
     return (
-        locationArray.length === 1 ?
         <Bar>
+            {locationArray.length === 1 ?
+        <PrimaryBar>
             <h1>{locationArray[0].charAt(0).toUpperCase() + locationArray[0].slice(1)}</h1>
-        </Bar> :
-        <Bar>
-            <h1>{locationArray[0].charAt(0).toUpperCase() + locationArray[0].slice(1)}</h1>
-            <h1>{barContent}</h1>
+        </ PrimaryBar> :
+        <>
+            <PrimaryBar>
+                <h1>{locationArray[0].charAt(0).toUpperCase() + locationArray[0].slice(1)}</h1>
+            </PrimaryBar>
+            <SecondaryBar>
+                <h1>{barContent}</h1>
+            </SecondaryBar>
+        </>}
         </Bar>
     )
 }

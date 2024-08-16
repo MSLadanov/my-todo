@@ -86,7 +86,6 @@ function AddTodoList(){
     }
     return(
     <div>
-        <h1>Add todo</h1>
         <button onClick={addTodoList}>Add TodoList</button>
         <button onClick={addTodoField}>Add todo</button>
         <div>
