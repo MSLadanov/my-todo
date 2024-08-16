@@ -23,7 +23,6 @@ function Contact (){
     const query = useQuery({ queryKey: ['contact'], queryFn: getContact })
     return (
     <div>
-        <h1>Contact</h1>
         <div>
             <img src={query.data?.avatarURL} alt="" />
         </div>
