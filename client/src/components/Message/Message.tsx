@@ -32,6 +32,20 @@ const MessageContainer = styled.div`
         border-radius: 50%;
     `
 
+    const MessageBody = styled.div`
+        display: flex;
+        & img{
+            margin: 0px 20px;
+        }
+    `
+    const MessageDate = styled.span`
+        position: relative;
+        top: -10px;
+        height: 20px;
+        & p{
+            font-size: xx-small;
+        }
+    `
 function Message({id, text, timestamp, userId, userName, userAvatar, currentUserId, senderName, receiverName, senderAvatar, receiverAvatar} : MessageProps){
     const date = getDate(timestamp)
     return (
@@ -40,9 +54,13 @@ function Message({id, text, timestamp, userId, userName, userAvatar, currentUser
                 flexDirection : userId !== currentUserId ? 'row' : 'row-reverse',
                 backgroundColor : userName === receiverName ? '#D7E8FF' : '#D9F2E6'
             }}>
-                <UserImg src={userName === senderName ? senderAvatar : receiverAvatar} alt="" />
-                <p>{text}</p>
-                <p>{date}</p>
+                <MessageBody style={{flexDirection : userId !== currentUserId ? 'row' : 'row-reverse'}}>
+                    <UserImg src={userName === senderName ? senderAvatar : receiverAvatar} alt="" />
+                    <p>{text}</p>
+                </MessageBody>
+                <MessageDate>
+                    <p>{date}</p>
+                </MessageDate>
             </MessageBox>
         </MessageContainer>
     )
