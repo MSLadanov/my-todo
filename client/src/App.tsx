@@ -3,11 +3,10 @@ import { useSelector } from 'react-redux';
 import './App.css';
 import Header from './components/Header/Header';
 import styled from "styled-components";
+import TopBar from "./components/TopBar/TopBar";
 
 const OutletContainer = styled.div`
-  position: relative;
-  top: 140px;
-  padding-bottom: 100px;
+
 `
 
 function App() {
@@ -19,7 +18,14 @@ function App() {
   const userName = useSelector((state : IState) => state.displayName)
   return (
     <>
-      {userName && <> <OutletContainer><Outlet /></OutletContainer><Header /></>}
+      {userName && 
+      <> 
+        <TopBar></TopBar>
+        <OutletContainer>
+          <Outlet />
+        </OutletContainer>
+        <Header />
+      </>}
     </>
   );
 }

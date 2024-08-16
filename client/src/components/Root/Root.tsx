@@ -4,18 +4,10 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import usePopup from "../../hooks/usePopup";
 import styled from "styled-components";
+import TopBar from "../TopBar/TopBar";
 
-const TopBar = styled.div`
-  z-index: 1;
-  top: 0px;
-  height: 70px;
-  width: 100%;
-  position: fixed;
-  background-color: white;
-  & h1{
-    margin: 0px;
-  }
-`
+// const TopBar = styled.div`
+// `
 
 function Root() {
     interface IState {
@@ -38,7 +30,6 @@ function Root() {
           <button onClick={() => togglePopup('Пользователь с таким e-mail уже зарегистрирован!', 'warning')}>Предупреждение!</button>
           <button onClick={() => togglePopup('Вы успешно авторизовались!', 'success')}>Все хорошо!</button>
         </div> */}
-        {userName ? <TopBar><h1>Welcome, {userName}</h1></TopBar> : <TopBar><h1>Welcome, guest!</h1></TopBar> }
         <Popup />
         <App />
       </>
