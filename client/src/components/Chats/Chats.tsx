@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
 import { Link, useLocation } from 'react-router-dom';
 import useChat from "../../hooks/useChat";
-import getDate from "../../helpers/getdate";
+import getDate from "../../helpers/getDate"
 
 const ChatList = styled.ul`
   padding:0px;

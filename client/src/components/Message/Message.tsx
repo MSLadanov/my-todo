@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import getDate from "../../helpers/getDate";
 
 interface MessageProps{
     id: string, 
@@ -32,7 +33,7 @@ const MessageContainer = styled.div`
     `
 
 function Message({id, text, timestamp, userId, userName, userAvatar, currentUserId, senderName, receiverName, senderAvatar, receiverAvatar} : MessageProps){
-    const date = new Date(Number(timestamp)).toDateString();
+    const date = getDate(timestamp)
     return (
         <MessageContainer style={{flexDirection : userId !== currentUserId ? 'row' : 'row-reverse'}}>
             <MessageBox style={{ 
