@@ -12,17 +12,6 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons';
 const ContactList = styled.ul`
   padding:0px;
   `
-const MiddleBar = styled.div`
-  z-index: 1;
-  top: 70px;
-  height: 70px;
-  width: 100%;
-  position: fixed;
-  background-color: white;
-  & h1{
-    margin: 0px;
-  }
-`
 
 const ContactListItem = styled.li`
   display: flex;
@@ -96,9 +85,6 @@ function Contacts() {
   const query = useQuery({ queryKey: ['contacts'], queryFn: getContacts })
   return (
     <div>
-      <MiddleBar>
-        <h1>Contacts</h1>
-      </MiddleBar>
       <ContactList>{query.data?.map((contact : any) => 
         <ContactListItem key={contact.id}>
           <Link to={`${path}/${contact.id}`} key={contact.id}>

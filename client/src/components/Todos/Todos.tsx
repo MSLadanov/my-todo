@@ -8,18 +8,6 @@ import queryClient from '../..';
 import Todo from '../Todo/Todo';
 import styled from 'styled-components';
 
-const MiddleBar = styled.div`
-  z-index: 1;
-  top: 70px;
-  height: 70px;
-  width: 100%;
-  position: fixed;
-  background-color: white;
-  & h1{
-    margin: 0px;
-  }
-`
-
 function Todos() {
   interface IState {
     displayName: string,
@@ -109,9 +97,6 @@ function Todos() {
   }
   return (
     <div>
-      <MiddleBar>
-        <h1>Todos</h1>
-      </MiddleBar>
       <div>
         <input type="text" value={newTodo.title} onChange={handleNewTodoInput} />
         <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => {

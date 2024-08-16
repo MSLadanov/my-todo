@@ -10,18 +10,6 @@ import {v4 as uuidv4} from 'uuid'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
-const MiddleBar = styled.div`
-z-index: 1;
-top: 70px;
-height: 70px;
-width: 100%;
-position: fixed;
-background-color: white;
-& h1{
-  margin: 0px;
-}
-`
-
     const MessageInput = styled.div`
         display: flex;
         position: fixed;
@@ -120,9 +108,6 @@ function Chat(){
     return (
         <>
             <MessagesBox>
-                <MiddleBar>
-                    <h2>{userId === query.data?.receiverId ? query.data?.senderName : query.data?.receiverName}</h2>
-                </MiddleBar>
             {query.data?.messanges.map((message : IMessage) => <Message key={message.id}
                 id={message.id}
                 text={message.text}

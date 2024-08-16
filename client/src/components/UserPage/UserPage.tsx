@@ -9,18 +9,6 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import queryClient from '../..';
 import useAvatar from '../../hooks/useAvatar';
 
-const MiddleBar = styled.div`
-  z-index: 1;
-  top: 70px;
-  height: 70px;
-  width: 100%;
-  position: fixed;
-  background-color: white;
-  & h1{
-    margin: 0px;
-  }
-`
-
 const Avatar = styled.img`
     width: 50%;        
     height: auto;
@@ -103,9 +91,6 @@ function UserPage() {
   }
   return (
     <UserProfile>
-      <MiddleBar>
-        <h1>UserPage</h1>
-      </MiddleBar>
       <Avatar src={query.data} alt='' />
       <UserSettings>
         <PhotoSettings>

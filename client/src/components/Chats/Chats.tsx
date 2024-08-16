@@ -5,18 +5,6 @@ import { Link, useLocation } from 'react-router-dom';
 import useChat from "../../hooks/useChat";
 import getDate from "../../helpers/getDate"
 
-const MiddleBar = styled.div`
-  z-index: 1;
-  top: 70px;
-  height: 70px;
-  width: 100%;
-  position: fixed;
-  background-color: white;
-  & h1{
-    margin: 0px;
-  }
-`
-
 const ChatList = styled.ul`
   padding:0px;
 `
@@ -112,9 +100,6 @@ function Chats (){
   
   return (
     <ChatsBox>
-        <MiddleBar>
-          <h1>Chats</h1>
-        </MiddleBar>
         <ChatList>{query.data?.map((chat : IChat) => <ChatListItem key={chat.id}><Link style={LinkStyle} to={`${path}/${chat.id}`} key={chat.id}>
           <ChatContent>
             <ChatAvatar>
