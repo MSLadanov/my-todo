@@ -8,7 +8,6 @@ import { faList } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
 const TodoList = styled.div`
-  margin: 10px 15px;
   & li{
   color: black;
 }
