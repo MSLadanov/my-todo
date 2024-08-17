@@ -9,6 +9,7 @@ import { faComments } from '@fortawesome/free-solid-svg-icons';
 import { faAddressBook } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
+import { faSquarePen } from "@fortawesome/free-solid-svg-icons";
 
 const Bar = styled.div`
     display: flex;
@@ -90,6 +91,8 @@ function TopBar(){
                 return <FontAwesomeIcon icon={faClipboardCheck} size='2x'></FontAwesomeIcon>
             case 'user':
                     return <FontAwesomeIcon icon={faUser} size='2x'></FontAwesomeIcon>
+            case 'addtodolist':
+                return <FontAwesomeIcon icon={faSquarePen} size='2x'></FontAwesomeIcon>
             default:
                 return <FontAwesomeIcon icon={faQuestion} size='2x'></FontAwesomeIcon>
         } 
