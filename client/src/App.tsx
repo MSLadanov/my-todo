@@ -6,7 +6,7 @@ import styled from "styled-components";
 import TopBar from "./components/TopBar/TopBar";
 
 const OutletContainer = styled.div`
-  padding-top: 120px;
+  padding-top: 140px;
 `
 
 function App() {

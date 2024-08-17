@@ -11,6 +11,7 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons';
 
 const ContactList = styled.ul`
   padding:0px;
+  margin: 0px;
   `
 
 const ContactListItem = styled.li`
