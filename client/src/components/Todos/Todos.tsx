@@ -8,6 +8,10 @@ import queryClient from '../..';
 import Todo from '../Todo/Todo';
 import styled from 'styled-components';
 
+const TodosUl = styled.ul`
+  padding: 0px;
+`
+
 function Todos() {
   interface IState {
     displayName: string,
@@ -108,7 +112,7 @@ function Todos() {
           })
         }}>Add Todo</button>
       </div>
-      <ul>{query.data?.map((todo : ITodo) => <Todo key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} complete={complete} remove={remove}></Todo>)}</ul>
+      <TodosUl>{query.data?.map((todo : ITodo) => <Todo key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} complete={complete} remove={remove}></Todo>)}</TodosUl>
     </div>
   );
 }

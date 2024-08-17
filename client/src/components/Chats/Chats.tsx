@@ -6,6 +6,7 @@ import useChat from "../../hooks/useChat";
 import getDate from "../../helpers/getDate"
 
 const ChatList = styled.ul`
+  margin: 0px;
   padding:0px;
 `
 const ChatListItem = styled.li`
