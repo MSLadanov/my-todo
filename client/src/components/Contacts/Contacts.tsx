@@ -18,7 +18,7 @@ const ContactListItem = styled.li`
   justify-content: space-between;
   align-items: center;
   list-style-type: none;
-  margin: 10px 0px;
+  margin: 10px 15px;
   & img{
     border-radius: 50%;
     height: 50px;

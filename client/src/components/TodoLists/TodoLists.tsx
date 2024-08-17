@@ -2,7 +2,16 @@ import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 import { getDatabase, ref, child, get } from "firebase/database";
 import { Link, useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquarePen } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
+
+const TodoList = styled.div`
+  margin: 10px 15px;
+  & li{
+  color: black;
+}
+`
 
 const TodoListItem = styled.div`
       display: block;
@@ -10,6 +19,14 @@ const TodoListItem = styled.div`
     const TodoListUl = styled.ul`
       padding: 0;
     `
+    const LinkStyle = {
+      display:'flex', 
+      color: 'black',
+      textDecoration: 'none', 
+      width: '100vw', 
+      justifyContent:'space-between', 
+      margin:'15px 0px'
+    }
 
 function TodoLists() {
     interface IState {
@@ -44,10 +61,10 @@ function TodoLists() {
     }
     const query = useQuery({ queryKey: ['todolists'], queryFn: getTodoLists })
     return (
-      <div>
-        <Link to={'/addtodolist'}>AddTodo</Link>
-        <TodoListUl>{query.data?.map((todoList : ITodoList) => <TodoListItem key={todoList.id}><Link to={`${path}/${todoList.id}`} key={todoList.id}>{todoList.name}</Link></TodoListItem>)}</TodoListUl>
-      </div>
+      <TodoList>
+        <Link style={LinkStyle} to={'/addtodolist'}><FontAwesomeIcon icon={faSquarePen} size='2x'></FontAwesomeIcon></Link>
+        <TodoListUl>{query.data?.map((todoList : ITodoList) => <TodoListItem key={todoList.id}><Link style={LinkStyle} to={`${path}/${todoList.id}`} key={todoList.id}>{todoList.name}</Link></TodoListItem>)}</TodoListUl>
+      </TodoList>
     );
   }
   
