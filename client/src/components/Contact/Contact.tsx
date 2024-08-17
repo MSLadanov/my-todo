@@ -2,6 +2,26 @@ import { useQuery } from '@tanstack/react-query';
 import { getDatabase, ref, child, get } from "firebase/database";
 import useChatAvatar from '../../hooks/useChatAvatar';
 import { useLocation } from 'react-router-dom';
+import styled from 'styled-components';
+
+const ContactPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+const ContactAvatarBox = styled.div`
+  display: flex;
+  justify-content: center;
+  & img{
+    width: 100%;        
+    height: auto;
+    border-radius: 50%;
+  }
+`
+
+const ContactInfoBox = styled.div`
+  margin: 15px 0px;
+`
 
 function Contact (){
     const location = useLocation()
@@ -22,14 +42,20 @@ function Contact (){
       }
     const query = useQuery({ queryKey: ['contact'], queryFn: getContact })
     return (
-    <div>
-        <div>
+    <ContactPage>
+        <ContactAvatarBox>
             <img src={query.data?.avatarURL} alt="" />
-        </div>
-        <div>{query.data && query.data?.name + " " + query.data?.surname}</div>
-        <div>{query.data?.dateOfBirth}</div>
-        <div>{query.data?.about}</div>
-    </div>
+        </ContactAvatarBox>
+        <ContactInfoBox>
+          {query.data && query.data?.name + " " + query.data?.surname}
+        </ContactInfoBox>
+        <ContactInfoBox>
+          {query.data?.dateOfBirth}
+        </ContactInfoBox>
+        <ContactInfoBox>
+          {query.data?.about}
+        </ContactInfoBox>
+    </ContactPage>
     )
 }
 
