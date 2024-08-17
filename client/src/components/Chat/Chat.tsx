@@ -37,7 +37,7 @@ import { faPencil } from "@fortawesome/free-solid-svg-icons";
     `
 
 const MessagesBox = styled.div`
-    padding-bottom: 86px;
+    padding-bottom: 186px;
     overflow: scroll;
 `
 
