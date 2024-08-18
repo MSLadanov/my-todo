@@ -106,7 +106,7 @@ function UserPage() {
           </PhotoSettingsButtons>
         </PhotoSettings>
         <UserInfoSettings>
-          <div>{userData.data && userData.data?.name + " " + userData.data?.surname}</div>
+          <div>{userData.data?.name + " " + userData.data?.surname}</div>
           <div>{userData.data?.dateOfBirth}</div>
           <div>{userData.data?.about}</div>
         </UserInfoSettings>
