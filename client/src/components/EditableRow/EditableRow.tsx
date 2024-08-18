@@ -1,4 +1,8 @@
-function EditableRow(){
+type Row = {
+    row : string
+}
+
+function EditableRow({ row } : Row ){
 
 
 }

@@ -8,6 +8,7 @@ import {v4 as uuidv4} from 'uuid'
 import { useQuery, useMutation } from '@tanstack/react-query';
 import queryClient from '../..';
 import useAvatar from '../../hooks/useAvatar';
+import EditableRow from '../EditableRow/EditableRow';
 
 const Avatar = styled.img`
     width: 50%;        
