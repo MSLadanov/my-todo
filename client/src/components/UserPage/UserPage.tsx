@@ -75,7 +75,7 @@ function UserPage() {
     const preparedFile = new File([e.target.files[0]], `${uuidv4()}`, {type: e.target.files[0].type});
     setNewAvatar(preparedFile)
   }
-  const userData = useQuery({ queryKey: ['userData'], queryFn: getUserData })
+  const userData = useQuery({ queryKey: ['userData'], queryFn: getUserData , initialData: {}})
   async function updateAvatar(){
     if (newAvatar !== null){
       console.log('updating avatar...')
@@ -90,6 +90,7 @@ function UserPage() {
       .catch((err) => console.log(err))
     }
   }
+  console.log(Object.entries(userData?.data))
   return (
     <UserProfile>
       <Avatar src={query.data} alt='' />
@@ -107,6 +108,7 @@ function UserPage() {
           </PhotoSettingsButtons>
         </PhotoSettings>
         <UserInfoSettings>
+          {/* {Object.entries(userData?.data).map((item) => <EditableRow row={}></EditableRow>) } */}
           <div>{userData.data?.name + " " + userData.data?.surname}</div>
           <div>{userData.data?.dateOfBirth}</div>
           <div>{userData.data?.about}</div>
