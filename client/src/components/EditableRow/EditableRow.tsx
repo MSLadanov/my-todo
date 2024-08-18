@@ -6,7 +6,7 @@ type Row = {
 function EditableRow({field, value} : Row ){
     return (
         <div>
-            <p></p>
+            <p>{value}</p>
         </div>
     )
 }

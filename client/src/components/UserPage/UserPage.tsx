@@ -111,7 +111,7 @@ function UserPage() {
               <EditableRow field='name' value={userData.data?.name}></EditableRow>
               <EditableRow field='surname' value={userData.data?.surname}></EditableRow>
               <EditableRow field='dateOfBirth' value={userData.data?.dateOfBirth}></EditableRow>
-              <EditableRow field='about' value={userData.data?.dateOfBirth}></EditableRow>
+              <EditableRow field='about' value={userData.data?.about}></EditableRow>
             </ UserInfoSettings>
           }
       </UserSettings>
