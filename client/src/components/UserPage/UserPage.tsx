@@ -108,7 +108,7 @@ function UserPage() {
           </PhotoSettingsButtons>
         </PhotoSettings>
         <UserInfoSettings>
-          {/* {Object.entries(userData?.data).map((item) => <EditableRow row={}></EditableRow>) } */}
+          {Object.entries(userData?.data).map((item) => <EditableRow key={item[0]} value={item[1]}></EditableRow>) }
           <div>{userData.data?.name + " " + userData.data?.surname}</div>
           <div>{userData.data?.dateOfBirth}</div>
           <div>{userData.data?.about}</div>
