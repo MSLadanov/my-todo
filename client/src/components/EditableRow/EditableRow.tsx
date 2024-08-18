@@ -1,13 +1,12 @@
 type Row = {
-    key: string,
+    field: string,
     value: string,
 }
 
-function EditableRow({item} : any ){
-    console.log(item)
+function EditableRow({field, value} : Row ){
     return (
         <div>
-            <p>{item[1]}</p>
+            <p></p>
         </div>
     )
 }

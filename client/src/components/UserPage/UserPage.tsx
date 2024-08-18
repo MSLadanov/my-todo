@@ -106,11 +106,14 @@ function UserPage() {
             }}>Delete photo</button>
           </PhotoSettingsButtons>
         </PhotoSettings>
-        <UserInfoSettings>
-          <div>{userData.data?.name + " " + userData.data?.surname}</div>
-          <div>{userData.data?.dateOfBirth}</div>
-          <div>{userData.data?.about}</div>
-        </UserInfoSettings>
+          {userData?.data &&
+            <UserInfoSettings>
+              <EditableRow field='name' value={userData.data?.name}></EditableRow>
+              <EditableRow field='surname' value={userData.data?.surname}></EditableRow>
+              <EditableRow field='dateOfBirth' value={userData.data?.dateOfBirth}></EditableRow>
+              <EditableRow field='about' value={userData.data?.dateOfBirth}></EditableRow>
+            </ UserInfoSettings>
+          }
       </UserSettings>
       <LogOutBtn>
         <button onClick={() => dispatch(logout())}>Log Out</button>
