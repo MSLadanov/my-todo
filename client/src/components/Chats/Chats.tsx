@@ -16,7 +16,6 @@ const ChatListItem = styled.li`
   }
   display: flex;
   list-style-type: none;
-  width:100vw;
 `
 
 const ChatsBox = styled.div`

@@ -24,7 +24,6 @@ const TodoListItem = styled.div`
       display:'flex', 
       color: 'black',
       textDecoration: 'none', 
-      width: '100vw', 
       justifyContent:'space-between', 
       margin:'15px 15px'
     }
@@ -33,7 +32,6 @@ const TodoListItem = styled.div`
     display:'flex', 
       color: 'black',
       textDecoration: 'none', 
-      width: '100vw', 
       justifyContent:'space-between', 
       margin:'15px 0px'
   }
