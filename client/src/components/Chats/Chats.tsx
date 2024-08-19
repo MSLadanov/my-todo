@@ -48,7 +48,6 @@ const LinkStyle = {
   textDecoration: 'none', 
   width: '100vw', 
   justifyContent:'space-between', 
-  margin:'15px 0px'
 }
 
 function Chats (){
