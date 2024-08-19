@@ -5,7 +5,6 @@ const LoaderWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 `
 const spin = keyframes`
     to {
@@ -26,7 +25,6 @@ function Loader() {
     return (
         <LoaderWrapper>
           <Spinner className="spinner"></Spinner>
-          <p>Loading...</p>
         </LoaderWrapper>
       );
 }
