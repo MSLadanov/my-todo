@@ -102,24 +102,28 @@ function TopBar(){
             getSubDirectory(locationArray[0])
         }
     },[location.pathname])
-    return (
-        <Bar>
-            {locationArray.length === 1 ?
-        <PrimaryBar>
-            {getIcon()} 
-            <h1>{locationArray[0].charAt(0).toUpperCase() + locationArray[0].slice(1)}</h1>
-        </ PrimaryBar> :
-        <>
+    if(locationArray.length !== 0){
+        return (
+            <Bar>
+                {locationArray.length === 1 ?
             <PrimaryBar>
                 {getIcon()} 
                 <h1>{locationArray[0].charAt(0).toUpperCase() + locationArray[0].slice(1)}</h1>
-            </PrimaryBar>
-            <SecondaryBar>
-                <h1>{barContent}</h1>
-            </SecondaryBar>
-        </>}
-        </Bar>
-    )
+            </ PrimaryBar> :
+            <>
+                <PrimaryBar>
+                    {getIcon()} 
+                    <h1>{locationArray[0].charAt(0).toUpperCase() + locationArray[0].slice(1)}</h1>
+                </PrimaryBar>
+                <SecondaryBar>
+                    <h1>{barContent}</h1>
+                </SecondaryBar>
+            </>}
+            </Bar>
+        )
+    } else {
+        return <div></div>
+    }
 }
 
 export default TopBar
