@@ -18,7 +18,7 @@ const Bar = styled.div`
     position: fixed;
     background-color: white;
     width: 100%;
-    height: 120px;
+    height: 86px;
     z-index: 1;
     border-bottom: 1px solid grey;
     & h1{

@@ -9,7 +9,7 @@ const OutletContainer = styled.div`
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 100px;
-  padding-top: 140px;
+  padding-top: 100px;
 `
 
 function App() {
