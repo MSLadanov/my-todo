@@ -39,11 +39,9 @@ const ChatInfo = styled.div`
   }
 `
 const ChatTime = styled.div`
-  margin-right: 15px;
 `
 const ChatContent = styled.div`
   display: flex;
-  margin-left: 15px;
 `
 
 const LinkStyle = {

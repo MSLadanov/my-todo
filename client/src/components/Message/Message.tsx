@@ -22,7 +22,7 @@ const MessageContainer = styled.div`
         display: flex;
         width: 70%;
         justify-content: space-between;
-        margin: 10px;
+        margin: 10px 0px;
         padding: 10px;
         border-radius: 5px;
     ` 
