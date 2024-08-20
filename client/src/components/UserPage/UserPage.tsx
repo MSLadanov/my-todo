@@ -8,7 +8,7 @@ import {v4 as uuidv4} from 'uuid'
 import { useQuery, useMutation } from '@tanstack/react-query';
 import queryClient from '../..';
 import useAvatar from '../../hooks/useAvatar';
-import ReadableRow from '../ReadableRow/ReadableRow';
+import EditableRow from '../EditableRow/EditableRow';
 
 const Avatar = styled.img`
     width: 50%;        
@@ -112,10 +112,10 @@ function UserPage() {
         </PhotoSettings>
           {userData?.data &&
             <UserInfoSettings>
-              <ReadableRow field='name' value={userData.data?.name}></ReadableRow>
-              <ReadableRow field='surname' value={userData.data?.surname}></ReadableRow>
-              <ReadableRow field='dateOfBirth' value={userData.data?.dateOfBirth}></ReadableRow>
-              <ReadableRow field='about' value={userData.data?.about}></ReadableRow>
+              <EditableRow field='name' value={userData.data?.name}></EditableRow>
+              <EditableRow field='surname' value={userData.data?.surname}></EditableRow>
+              <EditableRow field='dateOfBirth' value={userData.data?.dateOfBirth}></EditableRow>
+              <EditableRow field='about' value={userData.data?.about}></EditableRow>
               <button>Save</button>
             </ UserInfoSettings>
           }
