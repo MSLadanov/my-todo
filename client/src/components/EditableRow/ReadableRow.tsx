@@ -3,7 +3,7 @@ type Row = {
     value: string,
 }
 
-function EditableRow({field, value} : Row ){
+function ReadableRow({field, value} : Row ){
     return (
         <div>
             <p>{value}</p>
@@ -11,4 +11,4 @@ function EditableRow({field, value} : Row ){
     )
 }
 
-export default EditableRow
+export default ReadableRow
