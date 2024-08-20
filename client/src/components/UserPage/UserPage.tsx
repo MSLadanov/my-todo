@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/actions/authActions';
 import { ref, uploadBytes } from 'firebase/storage';
@@ -38,6 +38,9 @@ const PhotoSettingsButtons = styled.div`
 `
 
 const UserInfoSettings = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 `
 
 const LogOutBtn = styled.div`
@@ -55,6 +58,7 @@ function UserPage() {
   const query = useQuery({ queryKey: ['avatarURL'], queryFn: getCurrentAvatarURL })
   const [newAvatar, setNewAvatar] = useState<File | null>(null);
   const dispatch = useDispatch()
+  const [toggleEditForm, setToggleEditForm] = useState(false)
   const remove = useMutation({
     mutationFn: removeAvatar,
     onSuccess: () => {
@@ -112,6 +116,7 @@ function UserPage() {
               <ReadableRow field='surname' value={userData.data?.surname}></ReadableRow>
               <ReadableRow field='dateOfBirth' value={userData.data?.dateOfBirth}></ReadableRow>
               <ReadableRow field='about' value={userData.data?.about}></ReadableRow>
+              <button>Save</button>
             </ UserInfoSettings>
           }
       </UserSettings>
