@@ -7,7 +7,7 @@ type Row = {
 function EditableRow({field, value} : Row ){
     const [ toggleInput, setToggleInput ] = useState(true)
     return (
-        <input disabled type="text" defaultValue={value} />
+        <input disabled={toggleInput} type="text" defaultValue={value} onClick={() => console.log('click')} />
     )
 }
 
