@@ -2,12 +2,14 @@ import { useState } from "react"
 type Row = {
     field: string,
     value: string,
+    disabled: boolean,
+    onClick: () => void
 }
 
-function EditableRow({field, value} : Row ){
-    const [ toggleInput, setToggleInput ] = useState(true)
+function EditableRow({onClick, disabled,  field, value} : Row ){
+
     return (
-        <input disabled={toggleInput} type="text" defaultValue={value} onClick={() => console.log('click')} />
+        <input onClick={onClick} disabled type="text" defaultValue={value} />
     )
 }
 
