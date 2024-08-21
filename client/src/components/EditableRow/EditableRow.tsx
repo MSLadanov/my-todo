@@ -8,11 +8,19 @@ type Row = {
 }
 
 const RowWrapper = styled.div`
-    display: table;
+    
 `
 const InputCover = styled.div`
-    display: table-cell;
-    height: 100%;
+    position: relative;
+    top: 50px;
+    height: 50px;
+    z-index: 1;
+`
+
+const Input = styled.input`
+    position: relative;
+    height: 50px;
+    z-index: 0;
 `
 
 function EditableRow({onClick, disabled,  field, value} : Row ){
@@ -23,7 +31,7 @@ function EditableRow({onClick, disabled,  field, value} : Row ){
             console.log(e.target)
         }}>
             <InputCover></InputCover>
-            <input  disabled={toggleRow} type="text" defaultValue={value} />
+            <Input disabled={toggleRow} type="text" defaultValue={value} />
         </RowWrapper>
     )
 }
