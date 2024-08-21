@@ -30,7 +30,7 @@ function EditableRow ({field, value} : Row) {
   }
   useEffect(() => {
     setEditableValue(value)
-  }, [editableValue])
+  }, [value])
   return (
     <StyledInput
       defaultValue={editableValue}
