@@ -8,30 +8,32 @@ type Row = {
     onClick: () => void
 }
 
-const RowWrapper = styled.div`
-`
-const InputCover = styled.div`
+const StyledInput = styled.input`
+  padding: 10px;
+  font-size: 16px;
+  cursor: ${(props) => (props.readOnly ? 'pointer' : 'text')};
+  border: 1px solid #ccc;
+  outline: none;
+  &:hover {
+    border-color: ${(props) => (props.readOnly ? '#888' : '#555')};
+  }
+`;
 
-`
+function EditableRow ({onClick, disabled, field, value} : Row) {
+  const [isReadOnly, setIsReadOnly] = useState(true);
 
-const Input = styled.input`
-    & .disabled{
-    background-color: #DDD;
-    color: #999;
-}
-`
+  function handleClick () {
+    setIsReadOnly(false);
+  };
 
-function EditableRow({onClick, disabled,  field, value} : Row ){
-    const [ toggleRow, setToggleRow ] = useState(true)
-    return (
-        <RowWrapper onClick={(e) => {
-            setToggleRow(toggleRow => !toggleRow)
-            console.log(e.target)
-        }}>
-            <InputCover></InputCover>
-            <Input className="disabled" type="text" defaultValue={value} value={value} />
-        </RowWrapper>
-    )
-}
+  return (
+    <StyledInput
+      defaultValue={value}
+      type="text"
+      readOnly={isReadOnly}
+      onClick={handleClick}
+    />
+  );
+};
 
-export default EditableRow
+export default EditableRow;
