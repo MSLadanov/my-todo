@@ -21,17 +21,20 @@ const StyledInput = styled.input`
 
 function EditableRow ({onClick, disabled, field, value} : Row) {
   const [isReadOnly, setIsReadOnly] = useState(true);
-
+  const initialValue = value
   function handleClick () {
     setIsReadOnly(false);
   };
-
+  function handleBlur(){
+    console.log('Loose focus')
+  }
   return (
     <StyledInput
       defaultValue={value}
       type="text"
       readOnly={isReadOnly}
       onClick={handleClick}
+      onBlur={handleBlur}
     />
   );
 };
