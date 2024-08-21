@@ -1,11 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 
 type Row = {
     field: string,
     value: string,
-    disabled: boolean,
-    onClick: () => void
 }
 
 const StyledInput = styled.input`
@@ -19,18 +17,24 @@ const StyledInput = styled.input`
   }
 `;
 
-function EditableRow ({onClick, disabled, field, value} : Row) {
+function EditableRow ({field, value} : Row) {
   const [isReadOnly, setIsReadOnly] = useState(true);
   const initialValue = value
+  const [ editableValue, setEditableValue ] = useState(value)
   function handleClick () {
     setIsReadOnly(false);
   };
   function handleBlur(){
-    console.log('Loose focus')
+    console.log(editableValue)
+    console.log(initialValue)
   }
+  useEffect(() => {
+    setEditableValue(value)
+  }, [editableValue])
   return (
     <StyledInput
-      defaultValue={value}
+      defaultValue={editableValue}
+      onChange={(e) => setEditableValue(e.target.value)}
       type="text"
       readOnly={isReadOnly}
       onClick={handleClick}

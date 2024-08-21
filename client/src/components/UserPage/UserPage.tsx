@@ -109,10 +109,10 @@ function UserPage() {
         </PhotoSettings>
           {userData?.data &&
             <UserInfoSettings>
-              <EditableRow onClick={() => console.log('fff')} disabled field='name' value={userData.data?.name}></EditableRow>
-              <EditableRow onClick={() => console.log('fff')} disabled field='surname' value={userData.data?.surname}></EditableRow>
-              <EditableRow onClick={() => console.log('fff')} disabled field='dateOfBirth' value={userData.data?.dateOfBirth}></EditableRow>
-              <EditableRow onClick={() => console.log('fff')} disabled field='about' value={userData.data?.about}></EditableRow>
+              <EditableRow field='name' value={userData.data?.name}></EditableRow>
+              <EditableRow field='surname' value={userData.data?.surname}></EditableRow>
+              <EditableRow field='dateOfBirth' value={userData.data?.dateOfBirth}></EditableRow>
+              <EditableRow field='about' value={userData.data?.about}></EditableRow>
               <button>Save</button>
             </ UserInfoSettings>
           }
