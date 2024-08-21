@@ -1,5 +1,6 @@
 import { useState } from "react"
 import styled from "styled-components"
+
 type Row = {
     field: string,
     value: string,
@@ -8,19 +9,16 @@ type Row = {
 }
 
 const RowWrapper = styled.div`
-    height: 50px;
 `
 const InputCover = styled.div`
-    position: relative;
-    top: 50px;
-    height: 50px;
-    z-index: 1;
+
 `
 
 const Input = styled.input`
-    position: relative;
-    height: 50px;
-    z-index: 0;
+    & .disabled{
+    background-color: #DDD;
+    color: #999;
+}
 `
 
 function EditableRow({onClick, disabled,  field, value} : Row ){
@@ -31,7 +29,7 @@ function EditableRow({onClick, disabled,  field, value} : Row ){
             console.log(e.target)
         }}>
             <InputCover></InputCover>
-            <Input disabled={toggleRow} type="text" defaultValue={value} />
+            <Input className="disabled" type="text" defaultValue={value} value={value} />
         </RowWrapper>
     )
 }
