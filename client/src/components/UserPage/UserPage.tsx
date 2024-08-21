@@ -23,9 +23,6 @@ const UserProfile = styled.div`
 `
 
 const UserSettings = styled.div`
-  & div{
-    margin: 15px 0px;
-  }
 `
 
 const PhotoSettings = styled.div`
