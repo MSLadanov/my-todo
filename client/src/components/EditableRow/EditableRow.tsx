@@ -8,7 +8,7 @@ type Row = {
 }
 
 const RowWrapper = styled.div`
-    
+    height: 50px;
 `
 const InputCover = styled.div`
     position: relative;
@@ -27,7 +27,7 @@ function EditableRow({onClick, disabled,  field, value} : Row ){
     const [ toggleRow, setToggleRow ] = useState(true)
     return (
         <RowWrapper onClick={(e) => {
-            setToggleRow(false)
+            setToggleRow(toggleRow => !toggleRow)
             console.log(e.target)
         }}>
             <InputCover></InputCover>
