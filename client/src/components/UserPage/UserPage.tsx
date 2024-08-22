@@ -109,10 +109,10 @@ function UserPage() {
         </PhotoSettings>
           {userData?.data &&
             <UserInfoSettings>
-              <EditableRow field='name' value={userData.data?.name}></EditableRow>
-              <EditableRow field='surname' value={userData.data?.surname}></EditableRow>
-              <EditableRow field='dateOfBirth' value={userData.data?.dateOfBirth}></EditableRow>
-              <EditableRow field='about' value={userData.data?.about}></EditableRow>
+              <EditableRow field='name' value={userData.data?.name} id={userData.data.id}></EditableRow>
+              <EditableRow field='surname' value={userData.data?.surname} id={userData.data.id}></EditableRow>
+              <EditableRow field='dateOfBirth' value={userData.data?.dateOfBirth} id={userData.data.id}></EditableRow>
+              <EditableRow field='about' value={userData.data?.about} id={userData.data.id}></EditableRow>
               <button>Save</button>
             </ UserInfoSettings>
           }

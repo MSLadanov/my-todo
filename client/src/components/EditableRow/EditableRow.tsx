@@ -4,6 +4,7 @@ import styled from "styled-components"
 type Row = {
     field: string,
     value: string,
+    id: string,
 }
 
 const StyledInput = styled.input`
@@ -17,7 +18,7 @@ const StyledInput = styled.input`
   }
 `;
 
-function EditableRow ({field, value} : Row) {
+function EditableRow ({field, value, id} : Row) {
   const [isReadOnly, setIsReadOnly] = useState(true);
   const initialValue = value
   const [ editableValue, setEditableValue ] = useState(value)
