@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
+import { getDatabase, ref, child, get, set } from "firebase/database";
 
 type Row = {
     field: string,
@@ -37,8 +38,10 @@ function EditableRow ({field, value, id} : Row) {
     setIsReadOnly(false);
   };
   function handleBlur(){
-    console.log(editableValue)
-    console.log(initialValue)
+    const db = getDatabase();
+    if(editableValue !== initialValue){
+      set(ref(db, `/users/${id}/${field}/`), editableValue)
+    }
   }
   useEffect(() => {
     setEditableValue(value)
