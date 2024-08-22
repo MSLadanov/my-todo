@@ -13,6 +13,7 @@ const StyledInput = styled.input`
   cursor: ${(props) => (props.readOnly ? 'pointer' : 'text')};
   border: 1px solid #ccc;
   outline: none;
+  height: ${(props) => (props.className?.includes('about') ? '200px' : '100px')};
   &:hover {
     border-color: ${(props) => (props.readOnly ? '#888' : '#555')};
   }
@@ -40,6 +41,7 @@ function EditableRow ({field, value, id} : Row) {
       readOnly={isReadOnly}
       onClick={handleClick}
       onBlur={handleBlur}
+      className={field}
     />
   );
 };
