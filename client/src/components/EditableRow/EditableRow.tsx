@@ -13,7 +13,17 @@ const StyledInput = styled.input`
   cursor: ${(props) => (props.readOnly ? 'pointer' : 'text')};
   border: 1px solid #ccc;
   outline: none;
-  height: ${(props) => (props.className?.includes('about') ? '200px' : '100px')};
+  &:hover {
+    border-color: ${(props) => (props.readOnly ? '#888' : '#555')};
+  }
+`;
+
+const StyledTextarea = styled.textarea`
+  padding: 10px;
+  font-size: 16px;
+  cursor: ${(props) => (props.readOnly ? 'pointer' : 'text')};
+  border: 1px solid #ccc;
+  outline: none;
   &:hover {
     border-color: ${(props) => (props.readOnly ? '#888' : '#555')};
   }
@@ -33,17 +43,30 @@ function EditableRow ({field, value, id} : Row) {
   useEffect(() => {
     setEditableValue(value)
   }, [value])
-  return (
-    <StyledInput
-      defaultValue={editableValue}
-      onChange={(e) => setEditableValue(e.target.value)}
-      type="text"
-      readOnly={isReadOnly}
-      onClick={handleClick}
-      onBlur={handleBlur}
-      className={field}
-    />
-  );
+  if(field !== 'about'){
+    return (
+      <StyledInput
+        defaultValue={editableValue}
+        onChange={(e) => setEditableValue(e.target.value)}
+        type="text"
+        readOnly={isReadOnly}
+        onClick={handleClick}
+        onBlur={handleBlur}
+        className={field}
+      />
+    );
+  } else {
+    return(
+      <StyledTextarea
+        defaultValue={editableValue}
+        onChange={(e) => setEditableValue(e.target.value)}
+        readOnly={isReadOnly}
+        onClick={handleClick}
+        onBlur={handleBlur}
+        className={field}
+      />
+    )
+  }
 };
 
 export default EditableRow;
