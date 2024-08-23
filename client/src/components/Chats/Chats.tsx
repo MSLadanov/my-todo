@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import useChat from "../../hooks/useChat";
 import getDate from "../../helpers/getDate"
 import { getDatabase, ref, child, get } from "firebase/database";
+import { useState } from "react";
 
 const ChatList = styled.ul`
   margin: 0px;
@@ -116,13 +117,17 @@ function Chats (){
 }
 
 function UserName({senderId, receiverId, userId} : any){
-  // const dbRef = ref(getDatabase());
-  // async function getUserName (){
-  //   return (await (get(child(dbRef, `users/${userId}`)))).val();
-  // }
+  const [ fullName, setFullName ] = useState<null | string>(null)
+  const dbRef = ref(getDatabase());
   const tempId = [senderId, receiverId].filter((item) => item !== userId)[0]
+  async function getUserName (){
+    const name =  (await (get(child(dbRef, `users/${tempId}/name`)))).val();
+    const surname =  (await (get(child(dbRef, `users/${tempId}/surname`)))).val();
+    setFullName(name + ' ' + surname)
+  }
+  getUserName()
   return (
-    <div>{tempId}</div>
+    <p>{fullName}</p>
   )
 }
 
