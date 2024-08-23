@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { getDatabase, ref, child, get, set } from "firebase/database";
+import { updateProfile } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 type Row = {
     field: string,
@@ -41,6 +43,11 @@ function EditableRow ({field, value, id} : Row) {
     const db = getDatabase();
     if(editableValue !== initialValue){
       set(ref(db, `/users/${id}/${field}/`), editableValue)
+      const auth = getAuth();
+      const user = auth.currentUser;
+      if(field === 'name' && user){
+        updateProfile(user, {displayName : editableValue})
+      }
     }
   }
   useEffect(() => {
