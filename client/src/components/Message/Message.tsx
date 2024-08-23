@@ -6,11 +6,7 @@ interface MessageProps{
     text: string,
     timestamp: string,
     userId: string,
-    userName: string,
-    userAvatar: string | undefined,
     currentUserId: string | undefined,
-    senderName: string, 
-    receiverName: string, 
     senderAvatar: string | undefined,
     receiverAvatar: string | undefined,
 }
@@ -47,7 +43,7 @@ const MessageContainer = styled.div`
             font-size: xx-small;
         }
     `
-function Message({id, text, timestamp, userId, userName, userAvatar, currentUserId, senderName, receiverName, senderAvatar, receiverAvatar} : MessageProps){
+function Message({id, text, timestamp, userId, currentUserId, senderAvatar, receiverAvatar} : MessageProps){
     const date = getDate(timestamp)
     return (
         <MessageContainer style={{flexDirection : userId !== currentUserId ? 'row' : 'row-reverse'}}>

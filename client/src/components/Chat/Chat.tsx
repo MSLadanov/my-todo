@@ -113,11 +113,7 @@ function Chat(){
                 text={message.text}
                 timestamp={message.timestamp}
                 userId={message.userId}
-                userName={message.userName}
-                userAvatar={userId === message.userId ? senderAvatar : receiverAvatar}
                 currentUserId={userId}
-                senderName={query.data.senderName}
-                receiverName={query.data.receiverName}
                 senderAvatar={senderAvatar}
                 receiverAvatar={receiverAvatar}
             />)}
