@@ -35,13 +35,11 @@ function useChat(userId : string | undefined){
           console.log(error);
         }
       }
-      async function createChat(senderId : string | undefined, receiverId : string, senderName : string, receiverName : string) {
+      async function createChat(senderId : string | undefined, receiverId : string) {
         const newChat = {
           id: uuidv4(),
           senderId,
           receiverId,
-          senderName,
-          receiverName,
           messanges: []
         }
         const db = getDatabase();

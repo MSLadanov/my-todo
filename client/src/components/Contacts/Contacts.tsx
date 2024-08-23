@@ -79,7 +79,7 @@ function Contacts() {
     if (existingChat) {
       navigate(`/chats/${existingChat.id}`);
     } else {
-      await createChat(userId, id, userName, name );
+      await createChat(userId, id );
     }
   }
   const query = useQuery({ queryKey: ['contacts'], queryFn: getContacts })

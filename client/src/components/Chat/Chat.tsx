@@ -53,7 +53,6 @@ function Chat(){
         text: string,
         timestamp: string,
         userId: string,
-        userName: string,
     }
     const [newMessageText, setNewMessageText] = useState<string>('')
     const userId = useSelector((state : IState) => state.userId)
@@ -85,7 +84,6 @@ function Chat(){
                 text: newMessageText,
                 timestamp: String(Date.now()),
                 userId,
-                userName,
             }
             const updatedMessages = [...query.data.messanges, newMessage]
             set(ref(db, `/chats/${chatId}/messanges/`), {
