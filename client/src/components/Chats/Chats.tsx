@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Link, useLocation } from 'react-router-dom';
 import useChat from "../../hooks/useChat";
 import getDate from "../../helpers/getDate"
+import { getDatabase, ref, child, get } from "firebase/database";
 
 const ChatList = styled.ul`
   margin: 0px;
@@ -94,7 +95,6 @@ function Chats (){
     }
     return lastMessageData
   }
-  
   return (
     <ChatsBox>
         <ChatList>{query.data?.map((chat : IChat) => <ChatListItem key={chat.id}><Link style={LinkStyle} to={`${path}/${chat.id}`} key={chat.id}>
@@ -103,7 +103,8 @@ function Chats (){
               <img src={chat.senderAvatar} alt="" />
             </ChatAvatar>
           <ChatInfo>
-            <p style={{fontWeight:'bolder'}}>{userId === chat.receiverId ? chat.senderName : chat.receiverName}</p>
+            <p style={{fontWeight:'bolder'}}></p>
+            <UserName senderId={chat.senderId} receiverId={chat.receiverId} userId={userId}/>
             <p style={{backgroundColor: getLastMessage(chat).userId === userId ? '#D9F2E6' : '#D7E8FF'}}>{getLastMessage(chat).userName + ' : ' + getLastMessage(chat).text}</p>
           </ChatInfo>
           </ChatContent>
@@ -112,6 +113,17 @@ function Chats (){
         </ChatListItem>)}
         </ChatList>
     </ChatsBox>)
+}
+
+function UserName({senderId, receiverId, userId} : any){
+  // const dbRef = ref(getDatabase());
+  // async function getUserName (){
+  //   return (await (get(child(dbRef, `users/${userId}`)))).val();
+  // }
+  const tempId = [senderId, receiverId].filter((item) => item !== userId)[0]
+  return (
+    <div>{tempId}</div>
+  )
 }
 
 export default Chats
