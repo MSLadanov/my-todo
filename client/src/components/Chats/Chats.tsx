@@ -52,29 +52,31 @@ const LinkStyle = {
   justifyContent:'space-between', 
 }
 
+interface IState {
+  displayName: string,
+  email: string,
+  token: string,
+  userId: string | undefined  
+}
+interface IMessage{
+  id: string,
+  timestamp : string
+  userId: string,
+  userName: string,
+  text: string,
+}
+interface IChat {
+  id: string,
+  senderId: string,
+  receiverId: string, 
+  senderName: string,
+  receiverName: string,
+  senderAvatar: string,
+  messanges: any[]
+}
+
 function Chats (){
-  interface IState {
-    displayName: string,
-    email: string,
-    token: string,
-    userId: string | undefined  
-  }
-  interface IMessage{
-    id: string,
-    timestamp : string
-    userId: string,
-    userName: string,
-    text: string,
-  }
-  interface IChat {
-    id: string,
-    senderId: string,
-    receiverId: string, 
-    senderName: string,
-    receiverName: string,
-    senderAvatar: string,
-    messanges: any[]
-  }
+  
   let location = useLocation();
   let path = ''
     if (location.pathname.endsWith('/')){
@@ -105,7 +107,7 @@ function Chats (){
             </ChatAvatar>
           <ChatInfo>
             <p style={{fontWeight:'bolder'}}></p>
-            <UserName senderId={chat.senderId} receiverId={chat.receiverId} userId={userId}/>
+            <UserFullName senderId={chat.senderId} receiverId={chat.receiverId} userId={userId}/>
             <p style={{backgroundColor: getLastMessage(chat).userId === userId ? '#D9F2E6' : '#D7E8FF'}}>
               {getLastMessage(chat).userName + ' : ' + getLastMessage(chat).text}
             </p>
@@ -118,7 +120,7 @@ function Chats (){
     </ChatsBox>)
 }
 
-function UserName({senderId, receiverId, userId} : any){
+function UserFullName({senderId, receiverId, userId} : any){
   const [ fullName, setFullName ] = useState<null | string>(null)
   const dbRef = ref(getDatabase());
   const tempId = [senderId, receiverId].filter((item) => item !== userId)[0]
@@ -130,6 +132,31 @@ function UserName({senderId, receiverId, userId} : any){
   getUserName()
   return (
     <p>{fullName}</p>
+  )
+}
+
+function UserName({senderId, receiverId, userId} : any){
+  function getLastMessage(chat : IChat ){
+    const lastMessage : IMessage = chat.messanges.at(-1)
+    const lastMessageData : IMessage = {
+      id: lastMessage.id,
+      userId: lastMessage.userId,
+      userName: lastMessage.userId === userId ? 'You' : lastMessage.userName,
+      text: lastMessage.text,
+      timestamp: lastMessage.timestamp
+    }
+    return lastMessageData
+  }
+  const [ name, setName ] = useState<null | string>(null)
+  const dbRef = ref(getDatabase());
+  const tempId = [senderId, receiverId].filter((item) => item !== userId)[0]
+  async function getUserName (){
+    const name =  (await (get(child(dbRef, `users/${tempId}/name`)))).val();
+    setName(name)
+  }
+  getUserName()
+  return (
+    <p>{name}</p>
   )
 }
 
