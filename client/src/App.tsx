@@ -8,8 +8,6 @@ import usePopup from "./hooks/usePopup";
 import Loader from "./components/Loader/Loader";
 
 const OutletContainer = styled.div`
-  padding-left: 15px;
-  padding-right: 15px;
   padding-bottom: 100px;
   padding-top: 100px;
 `
