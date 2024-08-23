@@ -62,7 +62,6 @@ interface IMessage{
   id: string,
   timestamp : string
   userId: string,
-  userName: string,
   text: string,
 }
 interface IChat {
@@ -92,7 +91,6 @@ function Chats (){
     const lastMessageData : IMessage = {
       id: lastMessage.id,
       userId: lastMessage.userId,
-      userName: lastMessage.userId === userId ? 'You' : lastMessage.userName,
       text: lastMessage.text,
       timestamp: lastMessage.timestamp
     }
@@ -109,7 +107,7 @@ function Chats (){
             <p style={{fontWeight:'bolder'}}></p>
             <UserFullName senderId={chat.senderId} receiverId={chat.receiverId} userId={userId}/>
             <p style={{backgroundColor: getLastMessage(chat).userId === userId ? '#D9F2E6' : '#D7E8FF'}}>
-              {getLastMessage(chat).userName + ' : ' + getLastMessage(chat).text}
+              {getName(chat, chat.senderId, chat.receiverId, userId) + ' : ' + getLastMessage(chat).text}
             </p>
           </ChatInfo>
           </ChatContent>
@@ -124,40 +122,32 @@ function UserFullName({senderId, receiverId, userId} : any){
   const [ fullName, setFullName ] = useState<null | string>(null)
   const dbRef = ref(getDatabase());
   const tempId = [senderId, receiverId].filter((item) => item !== userId)[0]
-  async function getUserName (){
+  async function getUserFullName (){
     const name =  (await (get(child(dbRef, `users/${tempId}/name`)))).val();
     const surname =  (await (get(child(dbRef, `users/${tempId}/surname`)))).val();
     setFullName(name + ' ' + surname)
   }
-  getUserName()
+  getUserFullName()
   return (
     <p>{fullName}</p>
   )
 }
 
-function UserName({senderId, receiverId, userId} : any){
-  function getLastMessage(chat : IChat ){
-    const lastMessage : IMessage = chat.messanges.at(-1)
-    const lastMessageData : IMessage = {
-      id: lastMessage.id,
-      userId: lastMessage.userId,
-      userName: lastMessage.userId === userId ? 'You' : lastMessage.userName,
-      text: lastMessage.text,
-      timestamp: lastMessage.timestamp
-    }
-    return lastMessageData
-  }
-  const [ name, setName ] = useState<null | string>(null)
+function getName(chat : any, senderId: string, receiverId: string, userId: string | undefined){
+  const lastMessageId : string = chat.messanges.at(-1).userId
+  let name = ''
+  console.log(lastMessageId)
   const dbRef = ref(getDatabase());
-  const tempId = [senderId, receiverId].filter((item) => item !== userId)[0]
   async function getUserName (){
-    const name =  (await (get(child(dbRef, `users/${tempId}/name`)))).val();
-    setName(name)
+    if(lastMessageId === userId){
+      name = 'You'
+    } else {
+      const fetchName =  (await (get(child(dbRef, `users/${lastMessageId}/name`)))).val();
+      name = fetchName
+    }
   }
   getUserName()
-  return (
-    <p>{name}</p>
-  )
+  return name
 }
 
 export default Chats
