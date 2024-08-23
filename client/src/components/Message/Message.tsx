@@ -56,7 +56,7 @@ function Message({id, text, timestamp, userId, userName, userAvatar, currentUser
                 backgroundColor : userId !== currentUserId ? '#D7E8FF' : '#D9F2E6'
             }}>
                 <MessageBody style={{flexDirection : userId !== currentUserId ? 'row' : 'row-reverse'}}>
-                    <UserImg src={userName === senderName ? senderAvatar : receiverAvatar} alt="" />
+                    <UserImg src={userId === currentUserId ? senderAvatar : receiverAvatar} alt="" />
                     <p>{text}</p>
                 </MessageBody>
                 <MessageDate>
