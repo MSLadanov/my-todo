@@ -106,7 +106,9 @@ function Chats (){
           <ChatInfo>
             <p style={{fontWeight:'bolder'}}></p>
             <UserName senderId={chat.senderId} receiverId={chat.receiverId} userId={userId}/>
-            <p style={{backgroundColor: getLastMessage(chat).userId === userId ? '#D9F2E6' : '#D7E8FF'}}>{getLastMessage(chat).userName + ' : ' + getLastMessage(chat).text}</p>
+            <p style={{backgroundColor: getLastMessage(chat).userId === userId ? '#D9F2E6' : '#D7E8FF'}}>
+              {getLastMessage(chat).userName + ' : ' + getLastMessage(chat).text}
+            </p>
           </ChatInfo>
           </ChatContent>
           <ChatTime>{getDate((getLastMessage(chat).timestamp))}</ChatTime>
