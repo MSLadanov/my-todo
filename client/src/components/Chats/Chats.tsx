@@ -44,6 +44,9 @@ const ChatTime = styled.div`
 const ChatContent = styled.div`
   display: flex;
 `
+const LastMessageContainer = styled.div`
+
+`
 
 const LinkStyle = {
   display:'flex', 
@@ -106,9 +109,9 @@ function Chats (){
           <ChatInfo>
             <p style={{fontWeight:'bolder'}}></p>
             <UserFullName senderId={chat.senderId} receiverId={chat.receiverId} userId={userId}/>
-            <div style={{backgroundColor: getLastMessage(chat).userId === userId ? '#D9F2E6' : '#D7E8FF'}}>
-              {/* {getName(chat, chat.senderId, chat.receiverId, userId) + ' : ' + getLastMessage(chat).text} */}
+            <div style={{backgroundColor: getLastMessage(chat).userId === userId ? '#D9F2E6' : '#D7E8FF', display: 'flex', alignItems:'center'}}>
               <UserName lastMessage={getLastMessage(chat)} userId={userId}/>
+              {' : ' + getLastMessage(chat).text}
             </div>
           </ChatInfo>
           </ChatContent>
@@ -135,7 +138,7 @@ function UserFullName({senderId, receiverId, userId} : any){
 }
 
 function UserName({lastMessage, userId} : any){
-  console.log(lastMessage)
+  const query = useQuery({ queryKey: ['name'], queryFn: getUserName })
   let name = null
   const dbRef = ref(getDatabase());
   async function getUserName (){
@@ -146,7 +149,7 @@ function UserName({lastMessage, userId} : any){
   if(lastMessage.userId === userId){
     name = 'You'
   } else {
-    name = 'Not you'
+    name = query.data
   }
   return (
     <p>{name}</p>
