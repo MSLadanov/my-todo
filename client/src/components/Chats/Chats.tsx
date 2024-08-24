@@ -136,16 +136,17 @@ function UserFullName({senderId, receiverId, userId} : any){
 
 function UserName({lastMessage, userId} : any){
   console.log(lastMessage)
-  const [ name, setName ] = useState<null | string>(null)
-  // const dbRef = ref(getDatabase());
-  // async function getUserFullName (){
-  //   const name =  (await (get(child(dbRef, `users/${lastMessage.userId}/name`)))).val();
-  //   setName(name)
-  // }
+  let name = null
+  const dbRef = ref(getDatabase());
+  async function getUserName (){
+    const name =  (await (get(child(dbRef, `users/${lastMessage.userId}/name`)))).val();
+    return name
+  }
+  console.log(getUserName())
   if(lastMessage.userId === userId){
-    setName('You')
+    name = 'You'
   } else {
-    setName('Not you')
+    name = 'Not you'
   }
   return (
     <p>{name}</p>
