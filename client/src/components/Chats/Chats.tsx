@@ -107,7 +107,7 @@ function Chats (){
             <p style={{fontWeight:'bolder'}}></p>
             <UserFullName senderId={chat.senderId} receiverId={chat.receiverId} userId={userId}/>
             <p style={{backgroundColor: getLastMessage(chat).userId === userId ? '#D9F2E6' : '#D7E8FF'}}>
-              {getName(chat, chat.senderId, chat.receiverId, userId) + ' : ' + getLastMessage(chat).text}
+              {/* {getName(chat, chat.senderId, chat.receiverId, userId) + ' : ' + getLastMessage(chat).text} */}
             </p>
           </ChatInfo>
           </ChatContent>
@@ -133,20 +133,21 @@ function UserFullName({senderId, receiverId, userId} : any){
   )
 }
 
-function getName(chat : any, senderId: string, receiverId: string, userId: string | undefined){
+function UserName(chat : any, senderId: string, receiverId: string, userId: string | undefined){
   const lastMessageId : string = chat.messanges.at(-1).userId
-  let name = ''
+  const [ name, setName ] = useState<null | string>(null)
   console.log(lastMessageId)
   const dbRef = ref(getDatabase());
-  async function getUserName (){
-    if(lastMessageId === userId){
-      name = 'You'
-    } else {
-      const fetchName =  (await (get(child(dbRef, `users/${lastMessageId}/name`)))).val();
-      name = fetchName
-    }
-  }
-  getUserName()
+  // async function getUserName (){
+  //   if(lastMessageId === userId){
+  //     name = 'You'
+  //   } else {
+  //     const fetchName =  (await (get(child(dbRef, `users/${lastMessageId}/name`)))).val();
+  //     name = fetchName
+  //   }
+  // }
+  // getUserName()
+
   return name
 }
 
