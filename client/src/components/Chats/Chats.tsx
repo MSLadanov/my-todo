@@ -32,12 +32,6 @@ const ChatInfo = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-left: 15px;
-  & p{
-    border-radius: 12px;
-    padding: 8px;
-    color: black;
-    margin: 0px;
-  }
 `
 const ChatTime = styled.div`
 `
@@ -45,7 +39,12 @@ const ChatContent = styled.div`
   display: flex;
 `
 const LastMessageContainer = styled.div<{messageUserId : string, userId : string | undefined}>`
-
+  background-color: ${({ messageUserId, userId }) => (messageUserId === userId ? '#D9F2E6' : '#D7E8FF')};
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: black;
 `
 
 const LinkStyle = {
@@ -110,7 +109,6 @@ function Chats (){
             <p style={{fontWeight:'bolder'}}></p>
             <UserFullName senderId={chat.senderId} receiverId={chat.receiverId} userId={userId}/>
             <LastMessageContainer messageUserId={getLastMessage(chat).userId} userId={userId}>
-            {/* <div style={{backgroundColor: getLastMessage(chat).userId === userId ? '#D9F2E6' : '#D7E8FF', display: 'flex', alignItems:'center'}}> */}
               <UserName lastMessage={getLastMessage(chat)} userId={userId}/>
               {' : ' + getLastMessage(chat).text}
             </LastMessageContainer>
@@ -146,7 +144,6 @@ function UserName({lastMessage, userId} : any){
     const name =  (await (get(child(dbRef, `users/${lastMessage.userId}/name`)))).val();
     return name
   }
-  console.log(getUserName())
   if(lastMessage.userId === userId){
     name = 'You'
   } else {
