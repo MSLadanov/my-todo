@@ -44,7 +44,7 @@ const ChatTime = styled.div`
 const ChatContent = styled.div`
   display: flex;
 `
-const LastMessageContainer = styled.div`
+const LastMessageContainer = styled.div<{messageUserId : string, userId : string | undefined}>`
 
 `
 
@@ -109,10 +109,11 @@ function Chats (){
           <ChatInfo>
             <p style={{fontWeight:'bolder'}}></p>
             <UserFullName senderId={chat.senderId} receiverId={chat.receiverId} userId={userId}/>
-            <div style={{backgroundColor: getLastMessage(chat).userId === userId ? '#D9F2E6' : '#D7E8FF', display: 'flex', alignItems:'center'}}>
+            <LastMessageContainer messageUserId={getLastMessage(chat).userId} userId={userId}>
+            {/* <div style={{backgroundColor: getLastMessage(chat).userId === userId ? '#D9F2E6' : '#D7E8FF', display: 'flex', alignItems:'center'}}> */}
               <UserName lastMessage={getLastMessage(chat)} userId={userId}/>
               {' : ' + getLastMessage(chat).text}
-            </div>
+            </LastMessageContainer>
           </ChatInfo>
           </ChatContent>
           <ChatTime>{getDate((getLastMessage(chat).timestamp))}</ChatTime>
