@@ -38,8 +38,8 @@ const ChatTime = styled.div`
 const ChatContent = styled.div`
   display: flex;
 `
-const LastMessageContainer = styled.div<{messageUserId : string, userId : string | undefined}>`
-  background-color: ${({ messageUserId, userId }) => (messageUserId === userId ? '#D9F2E6' : '#D7E8FF')};
+const LastMessageContainer = styled.div<{messageuserid : string, userid : string | undefined}>`
+  background-color: ${({ messageuserid, userid }) => (messageuserid === userid ? '#D9F2E6' : '#D7E8FF')};
   display: flex;
   align-items: center;
   padding: 5px 10px;
@@ -110,7 +110,7 @@ function Chats (){
             </ChatAvatar>
           <ChatInfo>
             <UserFullName senderId={chat.senderId} receiverId={chat.receiverId} userId={userId}/>
-            <LastMessageContainer messageUserId={getLastMessage(chat).userId} userId={userId}>
+            <LastMessageContainer messageuserid={getLastMessage(chat).userId} userid={userId}>
               <UserName lastMessage={getLastMessage(chat)} userId={userId}/>
               {' : ' + getLastMessage(chat).text}
             </LastMessageContainer>
