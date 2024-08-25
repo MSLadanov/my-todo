@@ -45,6 +45,9 @@ const LastMessageContainer = styled.div<{messageUserId : string, userId : string
   padding: 5px 10px;
   border-radius: 8px;
   color: black;
+  & p{
+    margin: 0px;
+  }
 `
 
 const LinkStyle = {
@@ -106,7 +109,6 @@ function Chats (){
               <img src={chat.senderAvatar} alt="" />
             </ChatAvatar>
           <ChatInfo>
-            <p style={{fontWeight:'bolder'}}></p>
             <UserFullName senderId={chat.senderId} receiverId={chat.receiverId} userId={userId}/>
             <LastMessageContainer messageUserId={getLastMessage(chat).userId} userId={userId}>
               <UserName lastMessage={getLastMessage(chat)} userId={userId}/>
