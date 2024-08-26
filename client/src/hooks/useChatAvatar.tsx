@@ -19,7 +19,7 @@ function useChatAvatar(){
                     throw error; 
                 }
     }
-    async function getNoAvatarImage(){
+    function getNoAvatarImage(){
         return no_avatar
     }
     return {getUserAvatar, getNoAvatarImage}
