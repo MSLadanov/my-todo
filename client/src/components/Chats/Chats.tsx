@@ -6,6 +6,7 @@ import useChat from "../../hooks/useChat";
 import getDate from "../../helpers/getDate"
 import { getDatabase, ref, child, get } from "firebase/database";
 import { useState } from "react";
+import Loader from "../Loader/Loader";
 
 const ChatList = styled.ul`
   margin: 0px;
@@ -103,6 +104,7 @@ function Chats (){
   }
   return (
     <ChatsBox>
+        {query.isFetching ? <Loader></Loader> :
         <ChatList>{query.data?.map((chat : IChat) => <ChatListItem key={chat.id}><Link style={LinkStyle} to={`${path}/${chat.id}`} key={chat.id}>
           <ChatContent>
             <ChatAvatar>
@@ -119,7 +121,7 @@ function Chats (){
           <ChatTime>{getDate((getLastMessage(chat).timestamp))}</ChatTime>
         </Link>
         </ChatListItem>)}
-        </ChatList>
+        </ChatList>}
     </ChatsBox>)
 }
 
