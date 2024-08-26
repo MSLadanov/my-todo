@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import getDate from "../../helpers/getDate";
+import useChatAvatar from "../../hooks/useChatAvatar";
 
 interface MessageProps{
     id: string, 
@@ -44,6 +45,7 @@ const MessageContainer = styled.div`
         }
     `
 function Message({id, text, timestamp, userId, currentUserId, senderAvatar, receiverAvatar} : MessageProps){
+    console.log(senderAvatar?.includes(userId))
     const date = getDate(timestamp)
     return (
         <MessageContainer style={{flexDirection : userId !== currentUserId ? 'row' : 'row-reverse'}}>
@@ -52,7 +54,7 @@ function Message({id, text, timestamp, userId, currentUserId, senderAvatar, rece
                 backgroundColor : userId !== currentUserId ? '#D7E8FF' : '#D9F2E6'
             }}>
                 <MessageBody style={{flexDirection : userId !== currentUserId ? 'row' : 'row-reverse'}}>
-                    <UserImg src={userId === currentUserId ? senderAvatar : receiverAvatar} alt="" />
+                    <UserImg src={! senderAvatar?.includes(userId) ? receiverAvatar : senderAvatar} alt="" />
                     <p>{text}</p>
                 </MessageBody>
                 <MessageDate>
