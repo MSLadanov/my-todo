@@ -32,8 +32,8 @@ const router = createBrowserRouter([
         element: <Navigate to="/todolists" />,
       },
       {
-        path:'contacts/',
-        element: <Contacts />,
+        path: 'contacts/',
+        element: <Contacts />
       },
       {
         path:'contacts/:contactId',
