@@ -13,6 +13,8 @@ const spin = keyframes`
 `;
 
 const Spinner = styled.div`
+  position: fixed;
+  top: 45%;
   width: 40px;
   height: 40px;
   border: 4px solid rgba(0, 0, 0, 0.1);

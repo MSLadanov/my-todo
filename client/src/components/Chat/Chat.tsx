@@ -9,6 +9,7 @@ import styled from "styled-components"
 import {v4 as uuidv4} from 'uuid'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import Loader from "../Loader/Loader";
 
     const MessageInput = styled.div`
         display: flex;
@@ -105,6 +106,7 @@ function Chat(){
     },[query.data])
     return (
         <>
+            {query.isFetching ? <Loader></Loader> :
             <MessagesBox>
             {query.data?.messanges.map((message : IMessage) => <Message key={message.id}
                 id={message.id}
@@ -115,7 +117,7 @@ function Chat(){
                 senderAvatar={senderAvatar}
                 receiverAvatar={receiverAvatar}
             />)}
-            </MessagesBox>
+            </MessagesBox> }
             <MessageInput>
                 <textarea rows={5} value={newMessageText} onChange={(e) => setNewMessageText(e.target.value)}></textarea>
                 <CenteredButtonBox>
