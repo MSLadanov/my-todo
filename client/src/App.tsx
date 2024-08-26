@@ -31,7 +31,6 @@ function App() {
             <button onClick={() => togglePopup('Пользователь с таким e-mail уже зарегистрирован!', 'warning')}>Предупреждение!</button>
             <button onClick={() => togglePopup('Вы успешно авторизовались!', 'success')}>Все хорошо!</button>
           </div>
-          <Loader />
           <Outlet />
         </OutletContainer>
         <Header />

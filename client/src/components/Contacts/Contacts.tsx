@@ -8,6 +8,7 @@ import useChatAvatar from '../../hooks/useChatAvatar';
 import useChat from '../../hooks/useChat';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import Loader from '../Loader/Loader';
 
 const ContactList = styled.ul`
   padding:0px;
@@ -85,6 +86,7 @@ function Contacts() {
   const query = useQuery({ queryKey: ['contacts'], queryFn: getContacts })
   return (
     <div>
+      {query.isFetching? <Loader></Loader>:
       <ContactList>{query.data?.map((contact : any) => 
         <ContactListItem key={contact.id}>
           <Link to={`${path}/${contact.id}`} key={contact.id}>
@@ -93,7 +95,7 @@ function Contacts() {
           <div>{contact.name + " " + contact.surname}</div>
           <MessageButton onClick={() => checkExistChat(contact.id, contact.name)}><FontAwesomeIcon icon={faMessage} size='xl' /></MessageButton>
         </ContactListItem>)}
-      </ContactList>
+      </ContactList>}
     </div>
   );
 }
