@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquarePen } from '@fortawesome/free-solid-svg-icons';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
+import Loader from '../Loader/Loader';
 
 const TodoList = styled.div`
   & li{
@@ -71,7 +72,8 @@ function TodoLists() {
     return (
       <TodoList>
         <Link style={LinkStyleInput} to={'/addtodolist'}><FontAwesomeIcon icon={faSquarePen} size='2x'></FontAwesomeIcon></Link>
-        <TodoListUl>{query.data?.map((todoList : ITodoList) => <TodoListItem key={todoList.id}><FontAwesomeIcon icon={faList} size='2x'></FontAwesomeIcon> <Link style={LinkStyle} to={`${path}/${todoList.id}`} key={todoList.id}>{todoList.name}</Link></TodoListItem>)}</TodoListUl>
+        {query.isFetching ? <Loader></Loader> : 
+        <TodoListUl>{query.data?.map((todoList : ITodoList) => <TodoListItem key={todoList.id}><FontAwesomeIcon icon={faList} size='2x'></FontAwesomeIcon> <Link style={LinkStyle} to={`${path}/${todoList.id}`} key={todoList.id}>{todoList.name}</Link></TodoListItem>)}</TodoListUl>}
       </TodoList>
     );
   }
