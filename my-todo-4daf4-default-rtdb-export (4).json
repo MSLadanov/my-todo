@@ -1,0 +1,223 @@
+{
+  "chatLists": {
+    "5PAHAUFeDVZQbxSQUusiJ6s1gpQ2": [
+      "590dc699-c7f7-45fa-b59d-54c12241dfcc"
+    ],
+    "cDcXGfRTt4NLe0ipx8rXdBeu0i22": [
+      "a99ff62a-fcf4-454d-8300-830f5c1d3d69"
+    ],
+    "yO9ylCGiMsOtvGAWZwdX8JJO24t2": [
+      "a99ff62a-fcf4-454d-8300-830f5c1d3d69",
+      "590dc699-c7f7-45fa-b59d-54c12241dfcc"
+    ]
+  },
+  "chats": {
+    "590dc699-c7f7-45fa-b59d-54c12241dfcc": {
+      "id": "590dc699-c7f7-45fa-b59d-54c12241dfcc",
+      "messanges": [
+        {
+          "id": "423238a6-fa4b-4a74-bf02-0af19f7bd902",
+          "text": "Sup?",
+          "timestamp": "1723119449749",
+          "userId": "yO9ylCGiMsOtvGAWZwdX8JJO24t2"
+        },
+        {
+          "id": "2ec51e2c-fd2b-4b26-ad88-40c174651fda",
+          "text": "Fine! U?",
+          "timestamp": "1723121297758",
+          "userId": "5PAHAUFeDVZQbxSQUusiJ6s1gpQ2"
+        },
+        {
+          "id": "cfbd2cfb-c4d8-4a9c-9767-66214d25a56f",
+          "text": "Nice, what are you doing today?",
+          "timestamp": "1723656094490",
+          "userId": "yO9ylCGiMsOtvGAWZwdX8JJO24t2"
+        },
+        {
+          "id": "f15a2dab-2856-417b-8037-45c3978049fa",
+          "text": "Oh, i played with strange red dot today, and you?",
+          "timestamp": "1723656199141",
+          "userId": "5PAHAUFeDVZQbxSQUusiJ6s1gpQ2"
+        },
+        {
+          "id": "4d46adc5-7ecc-4d94-8d7f-663b8c55c856",
+          "text": "Oh, i heard something about that, they called it 'laser'!",
+          "timestamp": "1723656248069",
+          "userId": "yO9ylCGiMsOtvGAWZwdX8JJO24t2"
+        },
+        {
+          "id": "91c5bc28-cc57-455c-a3ce-52627bc5feb8",
+          "text": "Hello!",
+          "timestamp": "1723895398081",
+          "userId": "yO9ylCGiMsOtvGAWZwdX8JJO24t2"
+        }
+      ],
+      "receiverId": "5PAHAUFeDVZQbxSQUusiJ6s1gpQ2",
+      "senderId": "yO9ylCGiMsOtvGAWZwdX8JJO24t2"
+    },
+    "a99ff62a-fcf4-454d-8300-830f5c1d3d69": {
+      "id": "a99ff62a-fcf4-454d-8300-830f5c1d3d69",
+      "messanges": [
+        {
+          "id": "9e4b110e-b8dc-4e79-b321-81758093f5e9",
+          "text": "Hello",
+          "timestamp": "1722241415909",
+          "userId": "cDcXGfRTt4NLe0ipx8rXdBeu0i22"
+        },
+        {
+          "id": "49bfbce2-680a-46b9-a120-3ba41ca2a836",
+          "text": "Hi!",
+          "timestamp": "1722241415909",
+          "userId": "yO9ylCGiMsOtvGAWZwdX8JJO24t2"
+        },
+        {
+          "id": "8129046d-6422-42ca-bdac-9f86833a294b",
+          "text": "How are you?",
+          "timestamp": "1724674912643",
+          "userId": "cDcXGfRTt4NLe0ipx8rXdBeu0i22"
+        },
+        {
+          "id": "5f3b405d-8f07-4837-98ad-57749aede61a",
+          "text": "I'm fine, and you?",
+          "timestamp": "1724674951458",
+          "userId": "yO9ylCGiMsOtvGAWZwdX8JJO24t2"
+        }
+      ],
+      "receiverId": "yO9ylCGiMsOtvGAWZwdX8JJO24t2",
+      "senderId": "cDcXGfRTt4NLe0ipx8rXdBeu0i22"
+    }
+  },
+  "todos": {
+    "cDcXGfRTt4NLe0ipx8rXdBeu0i22": {
+      "todoLists": [
+        {
+          "id": "c26ce11a-2d3a-4fd2-9a86-a14965185e65",
+          "name": "My todo",
+          "todos": [
+            {
+              "completed": false,
+              "id": "cdd2cccd-db43-4224-928f-25cf2818b9c9",
+              "title": "Have a photo session with some friends"
+            },
+            {
+              "completed": false,
+              "id": "8904b77f-1b5c-45b2-9688-399ff8d95da3",
+              "title": "Go see a Broadway production"
+            },
+            {
+              "completed": false,
+              "id": "e613e8cb-145d-4ea9-b885-59cd3ab87a24",
+              "title": "Invest in cryptocurrency"
+            }
+          ]
+        }
+      ]
+    },
+    "yO9ylCGiMsOtvGAWZwdX8JJO24t2": {
+      "todoLists": [
+        {
+          "id": "0aec3500-8752-4d13-8525-3c8709d36f1c",
+          "name": "TodoList1",
+          "todos": [
+            {
+              "completed": false,
+              "id": "311e9e0c-a79f-409c-a965-4a8b9cbcbe86",
+              "title": "Memorize a poem"
+            },
+            {
+              "completed": false,
+              "id": "763e8128-9798-414f-bb6f-7ebff33cbc23",
+              "title": "Watch a classic movie"
+            },
+            {
+              "completed": false,
+              "id": "5888aa24-29a5-43f9-95a4-3ee809dd240b",
+              "title": "Buy a new house decoration"
+            }
+          ]
+        },
+        {
+          "id": "cd78d9f3-60bf-4dbf-a9ae-a39701ec0b9b",
+          "name": "TodoList2",
+          "todos": [
+            {
+              "completed": false,
+              "id": "26af3be2-7e55-4bc6-ad84-f9aae09ec976",
+              "title": "Take a hike at a local park"
+            },
+            {
+              "completed": false,
+              "id": "ca5bac4f-b18c-429b-b520-09c123054536",
+              "title": "Learn calligraphy"
+            },
+            {
+              "completed": false,
+              "id": "8e86a383-6f7f-4e49-9bc5-dc633f279048",
+              "title": "Plan a vacation you've always wanted to take"
+            }
+          ]
+        },
+        {
+          "id": "99cd1dab-0eaa-44ed-9599-f71378f21fb7",
+          "name": "Todolist 3",
+          "todos": [
+            {
+              "completed": false,
+              "id": "a5b9ff43-dd08-4c92-972d-4c9ac37ece51",
+              "title": "Go gym"
+            },
+            {
+              "completed": false,
+              "id": "dcc4c32e-b384-4e81-8d99-4daee3a19e46",
+              "title": "Finish project"
+            }
+          ]
+        },
+        {
+          "id": "e63d246b-406b-4ec4-a396-587fc623ab2d",
+          "name": "Today tasks",
+          "todos": [
+            {
+              "completed": false,
+              "id": "fd499d24-21f0-406c-ac9a-f92a79711e28",
+              "title": "Do homework"
+            },
+            {
+              "completed": false,
+              "id": "56c24563-071f-466c-985e-e3b0350c4e3a",
+              "title": "Buy food"
+            },
+            {
+              "completed": false,
+              "id": "56c97720-b176-48cc-8d01-479b17a6ca3e",
+              "title": "go to gym"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "users": {
+    "5PAHAUFeDVZQbxSQUusiJ6s1gpQ2": {
+      "about": "I spent a lot of time on this bio.",
+      "dateOfBirth": "27.11.1999",
+      "id": "5PAHAUFeDVZQbxSQUusiJ6s1gpQ2",
+      "name": "Marty",
+      "surname": "McFly"
+    },
+    "cDcXGfRTt4NLe0ipx8rXdBeu0i22": {
+      "about": "Hello Everyone!",
+      "dateOfBirth": "12.03.1999",
+      "id": "cDcXGfRTt4NLe0ipx8rXdBeu0i22",
+      "name": "Bob",
+      "surname": "Cruz"
+    },
+    "yO9ylCGiMsOtvGAWZwdX8JJO24t2": {
+      "about": "Steel wins battles, and Gold wins wars.",
+      "dateOfBirth": "05.09.2000",
+      "id": "yO9ylCGiMsOtvGAWZwdX8JJO24t2",
+      "name": "John",
+      "surname": "Snow"
+    }
+  }
+}
