@@ -7,6 +7,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import queryClient from '../..';
 import Todo from '../Todo/Todo';
 import styled from 'styled-components';
+import Loader from '../Loader/Loader';
 
 const TodosUl = styled.ul`
   padding: 0px;
@@ -112,7 +113,8 @@ function Todos() {
           })
         }}>Add Todo</button>
       </div>
-      <TodosUl>{query.data?.map((todo : ITodo) => <Todo key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} complete={complete} remove={remove}></Todo>)}</TodosUl>
+      {query.isFetching ? <Loader></Loader> :
+      <TodosUl>{query.data?.map((todo : ITodo) => <Todo key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} complete={complete} remove={remove}></Todo>)}</TodosUl>}
     </div>
   );
 }

@@ -9,6 +9,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import queryClient from '../..';
 import useAvatar from '../../hooks/useAvatar';
 import EditableRow from '../EditableRow/EditableRow';
+import Loader from '../Loader/Loader';
 
 const Avatar = styled.img`
     width: 50%;        
@@ -92,6 +93,8 @@ function UserPage() {
     }
   }
   return (
+  <>
+    {query.isFetching && userData.isFetching ? <Loader></Loader> :
     <UserProfile>
       <Avatar src={query.data} alt='' />
       <UserSettings>
@@ -119,7 +122,8 @@ function UserPage() {
       <LogOutBtn>
         <button onClick={() => dispatch(logout())}>Log Out</button>
       </LogOutBtn>
-    </UserProfile>
+    </UserProfile>}
+    </>
   );
 }
 

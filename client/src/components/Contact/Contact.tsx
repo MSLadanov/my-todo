@@ -3,6 +3,7 @@ import { getDatabase, ref, child, get } from "firebase/database";
 import useChatAvatar from '../../hooks/useChatAvatar';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import Loader from '../Loader/Loader';
 
 const ContactPage = styled.div`
   display: flex;
@@ -42,20 +43,23 @@ function Contact (){
       }
     const query = useQuery({ queryKey: ['contact'], queryFn: getContact })
     return (
-    <ContactPage>
-        <ContactAvatarBox>
-            <img src={query.data?.avatarURL} alt="" />
-        </ContactAvatarBox>
-        <ContactInfoBox>
-          {query.data && query.data?.name + " " + query.data?.surname}
-        </ContactInfoBox>
-        <ContactInfoBox>
-          {query.data?.dateOfBirth}
-        </ContactInfoBox>
-        <ContactInfoBox>
-          {query.data?.about}
-        </ContactInfoBox>
-    </ContactPage>
+    <>
+      {query.isFetching ? <Loader></Loader> :
+      <ContactPage>
+          <ContactAvatarBox>
+              <img src={query.data?.avatarURL} alt="" />
+          </ContactAvatarBox>
+          <ContactInfoBox>
+            {query.data && query.data?.name + " " + query.data?.surname}
+          </ContactInfoBox>
+          <ContactInfoBox>
+            {query.data?.dateOfBirth}
+          </ContactInfoBox>
+          <ContactInfoBox>
+            {query.data?.about}
+          </ContactInfoBox>
+      </ContactPage>}
+    </>
     )
 }
 
