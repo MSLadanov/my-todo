@@ -1,5 +1,6 @@
 import { ref, getDownloadURL, listAll } from 'firebase/storage';
 import { storage } from '../firebase';
+import no_avatar from '../assets/no_avatar.jpg'
 
 function useChatAvatar(){
     async function getUserAvatar(id : string){
@@ -11,15 +12,15 @@ function useChatAvatar(){
                     return await getDownloadURL(ref(storage, promises[0].fullPath))
                 } 
                 else {
-                    return await getDownloadURL(ref(storage, 'userAvatars/no_avatar.jpg'))
+                    return no_avatar
                 }
                 } catch (error) {
-                console.log(error);
-                throw error; 
+                    console.log(error);
+                    throw error; 
                 }
     }
     async function getNoAvatarImage(){
-        return await getDownloadURL(ref(storage, 'userAvatars/no_avatar.jpg'))
+        return no_avatar
     }
     return {getUserAvatar, getNoAvatarImage}
 }

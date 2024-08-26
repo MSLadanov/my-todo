@@ -1,6 +1,7 @@
 import { ref, getDownloadURL, deleteObject, listAll } from 'firebase/storage';
 import { getDatabase, ref as refDB, child, get, set, update, push} from "firebase/database";
 import { storage } from '../firebase';
+import no_avatar from '../assets/no_avatar.jpg'
 
 function useAvatar(userId : string | undefined){
     const listRef = ref(storage, `userAvatars/${userId}`);
@@ -12,7 +13,7 @@ function useAvatar(userId : string | undefined){
         if(promises.length){
             return await getDownloadURL(ref(storage, promises[0].fullPath));
         } else {
-            return await getDownloadURL(ref(storage, 'userAvatars/no_avatar.jpg'));
+            return no_avatar
         }
         } catch (error) {
         console.log(error);
