@@ -40,13 +40,6 @@ function Contacts() {
     token: string,
     userId: string | undefined  
   }
-  interface IContact {
-    id: string,
-    name: string,
-    surname: string,
-    dateOfBirth: string, 
-    about: string,
-  }
   const navigate = useNavigate();
   const { getUserAvatar } = useChatAvatar()
   const userId  = useSelector((state : IState) => state.userId)
