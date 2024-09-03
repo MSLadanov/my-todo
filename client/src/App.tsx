@@ -5,7 +5,6 @@ import Header from './components/Header/Header';
 import styled from "styled-components";
 import TopBar from "./components/TopBar/TopBar";
 import usePopup from "./hooks/usePopup";
-import Loader from "./components/Loader/Loader";
 
 const OutletContainer = styled.div`
   padding-bottom: 100px;

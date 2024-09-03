@@ -1,4 +1,3 @@
-import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getDatabase, ref, child, get } from "firebase/database";
 import styled from 'styled-components';
@@ -51,7 +50,6 @@ function Contacts() {
   const navigate = useNavigate();
   const { getUserAvatar } = useChatAvatar()
   const userId  = useSelector((state : IState) => state.userId)
-  const userName = useSelector((state : IState) => state.displayName)
   const { createChat, getChatList } = useChat(userId)
   let location = useLocation();
   let path = ''
