@@ -47,7 +47,6 @@ function Contacts() {
     surname: string,
     dateOfBirth: string, 
     about: string,
-    friends: [],
   }
   const navigate = useNavigate();
   const { getUserAvatar } = useChatAvatar()
