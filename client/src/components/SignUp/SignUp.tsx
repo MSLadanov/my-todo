@@ -3,7 +3,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/authActions';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../firebase'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+
+const FormContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+`
+const FormControls = styled.div`
+  & button{
+    margin-top: 10px;
+  }
+`
 
 function SignUp () {
   interface IState {
@@ -52,8 +69,8 @@ function SignUp () {
   };
 
   return (
-  <>
-    <form onSubmit={handleSignUp}>
+  <FormContainer>
+    <StyledForm onSubmit={handleSignUp}>
       <input
         type="text"
         value={displayName}
@@ -69,10 +86,12 @@ function SignUp () {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password" />
-      <button type="submit">Sign Up</button>
-    </form>
-    <button onClick={() => navigate('/signin')}>Sign In</button>
-  </>
+      <FormControls>
+            <button type="submit">Sign In</button>
+            <p>Already have an account? Click <NavLink to={'/signin'}>here</NavLink></p>
+          </FormControls>    
+    </StyledForm>
+  </FormContainer>
   );
 };
 
