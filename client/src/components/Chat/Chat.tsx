@@ -17,6 +17,7 @@ import Loader from "../Loader/Loader";
         width: 100%;
         bottom: 86px;
         padding: 5px;
+        left: 0px;
         background-color: white;
         & textarea{
             resize: none;
