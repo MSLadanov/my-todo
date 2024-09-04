@@ -4,6 +4,13 @@ import { auth } from '../../firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/authActions';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+const FormContainer = styled.div`
+
+`
+const SignInForm = styled.form`
+`
 
 function SignIn(){
   interface IUserCredentials {
@@ -49,8 +56,8 @@ function SignIn(){
         }
       };
       return (
-      <>
-        <form onSubmit={handleLogin}>
+      <FormContainer>
+        <SignInForm onSubmit={handleLogin}>
           <input
             type="email"
             value={email}
@@ -62,9 +69,9 @@ function SignIn(){
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password" />
           <button type="submit">Sign In</button>
-        </form>
+        </SignInForm>
         <button onClick={() => navigate('/signup')}>Sign Up</button>
-      </>
+      </FormContainer>
       );
 }
 

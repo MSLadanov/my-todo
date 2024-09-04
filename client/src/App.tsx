@@ -7,6 +7,8 @@ import TopBar from "./components/TopBar/TopBar";
 import usePopup from "./hooks/usePopup";
 
 const OutletContainer = styled.div`
+  padding-left: 30px;
+  padding-right: 30px;
   padding-bottom: 100px;
   padding-top: 100px;
 `
