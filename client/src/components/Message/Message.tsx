@@ -45,7 +45,6 @@ const MessageContainer = styled.div`
         }
     `
 function Message({id, text, timestamp, userId, currentUserId, senderAvatar, receiverAvatar} : MessageProps){
-    console.log(senderAvatar?.includes(userId))
     const date = getDate(timestamp)
     return (
         <MessageContainer style={{flexDirection : userId !== currentUserId ? 'row' : 'row-reverse'}}>

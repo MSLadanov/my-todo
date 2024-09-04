@@ -19,7 +19,7 @@ const FormContainer = styled.div`
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  background-color: #F0F8FF; /* AliceBlue */
+  background-color: #F0F8FF;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -28,7 +28,7 @@ const StyledForm = styled.form`
 const Input = styled.input`
   margin-bottom: 10px;
   padding: 10px;
-  border: 1px solid #B0E0E6; /* PowderBlue */
+  border: 1px solid #B0E0E6;
   border-radius: 4px;
   font-size: 16px;
 `;
@@ -41,7 +41,7 @@ const FormControls = styled.div`
   & button {
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #98FB98; /* PaleGreen */
+    background-color: #98FB98; 
     border: none;
     border-radius: 4px;
     color: black;
@@ -50,7 +50,7 @@ const FormControls = styled.div`
     transition: background-color 0.3s;
 
     &:hover {
-      background-color: #90EE90; /* LightGreen */
+      background-color: #90EE90; 
     }
   }
 
