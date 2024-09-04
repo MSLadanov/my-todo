@@ -1,0 +1,35 @@
+{
+    "rules": {
+      "todos": {
+        "$user_id": {
+          ".read": "auth != null && auth.uid == $user_id",
+          ".write": "auth != null && auth.uid == $user_id",
+          "$list_id": {
+            ".read": "auth != null && auth.uid == $user_id",
+            ".write": "auth != null && auth.uid == $user_id"
+          }
+        }
+      },
+      "chatLists":{
+        "$user_id": {
+          ".read": "auth != null",
+          ".write": "auth != null"
+      }
+      },
+      "users":{
+        ".read": "auth != null",
+        "$user_id": {
+          ".read": "auth != null",
+          ".write": "auth != null && auth.uid == $user_id"
+      }
+      },
+       "chats": {
+        ".write": "auth != null", 
+        "$chat_id": {
+          ".read": "auth.uid == data.child('receiverId').val() || auth.uid == data.child('senderId').val()",
+          ".write": "auth.uid == data.child('receiverId').val() || auth.uid == data.child('senderId').val()",
+          ".validate": "newData.child('receiverId').val() == auth.uid || newData.child('senderId').val() == auth.uid" 
+        }
+      }
+    }
+  }
