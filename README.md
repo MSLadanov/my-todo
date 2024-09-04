@@ -52,3 +52,36 @@ REACT_APP_APP_ID=your_app_id</code></pre>
     <li>React Router</li>
     <li>React Query</li>
   </ul>
+<h1>Вьюшки</h1>
+<div>
+  <h2>Авторизация</h2>
+  <img width="516" alt="Снимок экрана 2024-09-04 в 20 44 09" src="https://github.com/user-attachments/assets/9f77aa23-eb14-4665-9f24-15737f3f6770">
+</div>
+<div>
+  <h2>Регистрация</h2>
+  <img width="516" alt="Снимок экрана 2024-09-04 в 20 44 17" src="https://github.com/user-attachments/assets/9c0f351c-9d97-4f71-baa8-28485bcb65ab">
+</div>
+<div>
+  <h2>Страница текущего пользователя</h2>
+  <img width="351" alt="Снимок экрана 2024-09-04 в 20 43 24" src="https://github.com/user-attachments/assets/7455cd03-73b0-4eea-9670-bda2eec2a21a">
+</div>
+<div>
+  <h2>Страница пользователя</h2>
+  <img width="518" alt="Снимок экрана 2024-09-04 в 20 42 02" src="https://github.com/user-attachments/assets/ee52ec18-b44e-452e-a764-c04f3c9ece77">
+</div>
+<div>
+  <h2>Список To-Do листов</h2>
+  <img width="518" alt="Снимок экрана 2024-09-04 в 20 42 20" src="https://github.com/user-attachments/assets/e987f0cf-47b6-4051-8bdc-ba6d133ea557">
+</div>
+<div>
+  <h2>Создание To-Do листа</h2>
+  <img width="518" alt="Снимок экрана 2024-09-04 в 20 42 28" src="https://github.com/user-attachments/assets/494db98f-77b1-4cf3-b8bf-91c8592c99af">
+</div>
+<div>
+  <h2>Список пользователей</h2>
+  <img width="518" alt="Снимок экрана 2024-09-04 в 20 41 45" src="https://github.com/user-attachments/assets/b9e9eed2-6be8-4736-a70a-ee93c4c4d65c">
+</div>
+<div>
+  <h2>Страница чата (для каждого из собеседников)</h2>
+  <img width="1036" alt="Снимок экрана 2024-09-04 в 20 46 03" src="https://github.com/user-attachments/assets/88524624-b990-421b-b33e-9a3af9c2e442">
+</div>
