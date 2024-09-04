@@ -3,13 +3,23 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/authActions';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const FormContainer = styled.div`
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 `
-const SignInForm = styled.form`
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+`
+const FormControls = styled.div`
+  & button{
+    margin-top: 10px;
+  }
 `
 
 function SignIn(){
@@ -57,7 +67,7 @@ function SignIn(){
       };
       return (
       <FormContainer>
-        <SignInForm onSubmit={handleLogin}>
+        <StyledForm onSubmit={handleLogin}>
           <input
             type="email"
             value={email}
@@ -68,9 +78,11 @@ function SignIn(){
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password" />
-          <button type="submit">Sign In</button>
-        </SignInForm>
-        <button onClick={() => navigate('/signup')}>Sign Up</button>
+          <FormControls>
+            <button type="submit">Sign In</button>
+            <p>Don't have an account yet? Click <NavLink to={'/signup'}>here</NavLink></p>
+          </FormControls>     
+        </StyledForm>
       </FormContainer>
       );
 }
