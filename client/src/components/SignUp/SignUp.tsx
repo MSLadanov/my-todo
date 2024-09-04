@@ -5,6 +5,8 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../firebase'
 import { useNavigate, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import usePopup from '../../hooks/usePopup';
+import firebaseErrorToText from '../../helpers/firebaseErrorToText';
 
 
 const FormContainer = styled.div`
@@ -82,6 +84,7 @@ function SignUp () {
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const userName = useSelector((state : IState) => state.displayName)
+  const {Popup, togglePopup} = usePopup()
   // Make stronger protection in future
   useEffect(() => {
     if (userName) {
@@ -108,37 +111,36 @@ function SignUp () {
         // const {email, accessToken, uid} = resp.user
         updateProfile(resp.user, {displayName})
         navigate("/");
-      }).catch((error) => console.log(error));
-      console.log('User signed up');
+      }).catch((error) => togglePopup(firebaseErrorToText(error), 'error'));
     } catch (error) {
       console.error('Error signing up:', error);
     }
   };
 
   return (
-  <FormContainer>
-    <StyledForm onSubmit={handleSignUp}>
-      <Input
-        type="text"
-        value={displayName}
-        onChange={(e) => setDisplayName(e.target.value)}
-        placeholder="Name" />
-      <Input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email" />
-      <Input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password" />
-      <FormControls>
-            <button type="submit">Sign In</button>
-            <p>Already have an account? Click <NavLink to={'/signin'}>here</NavLink></p>
-          </FormControls>    
-    </StyledForm>
-  </FormContainer>
+  <><FormContainer>
+      <StyledForm onSubmit={handleSignUp}>
+        <Input
+          type="text"
+          value={displayName}
+          onChange={(e) => setDisplayName(e.target.value)}
+          placeholder="Name" />
+        <Input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email" />
+        <Input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password" />
+        <FormControls>
+          <button type="submit">Sign In</button>
+          <p>Already have an account? Click <NavLink to={'/signin'}>here</NavLink></p>
+        </FormControls>
+      </StyledForm>
+    </FormContainer><Popup /></>
   );
 };
 
