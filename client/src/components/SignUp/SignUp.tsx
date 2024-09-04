@@ -6,22 +6,69 @@ import { auth } from '../../firebase'
 import { useNavigate, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
+
 const FormContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-`
+  height: 100vh;
+  background-color: #FFFFFF;
+`;
+
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-`
-const FormControls = styled.div`
-  & button{
-    margin-top: 10px;
-  }
-`
+  background-color: #F0F8FF; /* AliceBlue */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+`;
 
+const Input = styled.input`
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #B0E0E6; /* PowderBlue */
+  border-radius: 4px;
+  font-size: 16px;
+`;
+
+const FormControls = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #98FB98; /* PaleGreen */
+    border: none;
+    border-radius: 4px;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #90EE90; /* LightGreen */
+    }
+  }
+
+  & p {
+    margin-top: 10px;
+    color: black;
+    font-size: 14px;
+
+    & a {
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+`;
 function SignUp () {
   interface IState {
     displayName: string,
@@ -71,17 +118,17 @@ function SignUp () {
   return (
   <FormContainer>
     <StyledForm onSubmit={handleSignUp}>
-      <input
+      <Input
         type="text"
         value={displayName}
         onChange={(e) => setDisplayName(e.target.value)}
         placeholder="Name" />
-      <input
+      <Input
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Email" />
-      <input
+      <Input
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
