@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/authActions';
 import { useNavigate, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import usePopup from '../../hooks/usePopup';
+import firebaseErrorToText from '../../helpers/firebaseErrorToText';
 
 const FormContainer = styled.div`
   display: flex;
@@ -87,7 +89,7 @@ function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userName = useSelector((state: IState) => state.displayName);
-
+  const {togglePopup, Popup} = usePopup()
   useEffect(() => {
     if (userName) {
       navigate("/");
@@ -110,34 +112,33 @@ function SignIn() {
           dispatch(login(userCredentials));
           navigate("/");
         });
-      }).catch((err) => console.log(err));
-      console.log('User logged in');
+      }).catch((err) => {
+        togglePopup(firebaseErrorToText(err), 'error')
+      });
     } catch (error) {
       console.error('Error logging in:', error);
     }
   }
 
   return (
-    <FormContainer>
+    <><FormContainer>
       <StyledForm onSubmit={handleLogin}>
         <Input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-        />
+          placeholder="Email" />
         <Input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
+          placeholder="Password" />
         <FormControls>
           <button type="submit">Sign In</button>
           <p>Don't have an account yet? Click <NavLink to={'/signup'}>here</NavLink></p>
         </FormControls>
       </StyledForm>
-    </FormContainer>
+    </FormContainer><Popup /></>
   );
 }
 
