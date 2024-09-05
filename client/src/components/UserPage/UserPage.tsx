@@ -24,7 +24,6 @@ const UserProfile = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: scroll;
   background-color: #FFFFFF;
   padding: 20px;
   border-radius: 10px;
