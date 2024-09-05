@@ -23,7 +23,7 @@ const Spinner = styled.div`
   animation: ${spin} 1s linear infinite;
 `
 
-function Loader() {
+function AvatarLoader() {
     return (
         <LoaderWrapper>
           <Spinner className="spinner"></Spinner>
@@ -31,4 +31,4 @@ function Loader() {
       );
 }
 
-export default Loader
+export default AvatarLoader

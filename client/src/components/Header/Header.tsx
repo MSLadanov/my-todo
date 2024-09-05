@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
 import { faComments } from '@fortawesome/free-solid-svg-icons';
 import { faAddressBook } from '@fortawesome/free-solid-svg-icons';
+import AvatarLoader from '../Loader/AvatarLoader';
  
 const HeaderContainer = styled.header`
     position: fixed;
@@ -69,7 +70,7 @@ function Header() {
               <NavLink to={`todolists/`} style={getActiveIcon}><FontAwesomeIcon icon={faClipboardCheck} size='2x' /></NavLink>
             </MenuItem>
             <MenuItem>
-              <NavLink to={`user/`}><MenuAvatar src={query.data}/></NavLink>
+              <NavLink to={`user/`}>{query.isFetched ? <MenuAvatar src={query.data} /> : <AvatarLoader/>}</NavLink>
             </MenuItem>
         </Menu>
     </NavBar>
