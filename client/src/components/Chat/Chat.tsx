@@ -40,7 +40,6 @@ import Loader from "../Loader/Loader";
 
 const MessagesBox = styled.div`
     padding-bottom: 100px;
-    overflow: scroll;
 `
 
 function Chat(){
@@ -92,7 +91,6 @@ function Chat(){
                 ...updatedMessages
             })
             setNewMessageText('')
-            query.refetch()
         }
     }
     useEffect(() => {
@@ -100,10 +98,6 @@ function Chat(){
             getUserAvatar(query.data.senderId).then((res) => setSenderAvatar(res))
             getUserAvatar(query.data.receiverId).then((res) => setReceiverAvatar(res))     
         } 
-        // else {
-        //     getNoAvatarImage().then((res) => setSenderAvatar(res))
-        //     getNoAvatarImage().then((res) => setReceiverAvatar(res))
-        // }
     },[query.data])
     return (
         <>

@@ -43,7 +43,7 @@ const LastMessageContainer = styled.div<{messageuserid : string, userid : string
   background-color: ${({ messageuserid, userid }) => (messageuserid === userid ? '#D9F2E6' : '#D7E8FF')};
   display: flex;
   align-items: center;
-  padding: 5px 10px;
+  padding: 5px;
   border-radius: 8px;
   color: black;
   & p{

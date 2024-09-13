@@ -136,7 +136,7 @@ function SignUp () {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password" />
         <FormControls>
-          <button type="submit">Sign In</button>
+          <button type="submit">Sign Up</button>
           <p>Already have an account? Click <NavLink to={'/signin'}>here</NavLink></p>
         </FormControls>
       </StyledForm>
