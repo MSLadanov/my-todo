@@ -64,7 +64,6 @@ function EditableRow({ field, value, id }: Row) {
       const auth = getAuth();
       const user = auth.currentUser;
       if (field === 'name' && user) {
-        console.log('update name');
         updateProfile(user, { displayName: editableValue });
       }
     }

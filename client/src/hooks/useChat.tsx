@@ -9,7 +9,6 @@ function useChat(userId : string | undefined){
     const { getUserAvatar } = useChatAvatar()
     async function getUserChats() {
         const chatData = await get(child(dbRef, `chatLists/${userId}`));
-        console.log(chatData.val())
     }
     async function getChatsById(chatsIds: string[]): Promise<any[]> {
         return Promise.all(

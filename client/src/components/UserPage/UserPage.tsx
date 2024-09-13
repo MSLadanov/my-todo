@@ -143,12 +143,9 @@ function UserPage() {
 
   async function updateAvatar() {
     if (newAvatar !== null) {
-      console.log('updating avatar...');
       removeAvatar().then(() => {
         const pathReference = ref(storage, `userAvatars/${userId}/${uuidv4()}`);
         uploadBytes(pathReference, newAvatar).then((snapshot) => {
-          console.log('avatar updated!');
-          console.log('Uploaded a blob or file!');
           query.refetch();
         });
       })

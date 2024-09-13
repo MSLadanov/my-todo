@@ -155,7 +155,6 @@ function AddTodoList() {
   }
 
   function addTodoList() {
-    console.log(newTodoList);
     const db = getDatabase();
     const todoLists = [...query.data, newTodoList];
     set(ref(db, `/todos/${userId}/todoLists/`), {
